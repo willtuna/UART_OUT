@@ -81,44 +81,48 @@ int main(int argc, char const *argv[]) {
   fd = shm_open("share_data", O_RDWR, 0666);
   if (fd == -1)
 	  printf("ERROR: Uart_exe hasn't opened yet.\n");
+else
+		printf("Open SUccess !\n");
 
   size = sizeof(fixed_size);
   ftruncate(fd, size);// open up the enough size of shared memory
   ptr = (fixed_size*)mmap(NULL, size, PROT_READ | PROT_WRITE, MAP_SHARED, fd, 0);
 
-  while (1){
+ for(int i=0; i<10 ; ++i){
+ // while (1){
 
-      printf("vx= %f",ptr->vx);
-	  printf("vy= %f", ptr->vy);
-	  printf("vz= %f", ptr->vz);
-	  printf("afx= %f", ptr->afx);
-	  printf("afy= %f", ptr->afy);
-	  printf("afz= %f", ptr->afz);
-	  printf("body_roll_rate= %f", ptr->body_roll_rate);
-	  printf("body_pitch_rate= %f", ptr->body_pitch_rate);
-	  printf("body_yaw_rate= %f", ptr->body_yaw_rate);
-	  printf("airspeed= %f", ptr->airspeed);
+      printf("vx= %f\n",ptr->vx);
+	  printf("vy= %f\n", ptr->vy);
+	  printf("vz= %f\n", ptr->vz);
+	  printf("afx= %f\n", ptr->afx);
+	  printf("afy= %f\n", ptr->afy);
+	  printf("afz= %f\n", ptr->afz);
+	  printf("body_roll_rate= %f\n", ptr->body_roll_rate);
+	  printf("body_pitch_rate= %f\n", ptr->body_pitch_rate);
+	  printf("body_yaw_rate= %f\n", ptr->body_yaw_rate);
+	  printf("airspeed= %f\n", ptr->airspeed);
 	  //printf("heading= %f", ptr->heading);
 	 // printf("throttle= %f", ptr->throttle);
-	  printf("alt= %f", ptr->alt);
-	  printf("climb= %f", ptr->climb);
-	  printf("xacc= %f", ptr->xacc);
-	  printf("yacc= %f", ptr->yacc);
-	  printf("zacc= %f", ptr->zacc);
-	  printf("xgyro= %f", ptr->xgyro);
-	  printf("ygyro= %f", ptr->ygyro);
-	  printf("zgyro= %f", ptr->zgyro);
-	  printf("pressure_alt= %f", ptr->pressure_alt);
-	  //printf("temperature= %f", ptr->temperature);
-	  //printf("current_battery=%f", ptr->current_battery);
-	  //printf("current_consumed= %f", ptr->current_consumed);
-	  //printf("energy_consumed= %f", ptr->energy_consumed);
-	  //printf("battery_remaining= %f", ptr->battery_remaining);
-	  sleep(30000);
-	  printf("\033[2J\033[1;1H");
-  }
+	  printf("alt= %f\n", ptr->alt);
+	  printf("climb= %f\n", ptr->climb);
+	  printf("xacc= %f\n", ptr->xacc);
+	  printf("yacc= %f\n", ptr->yacc);
+	  printf("zacc= %f\n", ptr->zacc);
+	  printf("xgyro= %f\n", ptr->xgyro);
+	  printf("ygyro= %f\n", ptr->ygyro);
+	  printf("zgyro= %f\n", ptr->zgyro);
+	  printf("pressure_alt= %f\n", ptr->pressure_alt);
+	  //printf("temperature= %f\n", ptr->temperature);
+	  //printf("current_battery=%f\n", ptr->current_battery);
+	  //printf("current_consumed= %f\n", ptr->current_consumed);
+	  //printf("energy_consumed= %f\n", ptr->energy_consumed);
+	  //printf("battery_remaining= %f\n", ptr->battery_remaining);
+	 sleep(1);
+	//  printf("\033[2J\033[1;1H");
+  //}
  
-  while(1)
+ }
+ // while(1)
   printf("Here is the world %s", ptr);
 
   return 0;

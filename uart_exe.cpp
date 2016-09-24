@@ -5,7 +5,12 @@
 #include <unistd.h>
 #include <iostream>
 #include <cstdio>
-#include "serial_port.h"
+#include "serial_port.cpp"
+//#include "editor_serial_port.cpp"
+
+
+
+
 /*#include "mavlink_msg_attitude_target.h"
 #include "mavlink_msg_vfr_hud.h"
 #include "mavlink_msg_timesync.h"
@@ -20,6 +25,8 @@
 #include "mavlink_msg_battery_status.h"
 #include "mavlink_msg_system_time.h"
 */
+
+
 struct current_message {
 
 	int sysid;
@@ -27,7 +34,7 @@ struct current_message {
 
 	mavlink_heartbeat_t heartbeat;
 	mavlink_position_target_global_int_t position_target_global_int;
-	mavlink_attitude_target;
+	mavlink_attitude_target_t attitude_target;
 	mavlink_vfr_hud_t vfr_hud;
 	mavlink_timesync_t timesync;
 	mavlink_attitude_t attitude;
@@ -37,7 +44,7 @@ struct current_message {
 	mavlink_command_ack_t command_ack;
 	mavlink_position_target_local_ned_t position_target_local_ned;
 	mavlink_command_long_t command_long;
-	mavlink_sys_status;
+	mavlink_sys_status_t sys_status;
 	mavlink_battery_status_t battery_status;
 	mavlink_system_time_t system_time;
 
@@ -156,7 +163,7 @@ int main(int argc, char const *argv[])
 			{
 				sysid = msgrcv.sysid;
 				compid = msgrcv.compid;
-				//printf("sysid :\n compid: \n", msgrcv.sysid,msgrcv.compid);
+				printf("sysid :%d \n compid: %d\n", msgrcv.sysid,msgrcv.compid);
 				switch(msgrcv.msgid)
 				{
 				case MAVLINK_MSG_ID_POSITION_TARGET_GLOBAL_INT:

@@ -88,34 +88,34 @@ int main(int argc, char const *argv[]) {
 
   while (1){
 
-	  cout << "vx= " << ptr->vx;
-	  cout << "vy= " << ptr->vy;
-	  cout << "vz= " << ptr->vz;
-	  cout << "afx= " << ptr->afx;
-	  cout << "afy= " << ptr->afy;
-	  cout << "afz(-1)= " << ptr->afz;
-	  cout << "body_roll_rate= " << ptr->body_roll_rate;
-	  cout << "body_pitch_rate= " << ptr->body_pitch_rate;
-	  cout << "body_yaw_rate= " << ptr->body_yaw_rate;
-	  cout << "airspeed= " << ptr->airspeed;
-	  cout << "heading= " << ptr->heading;
-	  cout << "throttle= " << ptr->throttle;
-	  cout << "alt= " << ptr->alt;
-	  cout << "climb= " << ptr->climb;
-	  cout << "xacc= " << ptr->xacc;
-	  cout << "yacc= " << ptr->yacc;
-	  cout << "zacc= " << ptr->zacc;
-	  cout << "xgyro= " << ptr->xgyro;
-	  cout << "ygyro= " << ptr->ygyro;
-	  cout << "zgyro= " << ptr->zgyro;
-	  cout << "pressure_alt= " << ptr->pressure_alt;
-	  cout << "temperature= " << ptr->temperature;
-	  cout << "current_battery= " << ptr->current_battery;
-	  cout << "current_consumed= " << ptr->current_consumed;
-	  cout << "energy_consumed= " << ptr->energy_consumed;
-	  cout << "battery_remaining= " << ptr->battery_remaining;
+      printf("vx= %f",ptr->vx);
+	  printf("vy= %f", ptr->vy);
+	  printf("vz= %f", ptr->vz);
+	  printf("afx= %f", ptr->afx);
+	  printf("afy= %f", ptr->afy);
+	  printf("afz= %f", ptr->afz);
+	  printf("body_roll_rate= %f", ptr->body_roll_rate);
+	  printf("body_pitch_rate= %f", ptr->body_pitch_rate);
+	  printf("body_yaw_rate= %f", ptr->body_yaw_rate);
+	  printf("airspeed= %f", ptr->airspeed);
+	  //printf("heading= %f", ptr->heading);
+	 // printf("throttle= %f", ptr->throttle);
+	  printf("alt= %f", ptr->alt);
+	  printf("climb= %f", ptr->climb);
+	  printf("xacc= %f", ptr->xacc);
+	  printf("yacc= %f", ptr->yacc);
+	  printf("zacc= %f", ptr->zacc);
+	  printf("xgyro= %f", ptr->xgyro);
+	  printf("ygyro= %f", ptr->ygyro);
+	  printf("zgyro= %f", ptr->zgyro);
+	  printf("pressure_alt= %f", ptr->pressure_alt);
+	  //printf("temperature= %f", ptr->temperature);
+	  //printf("current_battery=%f", ptr->current_battery);
+	  //printf("current_consumed= %f", ptr->current_consumed);
+	  //printf("energy_consumed= %f", ptr->energy_consumed);
+	  //printf("battery_remaining= %f", ptr->battery_remaining);
 	  sleep(30000);
-	  cout << "\033[2J\033[1;1H";
+	  printf("\033[2J\033[1;1H");
   }
  
   while(1)

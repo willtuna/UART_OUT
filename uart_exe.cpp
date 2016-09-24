@@ -6,8 +6,7 @@
 #include <iostream>
 #include <cstdio>
 #include "serial_port.h"
-#include "mavlink_msg_position_target_global_int.h"
-#include "mavlink_msg_attitude_target.h"
+/*#include "mavlink_msg_attitude_target.h"
 #include "mavlink_msg_vfr_hud.h"
 #include "mavlink_msg_timesync.h"
 #include "mavlink_msg_attitude.h"
@@ -20,7 +19,7 @@
 #include "mavlink_msg_sys_status.h"
 #include "mavlink_msg_battery_status.h"
 #include "mavlink_msg_system_time.h"
-
+*/
 struct current_message {
 
 	int sysid;
@@ -28,7 +27,7 @@ struct current_message {
 
 	mavlink_heartbeat_t heartbeat;
 	mavlink_position_target_global_int_t position_target_global_int;
-	mavlink_ attitude_target;
+	mavlink_attitude_target;
 	mavlink_vfr_hud_t vfr_hud;
 	mavlink_timesync_t timesync;
 	mavlink_attitude_t attitude;
@@ -38,7 +37,7 @@ struct current_message {
 	mavlink_command_ack_t command_ack;
 	mavlink_position_target_local_ned_t position_target_local_ned;
 	mavlink_command_long_t command_long;
-	mavlink_ sys_status;
+	mavlink_sys_status;
 	mavlink_battery_status_t battery_status;
 	mavlink_system_time_t system_time;
 
@@ -69,44 +68,46 @@ public:
 	float xgyro; // Angular speed around X axis(rad / sec)
 	float ygyro; // Angular speed around Y axis(rad / sec)
 	float zgyro; // Angular speed around Z axis(rad / sec)
-	float pressure_alt // Altitude calculated from pressure
-	int16_t temperature	// Temperature of the battery in centi - degrees celsius.INT16_MAX for unknown temperature.
-	uint16_t voltages[10] // Battery voltage of cells, in millivolts(1 = 1 millivolt).Cells above the valid cell count for this battery should have the UINT16_MAX value.
-	int16_t current_battery	// Battery current, in 10 * milliamperes(1 = 10 milliampere), -1: autopilot does not measure the current
-	int32_t current_consumed // Consumed charge, in milliampere hours(1 = 1 mAh), -1 : autopilot does not provide mAh consumption estimate
-	int32_t energy_consumed // Consumed energy, in 100 * Joules(intergrated U*I*dt) (1 = 100 Joule), -1 : autopilot does not provide energy consumption estimate
-	int8_t battery_remaining // Remaining battery energy : (0 % : 0, 100 % : 100), -1 : autopilot does not estimate the remaining battery
+	float pressure_alt; // Altitude calculated from pressure
+	int16_t temperature;// Temperature of the battery in centi - degrees celsius.INT16_MAX for unknown temperature.
+	uint16_t voltages[10]; // Battery voltage of cells, in millivolts(1 = 1 millivolt).Cells above the valid cell count for this battery should have the UINT16_MAX value.
+	int16_t current_battery;	// Battery current, in 10 * milliamperes(1 = 10 milliampere), -1: autopilot does not measure the current
+	int32_t current_consumed; // Consumed charge, in milliampere hours(1 = 1 mAh), -1 : autopilot does not provide mAh consumption estimate
+	int32_t energy_consumed; // Consumed energy, in 100 * Joules(intergrated U*I*dt) (1 = 100 Joule), -1 : autopilot does not provide energy consumption estimate
+	int8_t battery_remaining; // Remaining battery energy : (0 % : 0, 100 % : 100), -1 : autopilot does not estimate the remaining battery
 
 };
 
 fixed_size::fixed_size():
-float vx(-1),
-float vy(-1),
-float vz(-1),
-float afx(-1),
-float afy(-1),
-float afz(-1),
-float body_roll_rate(-1),
-float body_pitch_rate(-1),
-float body_yaw_rate(-1),
-float airspeed(-1),
-uint16_t heading(-1),
-uint16_t throttle(-1),
-float alt(-1),
-float climb(-1),
-float xacc(-1),
-float yacc(-1),
-float zacc(-1),
-float xgyro(-1),
-float ygyro(-1),
-float zgyro(-1),
-float pressure_alt(-1),
-int16_t temperature(-1),
-uint16_t voltages[10]({-1,-1,-1,-1,-1,-1,-1,-1,-1,-1}),
-int16_t current_battery(-1),
-int32_t current_consumed(-1),
-int32_t energy_consumed(-1),
-int8_t battery_remaining(-1){}
+vx(-1),
+vy(-1),
+vz(-1),
+afx(-1),
+afy(-1),
+afz(-1),
+body_roll_rate(-1),
+body_pitch_rate(-1),
+body_yaw_rate(-1),
+airspeed(-1),
+heading(-1),
+throttle(-1),
+alt(-1),
+climb(-1),
+xacc(-1),
+yacc(-1),
+zacc(-1),
+xgyro(-1),
+ygyro(-1),
+zgyro(-1),
+pressure_alt(-1),
+temperature(-1),
+current_battery(-1),
+current_consumed(-1),
+energy_consumed(-1),
+battery_remaining(-1){
+for(int i=0;i<10;++i)
+		voltages[i]=-1;
+}
 
 
 
@@ -126,6 +127,9 @@ int main(int argc, char const *argv[])
 /*                             open and setup the share memory                           */
 /*****************************************************************************************/
 	fixed_size *ptr;
+    int fd;// file descriptor
+    int size ; // size need to chop in memory
+
 
 	fd = shm_open("share_data", O_CREAT | O_RDWR, 0666);
 	if (fd == -1)
@@ -133,7 +137,7 @@ int main(int argc, char const *argv[])
 
 	size = sizeof(fixed_size);
 	ftruncate(fd, size);// open up the enough size of shared memory
-	ptr = mmap(NULL, size, PROT_READ | PROT_WRITE, MAP_SHARED, fd, 0);
+	ptr = (fixed_size*)mmap(NULL, size, PROT_READ | PROT_WRITE, MAP_SHARED, fd, 0);
 
 
 /*****************************************************************************************/
@@ -141,7 +145,8 @@ int main(int argc, char const *argv[])
 /*****************************************************************************************/
 	mavlink_message_t	msgrcv;
 	current_message current;
-	int rcv_success = 0
+	int rcv_success = 0;
+	int sysid(0),compid(0);
 	while (1){
 		int have_new_data = 0;
 
@@ -149,7 +154,7 @@ int main(int argc, char const *argv[])
 
 		if(rcv_success)
 			{
-				sysid = msgrcv.sisid;
+				sysid = msgrcv.sysid;
 				compid = msgrcv.compid;
 				//printf("sysid :\n compid: \n", msgrcv.sysid,msgrcv.compid);
 				switch(msgrcv.msgid)

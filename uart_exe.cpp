@@ -256,7 +256,7 @@ int main(int argc, char const *argv[])
 				case MAVLINK_MSG_ID_POSITION_TARGET_LOCAL_NED:
 				{
 					mavlink_msg_position_target_local_ned_decode(&msgrcv, &(current.position_target_local_ned));
-					printf("local x: %f\n local y: %f\n local z: %f\n", position_target_local_ned.x, position_target_local_ned.y, position_target_local_ned.z)
+					printf("local x: %f\n local y: %f\n local z: %f\n", current.position_target_local_ned.x, current.position_target_local_ned.y, current.position_target_local_ned.z)
 					//do nothing
 					break;
 				}

@@ -88,8 +88,8 @@ int main(int argc, char const *argv[]) {
   ftruncate(fd, size);// open up the enough size of shared memory
   ptr = (fixed_size*)mmap(NULL, size, PROT_READ | PROT_WRITE, MAP_SHARED, fd, 0);
 
- for(int i=0; i<10 ; ++i){
- // while (1){
+ //for(int i=0; i<10 ; ++i){
+  while (1){
 
       printf("vx= %f\n",ptr->vx);
 	  printf("vy= %f\n", ptr->vy);
@@ -117,7 +117,7 @@ int main(int argc, char const *argv[]) {
 	  //printf("current_consumed= %f\n", ptr->current_consumed);
 	  //printf("energy_consumed= %f\n", ptr->energy_consumed);
 	  //printf("battery_remaining= %f\n", ptr->battery_remaining);
-	 sleep(1);
+	 usleep(200000);
 	//  printf("\033[2J\033[1;1H");
   //}
  

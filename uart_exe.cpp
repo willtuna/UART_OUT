@@ -169,7 +169,7 @@ int main(int argc, char const *argv[])
 		rcv_success = serial_port.read_message(msgrcv);// not sure it would wipe out the msgrcv or not
 
 		if(rcv_success)
-			{
+		{
 				sysid = msgrcv.sysid;
 				compid = msgrcv.compid;
 				//printf("sysid :%d \n compid: %d\n", msgrcv.sysid,msgrcv.compid);
@@ -308,15 +308,12 @@ int main(int argc, char const *argv[])
 					printf("Getting unexpected message, msgrcv.msgid = %d\n", msgrcv.msgid);
 				}
 			}
-
-
+		
 		}
-
-	if(confirm  < 3 ){
-    mavlink_msg_command_long_pack( 0 , 0, &msg_send, sysid , compid , MAV_CMD_DO_SET_MODE , confirm , 	MAV_MODE_STABILIZE_DISARMED,	MAV_MODE_FLAG_CUSTOM_MODE_ENABLED, 0, 0, 0, 0, 0);
-    printf("Write %d bytes",serial_port.write_message(msg_send));
-	confirm++;
-}
+	if(confirm  ==0 ){
+    		mavlink_msg_command_long_pack( 0 , 0, &msg_send, sysid , compid , MAV_CMD_DO_SET_MODE , confirm , 	MAV_MODE_STABILIZE_DISARMED,	MAV_MODE_FLAG_CUSTOM_MODE_ENABLED, 0, 0, 0, 0, 0);
+    		printf("Write %d bytes",serial_port.write_message(msg_send));
+			confirm++;
 
 
 

@@ -159,11 +159,10 @@ int main(int argc, char const *argv[])
 
 	mavlink_message_t msg_send;
 	uint8_t confirm = 0;
-    mavlink_msg_command_long_pack( 0 , 0, &msg_send, sysid , compid , MAV_CMD_DO_SET_MODE , confirm , 	MAV_MODE_STABILIZE_DISARMED,MAV_MODE_FLAG_STABILIZE_ENABLED , 	MAV_MODE_FLAG_CUSTOM_MODE_ENABLED, 0, 0, 0, 0, 0);
-    printf("Write %d bytes",serial_port.write_message(msg_send);
-    	
-
-/*
+	
+	
+	
+	
 	while (1){
 		int have_new_data = 0;
 
@@ -311,15 +310,19 @@ int main(int argc, char const *argv[])
 			}
 
 
-
-
 		}
+
+	if(confirm  < 3 ){
+    mavlink_msg_command_long_pack( 0 , 0, &msg_send, sysid , compid , MAV_CMD_DO_SET_MODE , confirm , 	MAV_MODE_STABILIZE_DISARMED,	MAV_MODE_FLAG_CUSTOM_MODE_ENABLED, 0, 0, 0, 0, 0);
+    printf("Write %d bytes",serial_port.write_message(msg_send));
+	confirm++;
+}
 
 
 
 
 
 	}
-*/
+
 	return 0;
 }

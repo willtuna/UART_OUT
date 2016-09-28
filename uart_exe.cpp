@@ -154,6 +154,16 @@ int main(int argc, char const *argv[])
 	current_message current;
 	int rcv_success = 0;
 	int sysid(0),compid(0);
+
+
+
+	mavlink_message_t msg_send;
+	uint8_t confirm = 0;
+    mavlink_msg_command_long_pack( 0 , 0, &msg_send, sysid , compid , MAV_CMD_DO_SET_MODE , confirm , 	MAV_MODE_STABILIZE_DISARMED,MAV_MODE_FLAG_STABILIZE_ENABLED , 	MAV_MODE_FLAG_CUSTOM_MODE_ENABLED, 0, 0, 0, 0, 0);
+    printf("Write %d bytes",serial_port.write_message(msg_send);
+    	
+
+/*
 	while (1){
 		int have_new_data = 0;
 
@@ -163,7 +173,7 @@ int main(int argc, char const *argv[])
 			{
 				sysid = msgrcv.sysid;
 				compid = msgrcv.compid;
-				printf("sysid :%d \n compid: %d\n", msgrcv.sysid,msgrcv.compid);
+				//printf("sysid :%d \n compid: %d\n", msgrcv.sysid,msgrcv.compid);
 				switch(msgrcv.msgid)
 				{
 				case MAVLINK_MSG_ID_POSITION_TARGET_GLOBAL_INT:
@@ -298,7 +308,9 @@ int main(int argc, char const *argv[])
 				{
 					printf("Getting unexpected message, msgrcv.msgid = %d\n", msgrcv.msgid);
 				}
-				}
+			}
+
+
 
 
 		}
@@ -308,5 +320,6 @@ int main(int argc, char const *argv[])
 
 
 	}
+*/
 	return 0;
 }

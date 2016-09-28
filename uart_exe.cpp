@@ -309,7 +309,7 @@ int main(int argc, char const *argv[])
 				}
 			}// end of switch
 		
-		rcv_count++
+		rcv_count++;
 		}//end of if rcv
 
 

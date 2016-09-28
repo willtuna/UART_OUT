@@ -159,12 +159,12 @@ int main(int argc, char const *argv[])
 
 	mavlink_message_t msg_send;
 	uint8_t confirm = 0;
-	
+	int rcv_count =0;
 	
 	
 	
 	while (1){
-		int have_new_data = 0;
+		//int have_new_data = 0;
 
 		rcv_success = serial_port.read_message(msgrcv);// not sure it would wipe out the msgrcv or not
 
@@ -307,20 +307,19 @@ int main(int argc, char const *argv[])
 				{
 					printf("Getting unexpected message, msgrcv.msgid = %d\n", msgrcv.msgid);
 				}
-			}
+			}// end of switch
 		
-		}
-	if(confirm  ==0 ){
+		rcv_count++
+		}//end of if rcv
+
+
+
+	if(rcv_count > 1000 && confirm  == 0 ){
     		mavlink_msg_command_long_pack( 0 , 0, &msg_send, sysid , compid , MAV_CMD_DO_SET_MODE , confirm , 	MAV_MODE_STABILIZE_DISARMED,	MAV_MODE_FLAG_CUSTOM_MODE_ENABLED, 0, 0, 0, 0, 0);
     		printf("Write %d bytes",serial_port.write_message(msg_send));
 			confirm++;
-
-
-
-
-
 	}
-}	
+}// end of while
 
 	return 0;
 }

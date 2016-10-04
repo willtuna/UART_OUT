@@ -33,7 +33,7 @@ struct current_message {
 	int compid;
 
 	mavlink_heartbeat_t heartbeat;
-	mavlink_position_target_global_int_t position_target_global_int;
+	mavlink_local_position_ned_t local_position_ned;
 	mavlink_attitude_target_t attitude_target;
 	mavlink_vfr_hud_t vfr_hud;
 	mavlink_timesync_t timesync;
@@ -175,15 +175,16 @@ int main(int argc, char const *argv[])
 				//printf("sysid :%d \n compid: %d\n", msgrcv.sysid,msgrcv.compid);
 				switch(msgrcv.msgid)
 				{
-				case MAVLINK_MSG_ID_POSITION_TARGET_GLOBAL_INT:
+				case MAVLINK_MSG_ID_LOCAL_POSITION_NED:
 				{
-					mavlink_msg_position_target_global_int_decode(&msgrcv, &(current.position_target_global_int));
-					ptr->vx = current.position_target_global_int.vx;
-					ptr->vy = current.position_target_global_int.vy;
-					ptr->vz = current.position_target_global_int.vz;
-					ptr->afx = current.position_target_global_int.afx;
-					ptr->afy = current.position_target_global_int.afy;
-					ptr->afz = current.position_target_global_int.afz;
+					printf("find local_position_ned  !!! \n");
+					mavlink_msg_local_position_ned_decode(&msgrcv, &(current.local_position_ned));
+					ptr->vx = current.local_position_ned.vx;
+					ptr->vy = current.local_position_ned.vy;
+					ptr->vz = current.local_position_ned.vz;
+				//	ptr->afx = current.local_position_ned.afx;
+				//	ptr->afy = current.local_position_ned.afy;
+				//	ptr->afz = current.local_position_ned.afz;
 					break;
 				}
 

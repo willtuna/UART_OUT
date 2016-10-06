@@ -201,6 +201,7 @@ int main(int argc, char const *argv[])
 				{
 					mavlink_msg_vfr_hud_decode(&msgrcv, &(current.vfr_hud));
 					ptr->airspeed = current.vfr_hud.airspeed;
+					ptr->groundspeed = current.vfr_hud.groundspeed;
 					ptr->heading = current.vfr_hud.heading;
 					ptr->throttle = current.vfr_hud.throttle;
 					ptr->alt = current.vfr_hud.alt;

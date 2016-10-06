@@ -101,7 +101,8 @@ int main(int argc, char const *argv[]) {
 	  printf("body_pitch_rate= %f\n", ptr->body_pitch_rate);
 	  printf("body_yaw_rate= %f\n", ptr->body_yaw_rate);
 	  printf("airspeed= %f\n", ptr->airspeed);
-	  //printf("heading= %f", ptr->heading);
+      printf("groundspeed= %f\n", ptr->groundspeed);
+     //printf("heading= %f", ptr->heading);
 	 // printf("throttle= %f", ptr->throttle);
 	  printf("alt= %f\n", ptr->alt);
 	  printf("climb= %f\n", ptr->climb);

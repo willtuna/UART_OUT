@@ -82,9 +82,9 @@ public:
 	int32_t current_consumed; // Consumed charge, in milliampere hours(1 = 1 mAh), -1 : autopilot does not provide mAh consumption estimate
 	int32_t energy_consumed; // Consumed energy, in 100 * Joules(intergrated U*I*dt) (1 = 100 Joule), -1 : autopilot does not provide energy consumption estimate
 	int8_t battery_remaining; // Remaining battery energy : (0 % : 0, 100 % : 100), -1 : autopilot does not estimate the remaining battery
-	int32_t longitude;//	Longitude (WGS84), in degrees * 1E7
-	int32_t latitude;// Latitude (WGS84), in degrees * 1E7	
-
+	int32_t lon;//	Longitude (WGS84), in degrees * 1E7
+	int32_t lat;// Latitude (WGS84), in degrees * 1E7	
+    int8_t satellites_visible;// number of satellite_visible if unknown set to 255
 };
 
 fixed_size::fixed_size():
@@ -114,8 +114,9 @@ current_battery(-1),
 current_consumed(-1),
 energy_consumed(-1),
 battery_remaining(-1),
-longitude(-1),
-latitude(-1)
+lon(-1),//	Longitude (WGS84), in degrees * 1E7
+lat(-1),// Latitude (WGS84), in degrees * 1E7	
+satellites_visible(-1)// number of satellite_visible if unknown set to 255
 {
 for(int i=0;i<10;++i)
 		voltages[i]=-1;
@@ -252,10 +253,10 @@ int main(int argc, char const *argv[])
 				{
 					mavlink_msg_gps_raw_int_decode(&msgrcv, &(current.gps_raw_int));
 					
-					ptr->airspeed = current.gps_raw_int.vel;
 					ptr->groundspeed = current.gps_raw_int.vel;
-					
-					
+					ptr->lon = current.gps_raw_int.lon;
+					ptr->lat = current.gps_raw_int.lat;
+					ptr ->satellites_visible= current.gps_raw_int.satellites_visible;
 					
 					//do nothing
 					break;

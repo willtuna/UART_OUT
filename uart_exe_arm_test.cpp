@@ -330,7 +330,7 @@ int main(int argc, char const *argv[])
 
 
 	if(rcv_count > 1000 && confirm  == 0 ){
-    		mavlink_msg_command_long_pack( 0 , 0, &msg_send, sysid , compid , MAV_CMD_DO_SET_MODE , confirm , 	MAV_MODE_STABILIZE_DISARMED,	MAV_MODE_FLAG_CUSTOM_MODE_ENABLED, 0, 0, 0, 0, 0);
+    		mavlink_msg_command_long_pack( 0 , 0, &msg_send, sysid , compid , MAV_CMD_COMPONENT_ARM_DISARM , confirm , 0 , 0, 0, 0, 0, 0, 0);
     		printf("Write %d bytes\n",serial_port.write_message(msg_send));
 		    printf("DISARM Executed !!\n");
 			confirm++;
@@ -339,7 +339,7 @@ int main(int argc, char const *argv[])
 	
 	if(confirm >0 && arm == 0 )sleep(10);
 	if(rcv_count > 1000 && confirm >0 && arm == 0){
-    		mavlink_msg_command_long_pack( 0 , 0, &msg_send, sysid , compid , MAV_CMD_DO_SET_MODE , arm , 	MAV_MODE_STABILIZE_ARMED,	MAV_MODE_FLAG_CUSTOM_MODE_ENABLED, 0, 0, 0, 0, 0);
+    		mavlink_msg_command_long_pack( 0 , 0, &msg_send, sysid , compid , MAV_CMD_COMPONENT_ARM_DISARM , confirm , 1 , 0, 0, 0, 0, 0, 0);
     		printf("Write %d bytes\n",serial_port.write_message(msg_send));
 		    printf("ARM Executed !!\n");
 			arm =1;

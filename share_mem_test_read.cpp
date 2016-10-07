@@ -39,7 +39,9 @@ public:
 		int32_t current_consumed; // Consumed charge, in milliampere hours(1 = 1 mAh), -1 : autopilot does not provide mAh consumption estimate
 		int32_t energy_consumed; // Consumed energy, in 100 * Joules(intergrated U*I*dt) (1 = 100 Joule), -1 : autopilot does not provide energy consumption estimate
 		int8_t battery_remaining; // Remaining battery energy : (0 % : 0, 100 % : 100), -1 : autopilot does not estimate the remaining battery
-
+		int32_t latitude;
+		int32_t longitude;
+		
 };
 
 fixed_size::fixed_size() :
@@ -68,7 +70,10 @@ temperature(-1),
 current_battery(-1),
 current_consumed(-1),
 energy_consumed(-1),
-battery_remaining(-1){
+battery_remaining(-1),
+latitude(-1),
+longitude(-1)
+{
 	for (int i = 0; i<10; ++i)
 		voltages[i] = -1;
 }
@@ -118,13 +123,17 @@ int main(int argc, char const *argv[]) {
 	  //printf("current_consumed= %f\n", ptr->current_consumed);
 	  //printf("energy_consumed= %f\n", ptr->energy_consumed);
 	  //printf("battery_remaining= %f\n", ptr->battery_remaining);
-	 usleep(200000);
+	  printf("GPS: longitude:%d\n",ptr->longitude);
+	  printf("GPS: latitude: %d\n",ptr->latitude);
+	  
+	  usleep(200000);
+
 	//  printf("\033[2J\033[1;1H");
   //}
  
  }
  // while(1)
-  printf("Here is the world %s", ptr);
+  printf("Here is the world ");
 
   return 0;
 }

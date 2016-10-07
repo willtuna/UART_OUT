@@ -82,6 +82,8 @@ public:
 	int32_t current_consumed; // Consumed charge, in milliampere hours(1 = 1 mAh), -1 : autopilot does not provide mAh consumption estimate
 	int32_t energy_consumed; // Consumed energy, in 100 * Joules(intergrated U*I*dt) (1 = 100 Joule), -1 : autopilot does not provide energy consumption estimate
 	int8_t battery_remaining; // Remaining battery energy : (0 % : 0, 100 % : 100), -1 : autopilot does not estimate the remaining battery
+	int32_t longitude;//	Longitude (WGS84), in degrees * 1E7
+	int32_t latitude;// Latitude (WGS84), in degrees * 1E7	
 
 };
 
@@ -111,7 +113,10 @@ temperature(-1),
 current_battery(-1),
 current_consumed(-1),
 energy_consumed(-1),
-battery_remaining(-1){
+battery_remaining(-1),
+longitude(-1),
+latitude(-1)
+{
 for(int i=0;i<10;++i)
 		voltages[i]=-1;
 }
@@ -200,8 +205,8 @@ int main(int argc, char const *argv[])
 				case MAVLINK_MSG_ID_VFR_HUD:
 				{
 					mavlink_msg_vfr_hud_decode(&msgrcv, &(current.vfr_hud));
-					ptr->airspeed = current.vfr_hud.airspeed;
-					ptr->groundspeed = current.vfr_hud.groundspeed;
+					//ptr->airspeed = current.vfr_hud.airspeed;
+					//ptr->groundspeed = current.vfr_hud.groundspeed;
 					ptr->heading = current.vfr_hud.heading;
 					ptr->throttle = current.vfr_hud.throttle;
 					ptr->alt = current.vfr_hud.alt;
@@ -246,6 +251,12 @@ int main(int argc, char const *argv[])
 				case MAVLINK_MSG_ID_GPS_RAW_INT:
 				{
 					mavlink_msg_gps_raw_int_decode(&msgrcv, &(current.gps_raw_int));
+					
+					ptr->airspeed = current.gps_raw_int.vel;
+					ptr->groundspeed = current.gps_raw_int.vel;
+					
+					
+					
 					//do nothing
 					break;
 				}
@@ -321,6 +332,11 @@ int main(int argc, char const *argv[])
     		printf("Write %d bytes",serial_port.write_message(msg_send));
 			confirm++;
 	}
+	/*if(rcv_count > 1000 && confirm >0 ){
+    		mavlink_msg_command_long_pack( 0 , 0, &msg_send, sysid , compid , MAV_CMD_DO_SET_MODE , confirm , 	MAV_MODE_STABILIZE_DISARMED,	MAV_MODE_FLAG_CUSTOM_MODE_ENABLED, 0, 0, 0, 0, 0);
+    		printf("Write %d bytes",serial_port.write_message(msg_send));*/
+
+
 }// end of while
 
 	return 0;

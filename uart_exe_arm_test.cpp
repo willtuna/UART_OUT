@@ -184,7 +184,7 @@ int main(int argc, char const *argv[])
 				compid = msgrcv.compid;
 				//printf("sysid :%d \n compid: %d\n", msgrcv.sysid,msgrcv.compid);
 				switch(msgrcv.msgid)
-				{
+			{
 				case MAVLINK_MSG_ID_LOCAL_POSITION_NED:
 				{
 					printf("find local_position_ned  !!! \n");
@@ -327,6 +327,7 @@ int main(int argc, char const *argv[])
 				{
 					mavlink_msg_statustext_decode(&msgrcv, &(current.statustext));
 					printf("MSG: %s\n", current.statustext.text);
+					break;
 				}
 				default:
 				{
@@ -350,8 +351,8 @@ int main(int argc, char const *argv[])
 	arm = 0;
 	printf("rcv_count: %d\n", rcv_count);
 	//if(confirm >0 && arm == 0 )sleep(10);
-	if(rcv_count == 1000) sleep(10);
-	if(rcv_count > 1000 && confirm >0 && arm == 0){
+	confirm++;
+	if(rcv_count == 1000 && confirm >0 && arm == 0){
     		mavlink_msg_command_long_pack( 0 , 0, &msg_send, sysid , compid , MAV_CMD_NAV_LAND, confirm , 0 , 0, 0,0,ptr-> lat,ptr-> lon,ptr-> alt);
     		printf("Write %d bytes\n",serial_port.write_message(msg_send));
 		    printf("Land Executed \n!!\n");

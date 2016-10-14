@@ -47,6 +47,7 @@ struct current_message {
 	mavlink_sys_status_t sys_status;
 	mavlink_battery_status_t battery_status;
 	mavlink_system_time_t system_time;
+	mavlink_statustext_t statustext;
 
 };
 
@@ -292,7 +293,7 @@ int main(int argc, char const *argv[])
 				{
 					mavlink_msg_command_long_decode(&msgrcv, &(current.command_long));
 					//do nothing
-					printf("Receive command_long from pixhawk !!\n");
+					//printf("Receive command_long from pixhawk !!\n");
 					break;
 				}
 
@@ -322,6 +323,11 @@ int main(int argc, char const *argv[])
 					mavlink_msg_system_time_decode(&msgrcv, &(current.system_time));
 					break;
 				}
+				case MAVLINK_MSG_ID_STATUSTEXT:
+				{
+					mavlink_msg_statustext_decode(&msgrcv, &(current.statustext));
+					printf("MSG: %s\n", current.statustext.text);
+				}
 				default:
 				{
 					printf("Getting unexpected message, msgrcv.msgid = %d\n", msgrcv.msgid);
@@ -341,13 +347,13 @@ int main(int argc, char const *argv[])
 			arm = 0;
 	}
 	
-	if(confirm >0 && arm == 0 )sleep(10);
+	/*if(confirm >0 && arm == 0 )sleep(10);
 	if(rcv_count > 1000 && confirm >0 && arm == 0){
     		mavlink_msg_command_long_pack( 0 , 0, &msg_send, sysid , compid , MAV_CMD_NAV_TAKEOFF, confirm , 5 , 0, 0,0,ptr-> lat,ptr-> lon,ptr-> alt);
     		printf("Write %d bytes\n",serial_port.write_message(msg_send));
 		    printf("Takeoff Executed !!\n");
 			arm =1;
-     }
+     }*/
 
 }// end of while
 

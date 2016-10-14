@@ -168,6 +168,7 @@ int main(int argc, char const *argv[])
 
 	mavlink_message_t msg_send;
 	uint8_t confirm = 0;
+	uint8_t confirm_takeoff =0;
 	uint8_t arm = 1;
 	int rcv_count =0;
 	
@@ -357,15 +358,19 @@ int main(int argc, char const *argv[])
 			
 			arm = 0;
 	}
-	/*
-	if(rcv_count == 1000 && confirm >0 && arm == 0){
-    		mavlink_msg_command_long_pack( 0 , 0, &msg_send, sysid , compid , MAV_CMD_NAV_LAND, confirm , 0 , 0, 0,0,ptr-> lat,ptr-> lon,ptr-> alt);
+
+	if(arm == 0 && confirm_takeoff ==0 ) sleep(10);
+
+	if(rcv_count > 1000 && confirm_takeoff == 0 && arm == 0){
+    		mavlink_msg_command_long_pack( 0 , 0, &msg_send, sysid , compid , MAV_CMD_NAV_TAKEOFF, confirm_takeoff , 0.5 , 0, 0,0,ptr-> lat,ptr-> lon,ptr-> alt);
     		printf("Write %d bytes\n",serial_port.write_message(msg_send));
-		    printf("Land Executed \n!!\n");
-			arm =1;
+		    printf("TAKEOFF Executed \n!!\n");
+
+		    confirm_takeoff = 1;
 		//for test wait fo delete
-			rcv_count++;
-     }*/
+     }
+
+
 
 }// end of while
 

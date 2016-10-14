@@ -347,7 +347,8 @@ int main(int argc, char const *argv[])
 			confirm++;
 			arm = 0;
 	}*/
-	arm = 0; 
+	arm = 0;
+	printf("rcv_count: %d\n", rcv_count);
 	//if(confirm >0 && arm == 0 )sleep(10);
 	if(rcv_count == 1000) sleep(10);
 	if(rcv_count > 1000 && confirm >0 && arm == 0){

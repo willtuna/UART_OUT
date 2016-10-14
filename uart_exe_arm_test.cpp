@@ -54,6 +54,7 @@ class fixed_size // acutally this is not queue
 {
 public:
 	fixed_size();
+	int base_mode;
 	float vx; //X velocity in NED frame in meter / s
 	float vy; //Y velocity in NED frame in meter / s
 	float vz; //Z velocity in NED frame in meter / s
@@ -88,6 +89,7 @@ public:
 };
 
 fixed_size::fixed_size():
+base_mode(-1),
 vx(-1),
 vy(-1),
 vz(-1),
@@ -273,6 +275,7 @@ int main(int argc, char const *argv[])
 				case MAVLINK_MSG_ID_HEARTBEAT:
 				{
 					mavlink_msg_heartbeat_decode(&msgrcv, &(current.heartbeat));
+					ptr->base_mode = current.heartbeat.base_mode;
 					//do nothing
 					break;
 				}
@@ -289,6 +292,7 @@ int main(int argc, char const *argv[])
 				{
 					mavlink_msg_command_long_decode(&msgrcv, &(current.command_long));
 					//do nothing
+					printf("Receive command_long from pixhawk !!\n");
 					break;
 				}
 
@@ -330,7 +334,7 @@ int main(int argc, char const *argv[])
 
 
 	if(rcv_count > 1000 && confirm  == 0 ){
-    		mavlink_msg_command_long_pack( 0 , 0, &msg_send, sysid , compid , MAV_CMD_COMPONENT_ARM_DISARM , confirm , 0 , 0, 0, 0, 0, 0, 0);
+    		mavlink_msg_command_long_pack( 0 , 0, &msg_send, sysid , compid ,MAV_CMD_DO_SET_MODE , confirm , MAV_MODE_MANUAL_DISARMED , 0, 0, 0, 0, 0, 0);
     		printf("Write %d bytes\n",serial_port.write_message(msg_send));
 		    printf("DISARM Executed !!\n");
 			confirm++;

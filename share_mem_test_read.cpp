@@ -11,6 +11,7 @@ class fixed_size // acutally this is not queue
 {
 public:
 	fixed_size();
+	int base_mode;
 	float vx; //X velocity in NED frame in meter / s
 	float vy; //Y velocity in NED frame in meter / s
 	float vz; //Z velocity in NED frame in meter / s
@@ -46,6 +47,7 @@ public:
 };
 
 fixed_size::fixed_size() :
+base_mode(-1),
 vx(-1),
 vy(-1),
 vz(-1),
@@ -88,7 +90,8 @@ int main(int argc, char const *argv[]) {
   fd = shm_open("share_data", O_RDWR, 0666);
   if (fd == -1)
 	  printf("ERROR: Uart_exe hasn't opened yet.\n");
-else
+
+else
 		printf("Open SUccess !\n");
 
   size = sizeof(fixed_size);
@@ -97,7 +100,7 @@ int main(int argc, char const *argv[]) {
 
  //for(int i=0; i<10 ; ++i){
   while (1){
-
+  	  printf("MAV_MODE_FLAG : %d\n",ptr->base_mode );
       printf("vx= %f\n",ptr->vx);
 	  printf("vy= %f\n", ptr->vy);
 	  printf("vz= %f\n", ptr->vz);

@@ -130,7 +130,7 @@ else
 	  //printf("battery_remaining= %f\n", ptr->battery_remaining);
 	  printf("GPS: longitude:%d\n",ptr->lon);
 	  printf("GPS: latitude: %d\n",ptr->lat);
-	  printf("Number of GPS : %d",ptr->satellites_visible);
+	  printf("Number of GPS : %d\n",ptr->satellites_visible);
 	  usleep(200000);
 
 	//  printf("\033[2J\033[1;1H");

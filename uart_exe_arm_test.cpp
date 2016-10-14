@@ -340,7 +340,7 @@ int main(int argc, char const *argv[])
 
 
 	if(rcv_count > 1000 && confirm  == 0 ){
-    		mavlink_msg_command_long_pack( 0 , 0, &msg_send, sysid , compid ,MAV_CMD_DO_SET_MODE , confirm , MAV_MODE_MANUAL_DISARMED , 0, 0, 0, 0, 0, 0);
+    		mavlink_msg_command_long_pack( 0 , 0, &msg_send, sysid , compid ,MAV_CMD_DO_SET_MODE , confirm , MAV_MODE_AUTO_DISARMED , 0, 0, 0, 0, 0, 0);
     		printf("Write %d bytes\n",serial_port.write_message(msg_send));
 		    printf("DISARM Executed !!\n");
 			confirm++;
@@ -351,7 +351,7 @@ int main(int argc, char const *argv[])
 	if(rcv_count > 1000 && confirm >0 && arm == 0){
     		mavlink_msg_command_long_pack( 0 , 0, &msg_send, sysid , compid , MAV_CMD_NAV_TAKEOFF, confirm , 5 , 0, 0,0,ptr-> lat,ptr-> lon,ptr-> alt);
     		printf("Write %d bytes\n",serial_port.write_message(msg_send));
-		    printf("Takeoff Executed !!\n");
+		    printf("Takeoff Executed \n!!\n");
 			arm =1;
      }
 

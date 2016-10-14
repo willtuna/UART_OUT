@@ -357,6 +357,8 @@ int main(int argc, char const *argv[])
     		printf("Write %d bytes\n",serial_port.write_message(msg_send));
 		    printf("Land Executed \n!!\n");
 			arm =1;
+		//for test wait fo delete
+			rcv_count++;
      }
 
 }// end of while

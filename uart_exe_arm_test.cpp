@@ -349,7 +349,7 @@ int main(int argc, char const *argv[])
 	
 	if(confirm >0 && arm == 0 )sleep(10);
 	if(rcv_count > 1000 && confirm >0 && arm == 0){
-    		mavlink_msg_command_long_pack( 0 , 0, &msg_send, sysid , compid , MAV_CMD_NAV_TAKEOFF, confirm , 0 , 0, 0,0,ptr-> lat,ptr-> lon,ptr-> alt);
+    		mavlink_msg_command_long_pack( 0 , 0, &msg_send, sysid , compid , MAV_CMD_NAV_LAND, confirm , 0 , 0, 0,0,ptr-> lat,ptr-> lon,ptr-> alt);
     		printf("Write %d bytes\n",serial_port.write_message(msg_send));
 		    printf("Takeoff Executed \n!!\n");
 			arm =1;

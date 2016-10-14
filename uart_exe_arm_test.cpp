@@ -350,7 +350,7 @@ int main(int argc, char const *argv[])
 	}
 	if(confirm >0 && arm == 0 )sleep(10);
 
-		if(confirm  > 0 ){
+	if(confirm  > 0 && arm == 0){
     		mavlink_msg_command_long_pack( 0 , 0, &msg_send, sysid , compid ,MAV_CMD_DO_SET_MODE , confirm , 	MAV_MODE_STABILIZE_ARMED , 0, 0, 0, 0, 0, 0);
     		printf("Write %d bytes\n",serial_port.write_message(msg_send));
 		    printf("ARM Executed !!\n");

@@ -342,7 +342,7 @@ int main(int argc, char const *argv[])
 
 	
 	if(rcv_count > 1000 && confirm  == 0 ){
-    		mavlink_msg_command_long_pack( 0 , 0, &msg_send, sysid , compid ,MAV_CMD_DO_SET_MODE , confirm , 	MAV_MODE_STABILIZE_DISARMED , 0, 0, 0, 0, 0, 0);
+    		mavlink_msg_command_long_pack( 0 , 0, &msg_send, sysid , compid ,MAV_CMD_DO_SET_MODE , confirm , 		MAV_CMD_COMPONENT_ARM_DISARM , 0, 0, 0, 0, 0, 0);
     		printf("Write %d bytes\n",serial_port.write_message(msg_send));
 		    printf("DISARM Executed !!\n");
 			confirm++;

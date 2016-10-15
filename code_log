@@ -1,0 +1,7 @@
+Disarm -> Takeoff  FAIL
+Auto_disarm -> TAKEOFF FAIL
+TEST_disarm -> TAKEOFF FAIL
+TEST_disarm -> Land Fail
+MAV_MODE_STABILIZE_DISARMED -> Land  Fail
+MAV_MODE_STABILIZE_ARMED -> start to rotate  with RC signal
+MAV_MODE_STABILIZE_ARME -> Takeoff Fail!!

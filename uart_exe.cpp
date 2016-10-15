@@ -6,25 +6,7 @@
 #include <iostream>
 #include <cstdio>
 #include "serial_port.cpp"
-//#include "editor_serial_port.cpp"
 
-
-
-
-/*#include "mavlink_msg_attitude_target.h"
-#include "mavlink_msg_vfr_hud.h"
-#include "mavlink_msg_timesync.h"
-#include "mavlink_msg_attitude.h"
-#include "mavlink_msg_highres_imu.h"
-#include "mavlink_msg_servo_output_raw.h"
-#include "mavlink_msg_command_ack.h"
-#include "mavlink_msg_heartbeat.h"
-#include "mavlink_msg_position_target_local_ned.h"
-#include "mavlink_msg_command_long.h"
-#include "mavlink_msg_sys_status.h"
-#include "mavlink_msg_battery_status.h"
-#include "mavlink_msg_system_time.h"
-*/
 
 
 struct current_message {
@@ -47,6 +29,7 @@ struct current_message {
 	mavlink_sys_status_t sys_status;
 	mavlink_battery_status_t battery_status;
 	mavlink_system_time_t system_time;
+	mavlink_statustext_t statustext;
 
 };
 
@@ -54,6 +37,7 @@ class fixed_size // acutally this is not queue
 {
 public:
 	fixed_size();
+	int base_mode;
 	float vx; //X velocity in NED frame in meter / s
 	float vy; //Y velocity in NED frame in meter / s
 	float vz; //Z velocity in NED frame in meter / s
@@ -88,6 +72,7 @@ public:
 };
 
 fixed_size::fixed_size():
+base_mode(-1),
 vx(-1),
 vy(-1),
 vz(-1),
@@ -165,6 +150,8 @@ int main(int argc, char const *argv[])
 
 	mavlink_message_t msg_send;
 	uint8_t confirm = 0;
+	uint8_t confirm_takeoff =0;
+	uint8_t arm = 1;
 	int rcv_count =0;
 	
 	
@@ -180,7 +167,7 @@ int main(int argc, char const *argv[])
 				compid = msgrcv.compid;
 				//printf("sysid :%d \n compid: %d\n", msgrcv.sysid,msgrcv.compid);
 				switch(msgrcv.msgid)
-				{
+			{
 				case MAVLINK_MSG_ID_LOCAL_POSITION_NED:
 				{
 					printf("find local_position_ned  !!! \n");
@@ -272,6 +259,7 @@ int main(int argc, char const *argv[])
 				case MAVLINK_MSG_ID_HEARTBEAT:
 				{
 					mavlink_msg_heartbeat_decode(&msgrcv, &(current.heartbeat));
+					ptr->base_mode = current.heartbeat.base_mode;
 					//do nothing
 					break;
 				}
@@ -288,7 +276,24 @@ int main(int argc, char const *argv[])
 				{
 					mavlink_msg_command_long_decode(&msgrcv, &(current.command_long));
 					//do nothing
+				int command =	current.command_long.command;
+				int comp =	current.command_long.target_component;
+				int sys =	current.command_long.target_system;
+				float par1 =	current.command_long.param1;
+				float par2 =	current.command_long.param2;
+				float par3 = 	current.command_long.param3;
+				float par4 =	current.command_long.param4;
+				float par5 =	current.command_long.param5;
+				float par6 =	current.command_long.param6;
+				float par7 = 	current.command_long.param7;
+
+
+
+					if(rcv_count<1000){				
+					printf("Receive command_long from pixhawk !!\n");
+					printf("Command_ID: %d SysID: %d CompID: %d par1:%f par2:%f par3: %f par4: %f par5: %f par6: %f par7: %f \n",command,sys,comp,par1,par2,par3,par4,par5,par6,par7  );
 					break;
+					}
 				}
 
 				case MAVLINK_MSG_ID_SYS_STATUS:
@@ -317,6 +322,12 @@ int main(int argc, char const *argv[])
 					mavlink_msg_system_time_decode(&msgrcv, &(current.system_time));
 					break;
 				}
+				case MAVLINK_MSG_ID_STATUSTEXT:
+				{
+					mavlink_msg_statustext_decode(&msgrcv, &(current.statustext));
+					printf("MSG: %s\n", current.statustext.text);
+					break;
+				}
 				default:
 				{
 					printf("Getting unexpected message, msgrcv.msgid = %d\n", msgrcv.msgid);
@@ -328,14 +339,25 @@ int main(int argc, char const *argv[])
 
 
 
-	if(rcv_count > 1000 && confirm  == 0 ){
-    		mavlink_msg_command_long_pack( 0 , 0, &msg_send, sysid , compid , MAV_CMD_DO_SET_MODE , confirm , 	MAV_MODE_STABILIZE_DISARMED,	MAV_MODE_FLAG_CUSTOM_MODE_ENABLED, 0, 0, 0, 0, 0);
-    		printf("Write %d bytes",serial_port.write_message(msg_send));
-			confirm++;
+	if(rcv_count  > 1000 && arm == 1){
+    		mavlink_msg_command_long_pack( 0 , 0, &msg_send, sysid , compid ,MAV_CMD_DO_SET_MODE , confirm , 	MAV_MODE_STABILIZE_ARMED , 0 , 0, 0, 0, 0, 0);
+    		printf("Write %d bytes\n",serial_port.write_message(msg_send));
+		    printf("ARM Executed !!\n");
+			
+			arm = 0;
 	}
-	/*if(rcv_count > 1000 && confirm >0 ){
-    		mavlink_msg_command_long_pack( 0 , 0, &msg_send, sysid , compid , MAV_CMD_DO_SET_MODE , confirm , 	MAV_MODE_STABILIZE_DISARMED,	MAV_MODE_FLAG_CUSTOM_MODE_ENABLED, 0, 0, 0, 0, 0);
-    		printf("Write %d bytes",serial_port.write_message(msg_send));*/
+
+	if(arm == 0 && confirm_takeoff ==0 ) sleep(10);
+
+	if(rcv_count > 1000 && confirm_takeoff == 0 && arm == 0){
+    		mavlink_msg_command_long_pack( 0 , 0, &msg_send, sysid , compid , MAV_CMD_NAV_TAKEOFF, confirm_takeoff , 0.5 , 0, 0,0,ptr-> lat,ptr-> lon,ptr-> alt);
+    		printf("Write %d bytes\n",serial_port.write_message(msg_send));
+		    printf("TAKEOFF Executed \n!!\n");
+
+		    confirm_takeoff = 1;
+		//for test wait fo delete
+     }
+
 
 
 }// end of while

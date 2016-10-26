@@ -7,7 +7,7 @@
 #include <cstdio>
 #include "serial_port.cpp"
 
-
+const uint16_t UINT16_MAX = 65535;
 
 struct current_message {
 
@@ -30,8 +30,20 @@ struct current_message {
 	mavlink_battery_status_t battery_status;
 	mavlink_system_time_t system_time;
 	mavlink_statustext_t statustext;
-
 };
+
+
+// This is for sending opertaion
+mavlink_rc_channels_override_t re_channel_override;
+
+
+
+
+
+
+
+
+
 
 class fixed_size // acutally this is not queue
 {
@@ -351,8 +363,11 @@ int main(int argc, char const *argv[])
 
 	if(rcv_count > 1000 && confirm_takeoff == 0 && arm == 0){
     		//mavlink_msg_command_long_pack( 0 , 0, &msg_send, sysid , compid , MAV_CMD_NAV_TAKEOFF, confirm_takeoff , 0.5 , 0, 0,0,ptr-> lat,ptr-> lon,ptr-> alt);
-    		mavlink_msg_command_long_pack( 0 , 0, &msg_send, sysid , compid , MAV_CMD_DO_CHANGE_SPEED, confirm_takeoff , 1 , 0 , 30, 0, 0, 0, 0);
-    		printf("Write %d bytes\n",serial_port.write_message(msg_send));
+    	
+    		mavlink_msg_rc_channels_override_pack( 0 , 0 , & msg_send, current.sysid, current.compid, UINT16_MAX , UINT16_MAX , 1367 , UINT16_MAX,UINT16_MAX, UINT16_MAX,UINT16_MAX,UINT16_MAX );
+
+
+				printf("Write %d bytes\n",serial_port.write_message(msg_send));
 		    printf("TAKEOFF Executed \n!!\n");
 
 		    confirm_takeoff = 1;

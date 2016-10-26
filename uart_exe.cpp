@@ -373,12 +373,15 @@ int main(int argc, char const *argv[])
 		    confirm_takeoff = 1;
 		//for test wait fo delete
      }
-	if(confirm_takeoff == 1){
+  int disarm_confirm=0;
+
+	if(confirm_takeoff == 1 && disarm_confirm ==0){
 	sleep(10);
     		mavlink_msg_command_long_pack( 0 , 0, &msg_send, sysid , compid ,MAV_CMD_DO_SET_MODE , confirm , 		MAV_MODE_AUTO_DISARMED , 0 , 0, 0, 0, 0, 0);
     		
 				printf("Write %d bytes\n",serial_port.write_message(msg_send));
 		    printf("DISARM Executed !!\n");
+				disarm_confirm =1;
   }
 
 

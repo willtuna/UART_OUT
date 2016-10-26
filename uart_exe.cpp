@@ -364,7 +364,7 @@ int main(int argc, char const *argv[])
 	if(rcv_count > 1000 && confirm_takeoff == 0 && arm == 0){
     		//mavlink_msg_command_long_pack( 0 , 0, &msg_send, sysid , compid , MAV_CMD_NAV_TAKEOFF, confirm_takeoff , 0.5 , 0, 0,0,ptr-> lat,ptr-> lon,ptr-> alt);
     	
-    		mavlink_msg_rc_channels_override_pack( 0 , 0 , & msg_send, current.sysid, current.compid, UINT16_MAX , UINT16_MAX , 1367 , UINT16_MAX,UINT16_MAX, UINT16_MAX,UINT16_MAX,UINT16_MAX );
+    		mavlink_msg_rc_channels_override_pack( 0 , 0 , & msg_send, current.sysid, current.compid, UINT16_MAX , UINT16_MAX , 1167 , UINT16_MAX,UINT16_MAX, UINT16_MAX,UINT16_MAX,UINT16_MAX );
 
 
 				printf("Write %d bytes\n",serial_port.write_message(msg_send));

@@ -100,8 +100,8 @@ else
 
  //for(int i=0; i<10 ; ++i){
   while (1){
-  	  printf("MAV_MODE_FLAG : %d\n",ptr->base_mode );
-      printf("vx= %f\n",ptr->vx);
+    printf("MAV_MODE_FLAG : %d\n",ptr->base_mode );
+		printf("vx= %f\n",ptr->vx);
 	  printf("vy= %f\n", ptr->vy);
 	  printf("vz= %f\n", ptr->vz);
 	  printf("afx= %f\n", ptr->afx);
@@ -111,9 +111,9 @@ else
 	  printf("body_pitch_rate= %f\n", ptr->body_pitch_rate);
 	  printf("body_yaw_rate= %f\n", ptr->body_yaw_rate);
 	  printf("airspeed= %f\n", ptr->airspeed);
-      printf("groundspeed= %f\n", ptr->groundspeed);
+    printf("groundspeed= %f\n", ptr->groundspeed);
      //printf("heading= %f", ptr->heading);
-	 // printf("throttle= %f", ptr->throttle);
+	  printf("throttle= %d", ptr->throttle);
 	  printf("alt= %f\n", ptr->alt);
 	  printf("climb= %f\n", ptr->climb);
 	  printf("xacc= %f\n", ptr->xacc);

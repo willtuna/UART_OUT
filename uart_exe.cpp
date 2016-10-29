@@ -352,7 +352,9 @@ int main(int argc, char const *argv[])
 
 
 	if(rcv_count  > 1000 && arm == 1){
-    		mavlink_msg_command_long_pack( 0 , 0, &msg_send, sysid , compid ,MAV_CMD_DO_SET_MODE , confirm , 	MAV_MODE_FLAG_SAFETY_ARMED | 	MAV_MODE_FLAG_STABILIZE_ENABLED | MAV_MODE_FLAG_AUTO_ENABLED, 0 , 0, 0, 0, 0, 0);
+    		//mavlink_msg_command_long_pack( 0 , 0, &msg_send, sysid , compid ,MAV_CMD_DO_SET_MODE , confirm , 	MAV_MODE_FLAG_SAFETY_ARMED | 	MAV_MODE_FLAG_STABILIZE_ENABLED | MAV_MODE_FLAG_AUTO_ENABLED, 0 , 0, 0, 0, 0, 0);
+    		mavlink_msg_command_long_pack( 0 , 0, &msg_send, sysid , compid ,	MAV_CMD_COMPONENT_ARM_DISARM , confirm , 1	, 0 , 0, 0, 0, 0, 0);
+    		printf("Write %d bytes\n",serial_port.write_message(msg_send));
     		printf("Write %d bytes\n",serial_port.write_message(msg_send));
 		    printf("ARM Executed !!\n");
 			
@@ -375,6 +377,7 @@ int main(int argc, char const *argv[])
      }
   int disarm_confirm=0;
 
+	/*
 	if(confirm_takeoff == 1 && disarm_confirm ==0){
 	sleep(10);
     		mavlink_msg_command_long_pack( 0 , 0, &msg_send, sysid , compid ,MAV_CMD_DO_SET_MODE , confirm , 		MAV_MODE_AUTO_DISARMED , 0 , 0, 0, 0, 0, 0);
@@ -382,7 +385,7 @@ int main(int argc, char const *argv[])
 				printf("Write %d bytes\n",serial_port.write_message(msg_send));
 		    printf("DISARM Executed !!\n");
 				disarm_confirm =1;
-  }
+  }*/
 
 
 }// end of while

@@ -365,19 +365,19 @@ int main(int argc, char const *argv[])
 
 	if(arm == 0 && confirm_takeoff ==0 ) sleep(10);
 
-    //if(rcv_count > 1000 && confirm_takeoff == 0 && arm == 0){
+        if(rcv_count > 1000 && confirm_takeoff == 0 && arm == 0){
     		//mavlink_msg_command_long_pack( 0 , 0, &msg_send, sysid , compid , MAV_CMD_NAV_TAKEOFF, confirm_takeoff , 0.5 , 0, 0,0,ptr-> lat,ptr-> lon,ptr-> alt);
-    	
+    	while(1){
     		mavlink_msg_rc_channels_override_pack( 0 , 0 , & msg_send, current.sysid, current.compid, UINT16_MAX , UINT16_MAX , 1167 , UINT16_MAX,UINT16_MAX, UINT16_MAX,UINT16_MAX,UINT16_MAX );
 
 
 				printf("Write %d bytes\n",serial_port.write_message(msg_send));
 		    printf("TAKEOFF Executed \n!!\n");
-
+        }
 		    confirm_takeoff = 1;
 		//for test wait fo delete
-     //}
-        int disarm_confirm=0;
+        }
+        //int disarm_confirm=0;
 
 	/*
 	if(confirm_takeoff == 1 && disarm_confirm ==0){

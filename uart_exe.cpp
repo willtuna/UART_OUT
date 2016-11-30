@@ -369,10 +369,10 @@ int main(int argc, char const *argv[])
     		//mavlink_msg_command_long_pack( 0 , 0, &msg_send, sysid , compid , MAV_CMD_NAV_TAKEOFF, confirm_takeoff , 0.5 , 0, 0,0,ptr-> lat,ptr-> lon,ptr-> alt);
     	while(1){
     		mavlink_msg_rc_channels_override_pack( 0 , 0 , & msg_send, current.sysid, current.compid, UINT16_MAX , UINT16_MAX , 1167 , UINT16_MAX,UINT16_MAX, UINT16_MAX,UINT16_MAX,UINT16_MAX );
-
-
-				printf("Write %d bytes\n",serial_port.write_message(msg_send));
-		    printf("TAKEOFF Executed \n!!\n");
+                usleep(10);
+    		mavlink_msg_rc_channels_override_pack( 0 , 0 , & msg_send, current.sysid, current.compid, UINT16_MAX , UINT16_MAX , UINT16_MAX , UINT16_MAX,UINT16_MAX, UINT16_MAX,UINT16_MAX,UINT16_MAX );
+		    printf("Write %d bytes\n",serial_port.write_message(msg_send));
+		    //printf("TAKEOFF Executed \n!!\n");
         }
 		    confirm_takeoff = 1;
 		//for test wait fo delete

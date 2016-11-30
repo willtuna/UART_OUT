@@ -370,7 +370,7 @@ int main(int argc, char const *argv[])
     	while(1){
     		mavlink_msg_rc_channels_override_pack( 0 , 0 , & msg_send, current.sysid, current.compid, UINT16_MAX , UINT16_MAX , 1167 , UINT16_MAX,UINT16_MAX, UINT16_MAX,UINT16_MAX,UINT16_MAX );
                 usleep(10);
-    		//mavlink_msg_rc_channels_override_pack( 0 , 0 , & msg_send, current.sysid, current.compid, UINT16_MAX , UINT16_MAX , UINT16_MAX , UINT16_MAX,UINT16_MAX, UINT16_MAX,UINT16_MAX,UINT16_MAX );
+    		//mavlink_msg_rc_channels_override_pack( 0 , 0 , & msg_send, current.sysid, current.compid, UINT16_MAX , UINT16_MAX , 0 , UINT16_MAX,UINT16_MAX, UINT16_MAX,UINT16_MAX,UINT16_MAX );
 		    printf("Write %d bytes\n",serial_port.write_message(msg_send));
 		    //printf("TAKEOFF Executed \n!!\n");
         }

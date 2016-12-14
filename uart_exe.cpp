@@ -361,11 +361,16 @@ int main(int argc, char const *argv[])
 			arm = 0;
 	}
 
-	if(arm == 0 && confirm_takeoff ==0 ) sleep(10);
+	if(arm == 0 && confirm_takeoff ==0 ){ sleep(10);
         
         
          mavlink_msg_command_long_pack( 0 , 0, &msg_send, sysid , compid ,	MAV_CMD_NAV_GUIDED_ENABLE , confirm , 1.0, 0 , 0, 0, 0, 0, 0);
     		printf("Send_GUIDE_ENABLE\n");
+        }
+
+
+
+
 
         if(rcv_count > 1000 && confirm_takeoff == 0 && arm == 0){
     		//mavlink_msg_command_long_pack( 0 , 0, &msg_send, sysid , compid , MAV_CMD_NAV_TAKEOFF, confirm_takeoff , 0.5 , 0, 0,0,ptr-> lat,ptr-> lon,ptr-> alt);

@@ -378,13 +378,13 @@ int main(int argc, char const *argv[])
     	    int16_t x,y,z,r,bottons;
             x = 0;
             y = 0;
-            z = 50;
+            z = 250;
             r = 0;
             bottons = 1;
 
 
             while(1){
-                mavlink_msg_manual_control_pack( 0 , 0 , &msg_send , current.sysid ,x,y,z,r,bottons);
+                mavlink_msg_manual_control_pack( 0 , 0 , &msg_send , sysid ,x,y,z,r,bottons);
 
     	//	mavlink_msg_rc_channels_override_pack( 0 , 0 , & msg_send, current.sysid, current.compid, UINT16_MAX , UINT16_MAX , 1250 , UINT16_MAX,UINT16_MAX, UINT16_MAX,UINT16_MAX,UINT16_MAX );
                 usleep(100000);

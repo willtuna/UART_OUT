@@ -390,6 +390,9 @@ float q[4] = {1,0,0,0};
          //   z = 250;
          //   r = 0;
          //   bottons = 1;
+// -----------------------------------------------------            
+        mavlink_local_position_ned_t &sp = current.local_position_ned;
+
 
 
                 while(1){
@@ -397,12 +400,11 @@ float q[4] = {1,0,0,0};
                 mavlink_msg_set_attitude_target_pack(0 , 0 , &msg_send, current.system_time.time_boot_ms, current.sysid, current.compid, type_mask, q , -0.4 , 0.22, -0.3019,  0.08);
 
 
+                
+// there is a lot thing to do  -------------------------------------------------------------
 
-
-
-
-                mavlink_msg_set_position_target_local_ned_pack(0 , 0 , &msg_send,current.system_time.time_boot_ms, current.sysid, current.compid, 1 , 0 , 0 , 0 , 0.5 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0);
-
+mavlink_msg_set_position_target_local_ned_pack(0, 0, & msg_send, current.system_time.time_boot_ms, current.sysid, current.compid, 1 ,  0 , float x, float y, float z, float vx, float vy, float vz, float afx, float afy, float afz, float yaw, float yaw_rate)
+{
 
 
 

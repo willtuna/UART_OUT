@@ -366,7 +366,7 @@ int main(int argc, char const *argv[])
 	}
 
 
-int type_mask = 0x11111110;
+int type_mask = 0b11111110;
 float q[4] = {1,0,0,0};
 	if(arm == 0 && confirm_takeoff ==0 ){ 
             
@@ -385,16 +385,29 @@ float q[4] = {1,0,0,0};
     
             //mavlink_msg_command_long_pack( 0 , 0, &msg_send, sysid , compid , MAV_CMD_NAV_TAKEOFF, confirm_takeoff , 0.5 , 0, 0,0,ptr-> lat,ptr-> lon,ptr-> alt);
     	    int16_t x,y,z,r,bottons;
-            x = 0;
-            y = 0;
-            z = 250;
-            r = 0;
-            bottons = 1;
+         //   x = 0;
+         //   y = 0;
+         //   z = 250;
+         //   r = 0;
+         //   bottons = 1;
 
 
                 while(1){
          
                 mavlink_msg_set_attitude_target_pack(0 , 0 , &msg_send, current.system_time.time_boot_ms, current.sysid, current.compid, type_mask, q , -0.4 , 0.22, -0.3019,  0.08);
+
+
+
+
+
+
+                mavlink_msg_set_position_target_local_ned_pack(0 , 0 , &msg_send,current.system_time.time_boot_ms, current.sysid, current.compid, 1 , 0 , 0 , 0 , 0.5 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0);
+
+
+
+
+
+
 
                 
                 

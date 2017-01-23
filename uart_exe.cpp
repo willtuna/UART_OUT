@@ -354,7 +354,7 @@ int main(int argc, char const *argv[])
 	if(rcv_count  > 1000 && arm == 1){
     		//mavlink_msg_command_long_pack( 0 , 0, &msg_send, sysid , compid ,MAV_CMD_DO_SET_MODE , confirm , 	MAV_MODE_FLAG_SAFETY_ARMED | 	MAV_MODE_FLAG_STABILIZE_ENABLED | MAV_MODE_FLAG_AUTO_ENABLED, 0 , 0, 0, 0, 0, 0);
     	//	mavlink_msg_command_long_pack( 0 , 0, &msg_send, sysid , compid ,	MAV_CMD_COMPONENT_ARM_DISARM , confirm , 1	, 0 , 0, 0, 0, 0, 0);
-					mavlink_msg_command_long_pack( 0 , 0, &msg_send, sysid , compid ,	MAV_CMD_DO_SET_MODE , confirm , MAV_MODE_STABILIZE_ARMED	, 0 , 0, 0, 0, 0, 0);
+					mavlink_msg_command_long_pack( 0 , 0, &msg_send, sysid , compid ,	MAV_CMD_DO_SET_MODE , confirm , MAV_MODE_MANUAL_ARMED	, 0 , 0, 0, 0, 0, 0);
     		printf("Write %d bytes\n",serial_port.write_message(msg_send));
 		    printf("ARM Executed !!\n");
 			
@@ -378,7 +378,7 @@ int main(int argc, char const *argv[])
     	    int16_t x,y,z,r,bottons;
             x = 0;
             y = 0;
-            z = 200;
+            z = 50;
             r = 0;
             bottons = 1;
 

@@ -351,7 +351,7 @@ int main(int argc, char const *argv[])
 
 
 
-	if(rcv_count  > 1000 && arm == 1){
+	if(rcv_count  > 200 && arm == 1){
     		//mavlink_msg_command_long_pack( 0 , 0, &msg_send, sysid , compid ,MAV_CMD_DO_SET_MODE , confirm , 	MAV_MODE_FLAG_SAFETY_ARMED | 	MAV_MODE_FLAG_STABILIZE_ENABLED | MAV_MODE_FLAG_AUTO_ENABLED, 0 , 0, 0, 0, 0, 0);
     	//	mavlink_msg_command_long_pack( 0 , 0, &msg_send, sysid , compid ,	MAV_CMD_COMPONENT_ARM_DISARM , confirm , 1	, 0 , 0, 0, 0, 0, 0);
 					mavlink_msg_command_long_pack( 0 , 0, &msg_send, sysid , compid ,	MAV_CMD_DO_SET_MODE , confirm , MAV_MODE_MANUAL_ARMED	, 0 , 0, 0, 0, 0, 0);
@@ -373,7 +373,7 @@ int main(int argc, char const *argv[])
 
 
 
-        if(rcv_count > 1000 && confirm_takeoff == 0 && arm == 0){
+        if(rcv_count > 200 && confirm_takeoff == 0 && arm == 0){
     		//mavlink_msg_command_long_pack( 0 , 0, &msg_send, sysid , compid , MAV_CMD_NAV_TAKEOFF, confirm_takeoff , 0.5 , 0, 0,0,ptr-> lat,ptr-> lon,ptr-> alt);
     	    int16_t x,y,z,r,bottons;
             x = 0;

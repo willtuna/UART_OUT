@@ -13,7 +13,6 @@ struct current_message {
 
 	int sysid;
 	int compid;
-
 	mavlink_heartbeat_t heartbeat;
 	mavlink_local_position_ned_t local_position_ned;
 	mavlink_attitude_target_t attitude_target;
@@ -77,12 +76,12 @@ public:
 	int16_t current_battery;	// Battery current, in 10 * milliamperes(1 = 10 milliampere), -1: autopilot does not measure the current
 	int32_t current_consumed; // Consumed charge, in milliampere hours(1 = 1 mAh), -1 : autopilot does not provide mAh consumption estimate
 	int32_t energy_consumed; // Consumed energy, in 100 * Joules(intergrated U*I*dt) (1 = 100 Joule), -1 : autopilot does not provide energy consumption estimate
+        uint32_t  time_boot_ms;
 	int8_t battery_remaining; // Remaining battery energy : (0 % : 0, 100 % : 100), -1 : autopilot does not estimate the remaining battery
 	int32_t lon;//	Longitude (WGS84), in degrees * 1E7
 	int32_t lat;// Latitude (WGS84), in degrees * 1E7	
-    int8_t satellites_visible;// number of satellite_visible if unknown set to 255
+        int8_t satellites_visible;// number of satellite_visible if unknown set to 255
 };
-
 fixed_size::fixed_size():
 base_mode(-1),
 vx(-1),
@@ -110,6 +109,7 @@ temperature(-1),
 current_battery(-1),
 current_consumed(-1),
 energy_consumed(-1),
+time_boot_ms(1),
 battery_remaining(-1),
 lon(-1),//	Longitude (WGS84), in degrees * 1E7
 lat(-1),// Latitude (WGS84), in degrees * 1E7	
@@ -214,6 +214,7 @@ int main(int argc, char const *argv[])
 					break;
 				}
 
+
 				case MAVLINK_MSG_ID_TIMESYNC:
 				{
 					mavlink_msg_timesync_decode(&msgrcv, &(current.timesync));
@@ -224,7 +225,7 @@ int main(int argc, char const *argv[])
 				case MAVLINK_MSG_ID_ATTITUDE:
 				{
 					mavlink_msg_attitude_decode(&msgrcv, &(current.attitude));
-					//do nothing
+                                        //do nothing
 					break;
 				}
 
@@ -332,6 +333,7 @@ int main(int argc, char const *argv[])
 				case MAVLINK_MSG_ID_SYSTEM_TIME:
 				{
 					mavlink_msg_system_time_decode(&msgrcv, &(current.system_time));
+                                        ptr->time_boot_ms = current.system_time.time_boot_ms;
 					break;
 				}
 				case MAVLINK_MSG_ID_STATUSTEXT:
@@ -355,12 +357,15 @@ int main(int argc, char const *argv[])
     		//mavlink_msg_command_long_pack( 0 , 0, &msg_send, sysid , compid ,MAV_CMD_DO_SET_MODE , confirm , 	MAV_MODE_FLAG_SAFETY_ARMED | 	MAV_MODE_FLAG_STABILIZE_ENABLED | MAV_MODE_FLAG_AUTO_ENABLED, 0 , 0, 0, 0, 0, 0);
     	//	mavlink_msg_command_long_pack( 0 , 0, &msg_send, sysid , compid ,	MAV_CMD_COMPONENT_ARM_DISARM , confirm , 1	, 0 , 0, 0, 0, 0, 0);
 					mavlink_msg_command_long_pack( 0 , 0, &msg_send, sysid , compid ,	MAV_CMD_DO_SET_MODE , confirm , MAV_MODE_GUIDED_ARMED	, 0 , 0, 0, 0, 0, 0);
+                
+
     		printf("Write %d bytes\n",serial_port.write_message(msg_send));
 		    printf("ARM Executed !!\n");
 			
 			arm = 0;
 	}
-
+int type_mask = 0x11111110;
+float q[4] = {1,0,0,0};
 	if(arm == 0 && confirm_takeoff ==0 ){ 
             
          printf("Wait 10 sec");   
@@ -374,7 +379,9 @@ int main(int argc, char const *argv[])
 
 
         if(rcv_count > 200 && confirm_takeoff == 0 && arm == 0){
-    		//mavlink_msg_command_long_pack( 0 , 0, &msg_send, sysid , compid , MAV_CMD_NAV_TAKEOFF, confirm_takeoff , 0.5 , 0, 0,0,ptr-> lat,ptr-> lon,ptr-> alt);
+    	
+    
+            //mavlink_msg_command_long_pack( 0 , 0, &msg_send, sysid , compid , MAV_CMD_NAV_TAKEOFF, confirm_takeoff , 0.5 , 0, 0,0,ptr-> lat,ptr-> lon,ptr-> alt);
     	    int16_t x,y,z,r,bottons;
             x = 0;
             y = 0;
@@ -384,9 +391,14 @@ int main(int argc, char const *argv[])
 
 
             while(1){
-         //       mavlink_msg_manual_control_pack( 0 , 0 , &msg_send , 1  ,x,y,z,r,bottons);
+         
+        mavlink_msg_set_attitude_target_pack(0 , 0 , &msg_send, current.system_time.time_boot_ms, current.sysid, current.compid, type_mask, q , -0.4 , 0.22, -0.3019,  0.08);
+
+                
+                
+        //       mavlink_msg_manual_control_pack( 0 , 0 , &msg_send , 1  ,x,y,z,r,bottons);
                                                                 //  this is for our target 1
-    		mavlink_msg_rc_channels_override_pack( 0 , 0 , & msg_send, sysid, current.compid, UINT16_MAX , UINT16_MAX , 1250 , UINT16_MAX,UINT16_MAX, UINT16_MAX,UINT16_MAX,UINT16_MAX );
+    	//	mavlink_msg_rc_channels_override_pack( 0 , 0 , & msg_send, sysid, current.compid, UINT16_MAX , UINT16_MAX , 1250 , UINT16_MAX,UINT16_MAX, UINT16_MAX,UINT16_MAX,UINT16_MAX );
                 usleep(100000);
     		//mavlink_msg_rc_channels_override_pack( 0 , 0 , & msg_send, current.sysid, current.compid, UINT16_MAX , UINT16_MAX , 0 , UINT16_MAX,UINT16_MAX, UINT16_MAX,UINT16_MAX,UINT16_MAX );
 		printf("RC_OverWrite sysid %d compid: %d current sysid:%d\n",sysid,compid,current.sysid);

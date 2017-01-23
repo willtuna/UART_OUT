@@ -6,7 +6,7 @@
 #include <iostream>
 #include <cstdio>
 #include "serial_port.cpp"
-
+#include <inttypes.h>
 const uint16_t UINT16_MAX = 65535;
 
 struct current_message {
@@ -403,8 +403,9 @@ float q[4] = {1,0,0,0};
             	//	mavlink_msg_rc_channels_override_pack( 0 , 0 , & msg_send, sysid, current.compid, UINT16_MAX , UINT16_MAX , 1250 , UINT16_MAX,UINT16_MAX, UINT16_MAX,UINT16_MAX,UINT16_MAX );
                 usleep(100000);
     		//mavlink_msg_rc_channels_override_pack( 0 , 0 , & msg_send, current.sysid, current.compid, UINT16_MAX , UINT16_MAX , 0 , UINT16_MAX,UINT16_MAX, UINT16_MAX,UINT16_MAX,UINT16_MAX );
-		printf("RC_OverWrite sysid %d compid: %d current sysid:%d time:%d\n",sysid,compid,current.sysid,current.system_time.time_boot_ms);
-		    //printf("TAKEOFF Executed \n!!\n");
+		printf("RC_OverWrite sysid %d compid: %d current sysid:%d \n",sysid,compid, current.sysid);
+	        printf("%lu\n", (unsigned long )current.system_time.time_boot_ms);	
+                //printf("TAKEOFF Executed \n!!\n");
                 }
 		    confirm_takeoff = 1;
 		//for test wait fo delete

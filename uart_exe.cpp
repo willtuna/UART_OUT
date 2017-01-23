@@ -354,18 +354,19 @@ int main(int argc, char const *argv[])
 	if(rcv_count  > 1000 && arm == 1){
     		//mavlink_msg_command_long_pack( 0 , 0, &msg_send, sysid , compid ,MAV_CMD_DO_SET_MODE , confirm , 	MAV_MODE_FLAG_SAFETY_ARMED | 	MAV_MODE_FLAG_STABILIZE_ENABLED | MAV_MODE_FLAG_AUTO_ENABLED, 0 , 0, 0, 0, 0, 0);
     	//	mavlink_msg_command_long_pack( 0 , 0, &msg_send, sysid , compid ,	MAV_CMD_COMPONENT_ARM_DISARM , confirm , 1	, 0 , 0, 0, 0, 0, 0);
-					mavlink_msg_command_long_pack( 0 , 0, &msg_send, sysid , compid ,	MAV_CMD_DO_SET_MODE , confirm , MAV_MODE_GUIDED_ARMED	, 0 , 0, 0, 0, 0, 0);
+					mavlink_msg_command_long_pack( 0 , 0, &msg_send, sysid , compid ,	MAV_CMD_DO_SET_MODE , confirm , MAV_MODE_STABILIZE_ARMED	, 0 , 0, 0, 0, 0, 0);
     		printf("Write %d bytes\n",serial_port.write_message(msg_send));
 		    printf("ARM Executed !!\n");
 			
 			arm = 0;
 	}
 
-	if(arm == 0 && confirm_takeoff ==0 ){ sleep(10);
-        
-        
-         mavlink_msg_command_long_pack( 0 , 0, &msg_send, sysid , compid ,	MAV_CMD_NAV_GUIDED_ENABLE , confirm , 1.0, 0 , 0, 0, 0, 0, 0);
-    		printf("Send_GUIDE_ENABLE\n");
+	if(arm == 0 && confirm_takeoff ==0 ){ 
+            
+         printf("Wait 10 sec");   
+            sleep(10);
+        // mavlink_msg_command_long_pack( 0 , 0, &msg_send, sysid , compid ,	MAV_CMD_NAV_GUIDED_ENABLE , confirm , 1.0, 0 , 0, 0, 0, 0, 0);
+    	//	printf("Send_GUIDE_ENABLE\n");
         }
 
 
@@ -375,10 +376,10 @@ int main(int argc, char const *argv[])
         if(rcv_count > 1000 && confirm_takeoff == 0 && arm == 0){
     		//mavlink_msg_command_long_pack( 0 , 0, &msg_send, sysid , compid , MAV_CMD_NAV_TAKEOFF, confirm_takeoff , 0.5 , 0, 0,0,ptr-> lat,ptr-> lon,ptr-> alt);
     	while(1){
-    		mavlink_msg_rc_channels_override_pack( 0 , 0 , & msg_send, current.sysid, current.compid, UINT16_MAX , UINT16_MAX , 1167 , UINT16_MAX,UINT16_MAX, UINT16_MAX,UINT16_MAX,UINT16_MAX );
-                usleep(10);
+    		mavlink_msg_rc_channels_override_pack( 0 , 0 , & msg_send, current.sysid, current.compid, UINT16_MAX , UINT16_MAX , 1250 , UINT16_MAX,UINT16_MAX, UINT16_MAX,UINT16_MAX,UINT16_MAX );
+                usleep(100000);
     		//mavlink_msg_rc_channels_override_pack( 0 , 0 , & msg_send, current.sysid, current.compid, UINT16_MAX , UINT16_MAX , 0 , UINT16_MAX,UINT16_MAX, UINT16_MAX,UINT16_MAX,UINT16_MAX );
-		    printf("RC_OverWrite\n");
+		printf("RC_OverWrite\n");
 		    //printf("TAKEOFF Executed \n!!\n");
         }
 		    confirm_takeoff = 1;

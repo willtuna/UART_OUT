@@ -375,8 +375,18 @@ int main(int argc, char const *argv[])
 
         if(rcv_count > 1000 && confirm_takeoff == 0 && arm == 0){
     		//mavlink_msg_command_long_pack( 0 , 0, &msg_send, sysid , compid , MAV_CMD_NAV_TAKEOFF, confirm_takeoff , 0.5 , 0, 0,0,ptr-> lat,ptr-> lon,ptr-> alt);
-    	while(1){
-    		mavlink_msg_rc_channels_override_pack( 0 , 0 , & msg_send, current.sysid, current.compid, UINT16_MAX , UINT16_MAX , 1250 , UINT16_MAX,UINT16_MAX, UINT16_MAX,UINT16_MAX,UINT16_MAX );
+    	    int16_t x,y,z,r,bottons;
+            x = 0;
+            y = 0;
+            z = 200;
+            r = 0;
+            bottons = 1;
+
+
+            while(1){
+                mavlink_msg_manual_control_pack( 0 , 0 , &msg_send , current.sysid ,x,y,z,r,bottons);
+
+    	//	mavlink_msg_rc_channels_override_pack( 0 , 0 , & msg_send, current.sysid, current.compid, UINT16_MAX , UINT16_MAX , 1250 , UINT16_MAX,UINT16_MAX, UINT16_MAX,UINT16_MAX,UINT16_MAX );
                 usleep(100000);
     		//mavlink_msg_rc_channels_override_pack( 0 , 0 , & msg_send, current.sysid, current.compid, UINT16_MAX , UINT16_MAX , 0 , UINT16_MAX,UINT16_MAX, UINT16_MAX,UINT16_MAX,UINT16_MAX );
 		printf("RC_OverWrite\n");

@@ -403,7 +403,7 @@ float q[4] = {1,0,0,0};
             	//	mavlink_msg_rc_channels_override_pack( 0 , 0 , & msg_send, sysid, current.compid, UINT16_MAX , UINT16_MAX , 1250 , UINT16_MAX,UINT16_MAX, UINT16_MAX,UINT16_MAX,UINT16_MAX );
                 usleep(100000);
     		//mavlink_msg_rc_channels_override_pack( 0 , 0 , & msg_send, current.sysid, current.compid, UINT16_MAX , UINT16_MAX , 0 , UINT16_MAX,UINT16_MAX, UINT16_MAX,UINT16_MAX,UINT16_MAX );
-		printf("RC_OverWrite sysid %d compid: %d current sysid:%d\n",sysid,compid,current.sysid);
+		printf("RC_OverWrite sysid %d compid: %d current sysid:%d time:%d\n",sysid,compid,current.sysid,current.system_time.time_boot_ms);
 		    //printf("TAKEOFF Executed \n!!\n");
                 }
 		    confirm_takeoff = 1;

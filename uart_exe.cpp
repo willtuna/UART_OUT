@@ -384,12 +384,12 @@ int main(int argc, char const *argv[])
 
 
             while(1){
-                mavlink_msg_manual_control_pack( 0 , 0 , &msg_send , 1  ,x,y,z,r,bottons);
+         //       mavlink_msg_manual_control_pack( 0 , 0 , &msg_send , 1  ,x,y,z,r,bottons);
                                                                 //  this is for our target 1
-    	//	mavlink_msg_rc_channels_override_pack( 0 , 0 , & msg_send, current.sysid, current.compid, UINT16_MAX , UINT16_MAX , 1250 , UINT16_MAX,UINT16_MAX, UINT16_MAX,UINT16_MAX,UINT16_MAX );
+    		mavlink_msg_rc_channels_override_pack( 0 , 0 , & msg_send, sysid, current.compid, UINT16_MAX , UINT16_MAX , 1250 , UINT16_MAX,UINT16_MAX, UINT16_MAX,UINT16_MAX,UINT16_MAX );
                 usleep(100000);
     		//mavlink_msg_rc_channels_override_pack( 0 , 0 , & msg_send, current.sysid, current.compid, UINT16_MAX , UINT16_MAX , 0 , UINT16_MAX,UINT16_MAX, UINT16_MAX,UINT16_MAX,UINT16_MAX );
-		printf("RC_OverWrite\n");
+		printf("RC_OverWrite sysid %d compid: %d current sysid:%d\n",sysid,compid,current.sysid);
 		    //printf("TAKEOFF Executed \n!!\n");
         }
 		    confirm_takeoff = 1;

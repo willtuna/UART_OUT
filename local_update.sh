@@ -5,5 +5,5 @@ git status
 
 git add -A
 git commit
-git push orgin master
+git push origin master
 echo "Update Done"

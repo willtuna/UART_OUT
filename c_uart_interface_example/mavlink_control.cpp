@@ -217,8 +217,8 @@ commands(Autopilot_Interface &api,float dx,float dy,float dz)
 
 
 	// Example 1.2 - Append Yaw Command
-	set_yaw( ip.yaw , // [rad]
-			 sp     );
+	//set_yaw( ip.yaw , // [rad]	
+        // 	 sp     );
 
 	// SEND THE COMMAND
 	api.update_setpoint(sp);

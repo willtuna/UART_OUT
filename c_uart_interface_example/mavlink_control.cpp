@@ -148,7 +148,7 @@ top (int argc, char **argv)
 	/*
 	 * Now we can implement the algorithm we want on top of the autopilot interface
 	 */
-	commands(autopilot_interface,0,0,-1.0);
+	commands(autopilot_interface,-10.0,0,0);
         
 
 	// --------------------------------------------------------------------------

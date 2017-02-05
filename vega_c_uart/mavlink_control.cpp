@@ -237,7 +237,7 @@ commands(Autopilot_Interface &api,float dx,float dy,float dz)
        
         mavlink_message_t msg_send;
        
-        mavlink_msg_rc_channels_override_pack( 0 , 0 , & msg_send, api.current_messages.sysid, api.current_messages.compid, UINT16_MAX , UINT16_MAX , 1800 , UINT16_MAX,UINT16_MAX, UINT16_MAX,UINT16_MAX,UINT16_MAX );
+        mavlink_msg_rc_channels_override_pack( 0 , 0 , & msg_send, api.current_messages.sysid, api.current_messages.compid, UINT16_MAX , UINT16_MAX , 1200 , UINT16_MAX,UINT16_MAX, UINT16_MAX,UINT16_MAX,UINT16_MAX );
         printf("Write %d bytes\n", serial_port.write_message(msg_send) );
         printf("RC overwrite !!");
 

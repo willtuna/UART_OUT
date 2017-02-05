@@ -54,6 +54,16 @@
 // ------------------------------------------------------------------------------
 
 #include "mavlink_control.h"
+#include <cstdint>
+#ifdef __APPLE__
+	char *uart_name = (char*)"/dev/tty.usbmodem1";
+#else
+	char *uart_name = (char*)"/dev/ttyAMA0";
+#endif
+	int baudrate = 57600;
+
+        
+Serial_Port serial_port(uart_name, baudrate);
 
 
 // ------------------------------------------------------------------------------
@@ -68,13 +78,13 @@ top (int argc, char **argv)
 	// --------------------------------------------------------------------------
 
 	// Default input arguments
-#ifdef __APPLE__
+/*#ifdef __APPLE__
 	char *uart_name = (char*)"/dev/tty.usbmodem1";
 #else
 	char *uart_name = (char*)"/dev/ttyAMA0";
 #endif
 	int baudrate = 57600;
-
+*/
 	// do the parse, will throw an int if it fails
 	parse_commandline(argc, argv, uart_name, baudrate);
 
@@ -93,7 +103,7 @@ top (int argc, char **argv)
 	 * pthread mutex lock.
 	 *
 	 */
-	Serial_Port serial_port(uart_name, baudrate);
+//	Serial_Port serial_port(uart_name, baudrate);
 
 
 	/*
@@ -139,7 +149,7 @@ top (int argc, char **argv)
         sleep(5);
 	mavlink_msg_command_long_pack( 0 , 0, &msg_send, autopilot_interface.current_messages.sysid , autopilot_interface.current_messages.compid , MAV_CMD_DO_SET_MODE , 0 , MAV_MODE_AUTO_ARMED	, 0 , 0, 0, 0, 0, 0);
         printf("Write %b bytes\n", serial_port.write_message(msg_send) );
-        printf("ARMED !!");
+         printf("ARMED !!");
 
 	// --------------------------------------------------------------------------
 	//   RUN COMMANDS
@@ -220,8 +230,20 @@ commands(Autopilot_Interface &api,float dx,float dy,float dz)
                 sp     );
 
 	// SEND THE COMMAND
-	api.update_setpoint(sp);
-	// NOW pixhawk will try to move
+	//api.update_setpoint(sp);
+	
+
+        // We want to push rc_overwrite inside
+       
+        mavlink_message_t msg_send;
+       
+        mavlink_msg_rc_channels_override_pack( 0 , 0 , & msg_send, api.current_messages.sysid, api.current_messages.compid, UINT16_MAX , UINT16_MAX , 1500 , UINT16_MAX,UINT16_MAX, UINT16_MAX,UINT16_MAX,UINT16_MAX );
+        printf("Write %b bytes\n", serial_port.write_message(msg_send) );
+        printf("RC overwrite !!");
+
+        
+        
+        // NOW pixhawk will try to move
 
 	// Wait for 8 seconds, check position
 	for (int i=0; i <40; i++)

@@ -1,7 +1,7 @@
 all: mavlink_control
 
 mavlink_control: git_submodule mavlink_control.cpp
-	arm-linux-gnueabihf-g++ -I mavlink/include/mavlink/v1.0 mavlink_control.cpp serial_port.cpp autopilot_interface.cpp -o mavlink_control -lpthread
+	arm-linux-gnueabihf-g++  -std=c++11  -I mavlink/include/mavlink/v1.0 mavlink_control.cpp serial_port.cpp autopilot_interface.cpp -o mavlink_control -lpthread
 
 git_submodule:
 	git submodule update --init --recursive

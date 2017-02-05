@@ -243,14 +243,14 @@ commands(Autopilot_Interface &api,float dx,float dy,float dz)
 	// Wait for 8 seconds, check position
 	for (int i=0; i <240; i++)
 	{       
-                if(i%3==0){
+                if(i%12==0){
                     j = -j;
                 }
 		mavlink_local_position_ned_t pos = api.current_messages.local_position_ned;
-		printf("%i CURRENT POSITION XYZ = [ % .4f , % .4f , % .4f ] \n", i, pos.x, pos.y, pos.z);
                 sp.x = sp.x + 0.5*j;
+		printf("%i set_position XYZ = [ % .4f , % .4f , % .4f ] \n", i, sp.x, sp.y, sp.z);
 		api.update_setpoint(sp);
-                sleep(1);
+                usleep(250000);
 	}
         printf("\n");
 

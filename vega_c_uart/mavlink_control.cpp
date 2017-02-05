@@ -143,13 +143,15 @@ top (int argc, char **argv)
 
                 
 	autopilot_interface.start();
-        // This part is added by SIDRONE
-        mavlink_message_t msg_send;
-        printf("Sleeping Prepare to arm ");
-        sleep(5);
-	mavlink_msg_command_long_pack( 0 , 0, &msg_send, autopilot_interface.current_messages.sysid , autopilot_interface.current_messages.compid , MAV_CMD_DO_SET_MODE , 0 , MAV_MODE_GUIDED_ARMED	, 0 , 0, 0, 0, 0, 0);
-        printf("Write %d  bytes\n", serial_port.write_message(msg_send) );
-         printf("ARMED !!");
+ // This part is added by SIDRONE
+       // mavlink_message_t msg_send;
+       // printf("Sleeping Prepare to arm ");
+       // sleep(5);
+       //mavlink_msg_command_long_pack( 0 , 0, &msg_send, autopilot_interface.current_messages.sysid , autopilot_interface.current_messages.compid , MAV_CMD_DO_SET_MODE , 0 , MAV_MODE_GUIDED_ARMED	, 0 , 0, 0, 0, 0, 0);
+       //      printf("Write %d  bytes\n", serial_port.write_message(msg_send) );
+       //     printf("ARMED !!");
+
+
 
 	// --------------------------------------------------------------------------
 	//   RUN COMMANDS
@@ -158,7 +160,7 @@ top (int argc, char **argv)
 	/*
 	 * Now we can implement the algorithm we want on top of the autopilot interface
 	 */
-	commands(autopilot_interface,0,0,0);
+	commands(autopilot_interface,0,0,0.5);
         
 
 	// --------------------------------------------------------------------------

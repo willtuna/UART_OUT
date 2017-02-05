@@ -239,11 +239,10 @@ commands(Autopilot_Interface &api,float dx,float dy,float dz)
         
         
         // NOW pixhawk will try to move
-
+        int j=1;
 	// Wait for 8 seconds, check position
 	for (int i=0; i <240; i++)
 	{       
-                int j = 1;
                 if(i%12==0){
                     j = -j;
                 }

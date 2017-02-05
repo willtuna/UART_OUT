@@ -148,7 +148,7 @@ top (int argc, char **argv)
         printf("Sleeping Prepare to arm ");
         sleep(5);
 	mavlink_msg_command_long_pack( 0 , 0, &msg_send, autopilot_interface.current_messages.sysid , autopilot_interface.current_messages.compid , MAV_CMD_DO_SET_MODE , 0 , MAV_MODE_AUTO_ARMED	, 0 , 0, 0, 0, 0, 0);
-        printf("Write %b bytes\n", serial_port.write_message(msg_send) );
+        printf("Write %d  bytes\n", serial_port.write_message(msg_send) );
          printf("ARMED !!");
 
 	// --------------------------------------------------------------------------
@@ -237,8 +237,8 @@ commands(Autopilot_Interface &api,float dx,float dy,float dz)
        
         mavlink_message_t msg_send;
        
-        mavlink_msg_rc_channels_override_pack( 0 , 0 , & msg_send, api.current_messages.sysid, api.current_messages.compid, UINT16_MAX , UINT16_MAX , 1423 , UINT16_MAX,UINT16_MAX, UINT16_MAX,UINT16_MAX,UINT16_MAX );
-        printf("Write %b bytes\n", serial_port.write_message(msg_send) );
+        mavlink_msg_rc_channels_override_pack( 0 , 0 , & msg_send, api.current_messages.sysid, api.current_messages.compid, UINT16_MAX , UINT16_MAX , 1234 , UINT16_MAX,UINT16_MAX, UINT16_MAX,UINT16_MAX,UINT16_MAX );
+        printf("Write %d bytes\n", serial_port.write_message(msg_send) );
         printf("RC overwrite !!");
 
         

@@ -147,7 +147,7 @@ top (int argc, char **argv)
         mavlink_message_t msg_send;
         printf("Sleeping Prepare to arm ");
         sleep(5);
-	mavlink_msg_command_long_pack( 0 , 0, &msg_send, autopilot_interface.current_messages.sysid , autopilot_interface.current_messages.compid , MAV_CMD_DO_SET_MODE , 0 , MAV_MODE_STABILIZE_ARMED	, 0 , 0, 0, 0, 0, 0);
+	mavlink_msg_command_long_pack( 0 , 0, &msg_send, autopilot_interface.current_messages.sysid , autopilot_interface.current_messages.compid , MAV_CMD_DO_SET_MODE , 0 , MAV_MODE_GUIDED_ARMED	, 0 , 0, 0, 0, 0, 0);
         printf("Write %d  bytes\n", serial_port.write_message(msg_send) );
          printf("ARMED !!");
 
@@ -230,16 +230,9 @@ commands(Autopilot_Interface &api,float dx,float dy,float dz)
                 sp     );
 
 	// SEND THE COMMAND
-	//api.update_setpoint(sp);
+	api.update_setpoint(sp);
 	
-
-        // We want to push rc_overwrite inside
        
-        mavlink_message_t msg_send;
-       
-       // mavlink_msg_rc_channels_override_pack( 0 , 0 , & msg_send, api.current_messages.sysid, api.current_messages.compid, UINT16_MAX , UINT16_MAX , 1200 , UINT16_MAX,UINT16_MAX, UINT16_MAX,UINT16_MAX,UINT16_MAX );
-       // printf("Write %d bytes\n", serial_port.write_message(msg_send) );
-       // printf("RC overwrite !!");
 
         
         
@@ -248,25 +241,11 @@ commands(Autopilot_Interface &api,float dx,float dy,float dz)
 	// Wait for 8 seconds, check position
 	for (int i=0; i <40; i++)
 	{
-        mavlink_msg_rc_channels_override_pack( 0 , 0 , & msg_send, api.current_messages.sysid, api.current_messages.compid, UINT16_MAX , UINT16_MAX , 1800 , UINT16_MAX,UINT16_MAX, UINT16_MAX,UINT16_MAX,UINT16_MAX );
-        printf("Write %d bytes\n", serial_port.write_message(msg_send) );
-        printf("RC overwrite !!");
-
 		mavlink_local_position_ned_t pos = api.current_messages.local_position_ned;
 		printf("%i CURRENT POSITION XYZ = [ % .4f , % .4f , % .4f ] \n", i, pos.x, pos.y, pos.z);
-		sleep(1);
+		api.update_setpoint(sp);
+                usleep(250000);
 	}
-        printf("Second RC_1100\n");
-	for (int i=0; i <40; i++)
-	{
-        mavlink_msg_rc_channels_override_pack( 0 , 0 , & msg_send, api.current_messages.sysid, api.current_messages.compid, UINT16_MAX , UINT16_MAX , 1100 , UINT16_MAX,UINT16_MAX, UINT16_MAX,UINT16_MAX,UINT16_MAX );
-        printf("Write %d bytes\n", serial_port.write_message(msg_send) );
-        printf("RC overwrite !!");
-
-		mavlink_local_position_ned_t pos = api.current_messages.local_position_ned;
-		printf("%i CURRENT POSITION XYZ = [ % .4f , % .4f , % .4f ] \n", i, pos.x, pos.y, pos.z);
-		sleep(1);
-        }
         printf("\n");
 
 	// --------------------------------------------------------------------------

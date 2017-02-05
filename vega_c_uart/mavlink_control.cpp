@@ -245,7 +245,7 @@ commands(Autopilot_Interface &api,float dx,float dy,float dz)
 	{
 		mavlink_local_position_ned_t pos = api.current_messages.local_position_ned;
 		printf("%i CURRENT POSITION XYZ = [ % .4f , % .4f , % .4f ] \n", i, pos.x, pos.y, pos.z);
-                sp.x = sp.x + 0.01*i;
+                sp.y = sp.y + 0.01*i;
 		api.update_setpoint(sp);
                 usleep(250000);
 	}

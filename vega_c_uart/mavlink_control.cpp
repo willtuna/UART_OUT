@@ -239,18 +239,23 @@ commands(Autopilot_Interface &api,float dx,float dy,float dz)
         
         
         // NOW pixhawk will try to move
-        int j=1, k= 1;
+        int rem=0,j=0;
 	// Wait for 8 seconds, check position
 	for (int i=0; i <240; i++)
 	{       
-                if(i%12==0){
-                    k = -k;
-                    j = k;
-                }else {
-                    j= 0;
-                }
-		mavlink_local_position_ned_t pos = api.current_messages.local_position_ned;
-                sp.x = sp.x + 0.5*j;
+		rem = i%12;
+                if(rem <3)
+                    j=0;
+                else if(rem <6)
+                    j=1;
+                else if(rem <9)
+                    j=0;
+                else
+                    j=-1;
+            
+            
+                mavlink_local_position_ned_t pos = api.current_messages.local_position_ned;
+                sp.x =  0.5*j;
 		printf("%i set_position XYZ = [ % .4f , % .4f , % .4f ] \n", i, sp.x, sp.y, sp.z);
 		api.update_setpoint(sp);
                 usleep(250000);

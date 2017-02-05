@@ -147,7 +147,7 @@ top (int argc, char **argv)
         mavlink_message_t msg_send;
         printf("Sleeping Prepare to arm ");
         sleep(5);
-	mavlink_msg_command_long_pack( 0 , 0, &msg_send, autopilot_interface.current_messages.sysid , autopilot_interface.current_messages.compid , MAV_CMD_DO_SET_MODE , 0 , MAV_MODE_AUTO_ARMED	, 0 , 0, 0, 0, 0, 0);
+	mavlink_msg_command_long_pack( 0 , 0, &msg_send, autopilot_interface.current_messages.sysid , autopilot_interface.current_messages.compid , MAV_CMD_DO_SET_MODE , 0 , MAV_MODE_STABILIZE_ARMED	, 0 , 0, 0, 0, 0, 0);
         printf("Write %d  bytes\n", serial_port.write_message(msg_send) );
          printf("ARMED !!");
 

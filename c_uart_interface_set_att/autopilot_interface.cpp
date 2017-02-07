@@ -809,12 +809,30 @@ write_thread(void)
 	sp.vy       = 0.0;
 	sp.vz       = 0.0;
 	sp.yaw_rate = 0.0;
+// Created by ISDRONE
+        mavlink_message_t attitude_msg;
+        mavlink_set_attitude_target_t target_attitude;
+        target_attitude.time_boot_ms =  (uint32_t)(get_time_usec()/1000);
+        target_attitude.target_system = current_messages.sysid;
+        target_attitude.target_component= current_messages.compid;
+        target_attitude.type_mask = 0;
+        float  quaternion[4] = {1.0,0,0,0};
         
+        target_attitude.body_roll_rate =  current_messages.attitude.rollspeed;
+        target_attitude.body_pitch_rate = current_messages.attitude.pitchspeed;
+        target_attitude.body_yaw_rate = current_messages.attitude.yawspeed;
+        target_attitude.thrust = 0.5;
+
+
         sp.x = current_messages.local_position_ned.x;
         sp.y = current_messages.local_position_ned.y;
         sp.z = current_messages.local_position_ned.z;
-	// set position target
+        
+        
+// set position target
 	current_setpoint = sp;
+
+
 
 	// write a message and signal writing
 	write_setpoint();
@@ -824,8 +842,21 @@ write_thread(void)
 	// otherwise it will go into fail safe
 	while ( !time_to_exit )
 	{
-		usleep(250000);   // Stream at 4Hz
 		write_setpoint();
+		usleep(250000);   // Stream at 4Hz
+// This should be packed into a function to update attitude
+                target_attitude.time_boot_ms =  (uint32_t)(get_time_usec()/1000);
+        
+                target_attitude.body_roll_rate =  current_messages.attitude.rollspeed;
+                target_attitude.body_pitch_rate = current_messages.attitude.pitchspeed;
+                target_attitude.body_yaw_rate = current_messages.attitude.yawspeed;
+                target_attitude.thrust = 0.5;
+
+
+        
+                mavlink_msg_set_attitude_target_encode(system_id,companion_id, &attitude_msg, &target_attitude);
+                write_message(attitude_msg);
+//---------------------------------------------------------------------------
 	}
 
 	// signal end

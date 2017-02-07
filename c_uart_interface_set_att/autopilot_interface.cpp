@@ -793,6 +793,8 @@ read_thread()
 // ------------------------------------------------------------------------------
 //   Write Thread
 // ------------------------------------------------------------------------------
+//
+
 void
 Autopilot_Interface::
 write_thread(void)
@@ -821,7 +823,11 @@ write_thread(void)
         target_attitude.body_roll_rate =  current_messages.attitude.rollspeed;
         target_attitude.body_pitch_rate = current_messages.attitude.pitchspeed;
         target_attitude.body_yaw_rate = current_messages.attitude.yawspeed;
-        target_attitude.thrust = 0.5;
+        float throttle = 0.7;
+        float pitchspeed = 0.5; // does'nt matter
+        int count = 0;
+        int rem=0; // remainder for oscillation
+        target_attitude.thrust = throttle;
 
 
         sp.x = current_messages.local_position_ned.x;
@@ -842,15 +848,31 @@ write_thread(void)
 	// otherwise it will go into fail safe
 	while ( !time_to_exit )
 	{
-		write_setpoint();
+                count++;
+                if (count > 48){
+                    rem = count % 48;
+                    if (rem < 12)
+                        pitchspeed = 0;
+                    else if (rem < 24)
+                        pitchspeed = 0.5;
+                    else if (rem <36)
+                        pitchspeed =0;
+                    else 
+                        pitchspeed = -0.5;
+                }
+                else
+                    pitchspeed = current_messages.attitude.pitchspeed;
+	        
+                write_setpoint();
 		usleep(250000);   // Stream at 4Hz
 // This should be packed into a function to update attitude
                 target_attitude.time_boot_ms =  (uint32_t)(get_time_usec()/1000);
         
                 target_attitude.body_roll_rate =  current_messages.attitude.rollspeed;
-                target_attitude.body_pitch_rate = current_messages.attitude.pitchspeed;
+                
+                target_attitude.body_pitch_rate = pitchspeed;
                 target_attitude.body_yaw_rate = current_messages.attitude.yawspeed;
-                target_attitude.thrust = 0.5;
+                target_attitude.thrust = throttle;
 
 
         

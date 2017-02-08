@@ -865,7 +865,6 @@ write_thread(void)
 	        */
 
                 write_setpoint();
-		usleep(250000);   // Stream at 4Hz
 // This should be packed into a function to update attitude
 //  Current focus on alt-hold
                 target_attitude.time_boot_ms =  (uint32_t)(get_time_usec()/1000);

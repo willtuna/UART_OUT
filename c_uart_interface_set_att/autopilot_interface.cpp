@@ -895,7 +895,10 @@ write_thread(void)
                 mavlink_msg_set_attitude_target_encode(system_id,companion_id, &attitude_msg, &target_attitude);
                 write_message(attitude_msg);
 //---------------------------------------------------------------------------
-	}
+	
+		usleep(250000);   // Stream at 4Hz
+        
+        }
 
 	// signal end
 	writing_status = false;

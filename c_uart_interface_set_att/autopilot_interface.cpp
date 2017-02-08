@@ -865,6 +865,7 @@ write_thread(void)
 	        */
 
                 write_setpoint();
+                usleep(125000);
 // This should be packed into a function to update attitude
 //  Current focus on alt-hold
                 target_attitude.time_boot_ms =  (uint32_t)(get_time_usec()/1000);
@@ -875,12 +876,19 @@ write_thread(void)
                 target_attitude.body_yaw_rate = current_messages.attitude.yawspeed;
 
                 if(current_messages.local_position_ned.z < initial_position.z ){
-                    if(current_messages.local_position_ned.vz <  0)
-                        throttle -= 0.05;
+                    if(current_messages.local_position_ned.vz <  0){
+                       if(throttle <0.3)
+                           throttle = 0.3;
+                       else
+                            throttle -= 0.05;
+                    }
                 }
                 else{
                     if(current_messages.local_position_ned.vz > 0 ){
-                        throttle += 0.05;
+                        if(throttle > 0.9)
+                            throttle = 0.9;
+                        else
+                            throttle += 0.05;
                     }
                 }
                 printf("local_pos: %f   initial_ps: %f,  throttle: %f \n",current_messages.local_position_ned.z, initial_position.z, throttle);
@@ -895,7 +903,7 @@ write_thread(void)
                 write_message(attitude_msg);
 //---------------------------------------------------------------------------
 	
-		usleep(250000);   // Stream at 4Hz
+		usleep(125000);   // Stream at 4Hz
         
         }
 

@@ -870,10 +870,10 @@ write_thread(void)
 //  Current focus on alt-hold
                 target_attitude.time_boot_ms =  (uint32_t)(get_time_usec()/1000);
         
-                target_attitude.body_roll_rate = current_messages.attitude.rollspeed;
+                target_attitude.body_roll_rate = 0;
                 
-                target_attitude.body_pitch_rate = current_messages.attitude.pitchspeed;
-                target_attitude.body_yaw_rate = current_messages.attitude.yawspeed;
+                target_attitude.body_pitch_rate = 0;
+                target_attitude.body_yaw_rate = 0;
 
                 if(current_messages.local_position_ned.z < initial_position.z ){
                     if(current_messages.local_position_ned.vz <  0){

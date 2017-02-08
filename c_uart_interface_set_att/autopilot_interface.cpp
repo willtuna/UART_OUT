@@ -820,10 +820,10 @@ write_thread(void)
         target_attitude.type_mask = 0;
         float  quaternion[4] = {1.0,0,0,0};
         
-        target_attitude.body_roll_rate =  current_messages.attitude.rollspeed;
-        target_attitude.body_pitch_rate = current_messages.attitude.pitchspeed;
-        target_attitude.body_yaw_rate = current_messages.attitude.yawspeed;
-        float throttle = 0.7;
+        target_attitude.body_roll_rate =  0;
+        target_attitude.body_pitch_rate = 0;
+        target_attitude.body_yaw_rate = 0;
+        float throttle = 0.6;
         float pitchspeed = 0.5; // does'nt matter
         int count = 0;
         int rem=0; // remainder for oscillation
@@ -848,7 +848,7 @@ write_thread(void)
 	// otherwise it will go into fail safe
 	while ( !time_to_exit )
 	{
-                count++;
+               /* count++;
                 if (count > 48){
                     rem = count % 48;
                     if (rem < 12)
@@ -862,16 +862,32 @@ write_thread(void)
                 }
                 else
                     pitchspeed = current_messages.attitude.pitchspeed;
-	        
+	        */
+
                 write_setpoint();
 		usleep(250000);   // Stream at 4Hz
 // This should be packed into a function to update attitude
+//  Current focus on alt-hold
                 target_attitude.time_boot_ms =  (uint32_t)(get_time_usec()/1000);
         
-                target_attitude.body_roll_rate =  current_messages.attitude.rollspeed;
+                target_attitude.body_roll_rate =  0; //current_messages.attitude.rollspeed;
                 
-                target_attitude.body_pitch_rate = pitchspeed;
-                target_attitude.body_yaw_rate = current_messages.attitude.yawspeed;
+                target_attitude.body_pitch_rate = 0; //pitchspeed;
+                target_attitude.body_yaw_rate = 0; //current_messages.attitude.yawspeed;
+
+                if(current_messages.local_position_ned.z < initial_position.z ){
+                    if(current_messages.local_position_ned.vz <  0)
+                        throttle -= 0.05;
+                }
+                else{
+                    if(current_messages.local_position_ned.vz > 0 ){
+                        throttle += 0.05;
+                    }
+                }
+
+
+
+
                 target_attitude.thrust = throttle;
 
 

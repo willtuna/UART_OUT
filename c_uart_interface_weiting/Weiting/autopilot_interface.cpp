@@ -53,8 +53,7 @@
 // ------------------------------------------------------------------------------
 
 #include "autopilot_interface.h"
-
-
+#define Vega_Body 1
 // ----------------------------------------------------------------------------------
 //   Time
 // ------------------- ---------------------------------------------------------------
@@ -85,7 +84,11 @@ set_position(float x, float y, float z, mavlink_set_position_target_local_ned_t 
 	sp.type_mask =
 		MAVLINK_MSG_SET_POSITION_TARGET_LOCAL_NED_POSITION;
 
-	sp.coordinate_frame = MAV_FRAME_LOCAL_NED;
+#ifdef Vega_Body
+        sp.coordinate_frame = MAV_FRAME_BODY_OFFSET_NED;
+#else
+        sp.coordinate_frame = MAV_FRAME_LOCAL_NED;
+#endif
 
 	sp.x   = x;
 	sp.y   = y;
@@ -107,7 +110,11 @@ set_velocity(float vx, float vy, float vz, mavlink_set_position_target_local_ned
 	sp.type_mask =
 		MAVLINK_MSG_SET_POSITION_TARGET_LOCAL_NED_VELOCITY     ;
 
-	sp.coordinate_frame = MAV_FRAME_LOCAL_NED;
+#ifdef Vega_Body
+        sp.coordinate_frame = MAV_FRAME_BODY_OFFSET_NED;
+#else
+        sp.coordinate_frame = MAV_FRAME_LOCAL_NED;
+#endif
 
 	sp.vx  = vx;
 	sp.vy  = vy;
@@ -136,7 +143,11 @@ set_acceleration(float ax, float ay, float az, mavlink_set_position_target_local
 		MAVLINK_MSG_SET_POSITION_TARGET_LOCAL_NED_ACCELERATION &
 		MAVLINK_MSG_SET_POSITION_TARGET_LOCAL_NED_VELOCITY     ;
 
-	sp.coordinate_frame = MAV_FRAME_LOCAL_NED;
+#ifdef Vega_Body
+        sp.coordinate_frame = MAV_FRAME_BODY_OFFSET_NED;
+#else
+        sp.coordinate_frame = MAV_FRAME_LOCAL_NED;
+#endif
 
 	sp.afx  = ax;
 	sp.afy  = ay;
@@ -812,7 +823,12 @@ write_thread(void)
 	mavlink_set_position_target_local_ned_t sp;
 	sp.type_mask = MAVLINK_MSG_SET_POSITION_TARGET_LOCAL_NED_VELOCITY &
 				   MAVLINK_MSG_SET_POSITION_TARGET_LOCAL_NED_YAW_RATE;
-	sp.coordinate_frame = MAV_FRAME_LOCAL_NED;// MAV_FRAME_BODY_OFFSET_NED;
+	
+#ifdef Vega_Body
+        sp.coordinate_frame = MAV_FRAME_BODY_OFFSET_NED;
+#else
+        sp.coordinate_frame = MAV_FRAME_LOCAL_NED;
+#endif
 	sp.vx       = 0.0;
 	sp.vy       = 0.0;
 	sp.vz       = 0.0;
@@ -823,14 +839,14 @@ write_thread(void)
         target_attitude.time_boot_ms =  (uint32_t)(get_time_usec()/1000);
         target_attitude.target_system = current_messages.sysid;
         target_attitude.target_component= current_messages.compid;
-        target_attitude.type_mask = 0;
+        target_attitude.type_mask = 0b11111111;
         float  quaternion[4] = {1.0,0,0,0};
         
-        target_attitude.body_roll_rate =  0;
-        target_attitude.body_pitch_rate = 0;
-        target_attitude.body_yaw_rate = 0;
-        float throttle = 0.65;
-        float balance_throttle = 0.65;
+        //target_attitude.body_roll_rate =  0;
+        //target_attitude.body_pitch_rate = 0;
+        // target_attitude.body_yaw_rate = 0;
+        float throttle = 0.55;
+        float balance_throttle = 0.55;
         float pitchspeed = 0.5; // does'nt matter
         int count = 0;
         int rem=0; // remainder for oscillation

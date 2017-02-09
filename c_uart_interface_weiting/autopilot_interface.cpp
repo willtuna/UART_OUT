@@ -821,7 +821,7 @@ write_thread(void)
 
 	// prepare an initial setpoint, just stay put
 	mavlink_set_position_target_local_ned_t sp;
-	sp.type_mask = MAVLINK_MSG_SET_POSITION_TARGET_LOCAL_NED_VELOCITY &
+	sp.type_mask = //MAVLINK_MSG_SET_POSITION_TARGET_LOCAL_NED_VELOCITY &
 				   MAVLINK_MSG_SET_POSITION_TARGET_LOCAL_NED_YAW_RATE;
 	
 #ifdef Vega_Body

@@ -351,6 +351,12 @@ read_messages()
 					this_timestamps.attitude = current_messages.time_stamps.attitude;
 					break;
 				}
+                                case MAVLINK_MSG_ID_ATTITUDE_TARGET:
+                                {
+                                        mavlink_msg_attitude_target_decode(&message, &(current_messages.attitude_target));
+                                        break;
+                                
+                                }
 
 				default:
 				{
@@ -806,13 +812,13 @@ write_thread(void)
 	mavlink_set_position_target_local_ned_t sp;
 	sp.type_mask = MAVLINK_MSG_SET_POSITION_TARGET_LOCAL_NED_VELOCITY &
 				   MAVLINK_MSG_SET_POSITION_TARGET_LOCAL_NED_YAW_RATE;
-	sp.coordinate_frame = MAV_FRAME_BODY_OFFSET_NED;
+	sp.coordinate_frame = MAV_FRAME_LOCAL_NED;// MAV_FRAME_BODY_OFFSET_NED;
 	sp.vx       = 0.0;
 	sp.vy       = 0.0;
 	sp.vz       = 0.0;
 	sp.yaw_rate = 0.0;
 // Created by ISDRONE
-       /* mavlink_message_t attitude_msg;
+        mavlink_message_t attitude_msg;
         mavlink_set_attitude_target_t target_attitude;
         target_attitude.time_boot_ms =  (uint32_t)(get_time_usec()/1000);
         target_attitude.target_system = current_messages.sysid;
@@ -824,11 +830,12 @@ write_thread(void)
         target_attitude.body_pitch_rate = 0;
         target_attitude.body_yaw_rate = 0;
         float throttle = 0.65;
+        float balance_throttle = 0.65;
         float pitchspeed = 0.5; // does'nt matter
         int count = 0;
         int rem=0; // remainder for oscillation
         target_attitude.thrust = throttle;
-*/
+
 
         sp.x = current_messages.local_position_ned.x;
         sp.y = current_messages.local_position_ned.y;
@@ -843,12 +850,17 @@ write_thread(void)
 	// write a message and signal writing
 	write_setpoint();
 	writing_status = true;
+        float min = 0.5;
 
 	// Pixhawk needs to see off-board commands at minimum 2Hz,
 	// otherwise it will go into fail safe
 	while ( !time_to_exit )
 	{
-               /* count++;
+               
+            
+            
+            //This part is for oscillation
+                /* count++;
                 if (count > 48){
                     rem = count % 48;
                     if (rem < 12)
@@ -865,34 +877,47 @@ write_thread(void)
 	        */
 
                 write_setpoint();
-                usleep(250000);
-              /*  usleep(100);
+                
+                usleep(100);
 // This should be packed into a function to update attitude
 //  Current focus on alt-hold
+//
+                float candidate = fabs(current_messages.highres_imu.zacc - -9.8);
+                if (candidate < min){
+                    balance_throttle =  current_messages.attitude_target.thrust;
+                    min = candidate;
+                }
+
                 target_attitude.time_boot_ms =  (uint32_t)(get_time_usec()/1000);
         
-                target_attitude.body_roll_rate = 0;
+              //  target_attitude.body_roll_rate = 0;
                 
-                target_attitude.body_pitch_rate = 0;
-                target_attitude.body_yaw_rate = 0;
+              //  target_attitude.body_pitch_rate = 0;
+              //  target_attitude.body_yaw_rate = 0;
 
-                if(current_messages.local_position_ned.z < initial_position.z ){
-                    if(current_messages.local_position_ned.vz <  0){
-                       if(throttle <0.3)
-                           throttle = 0.3;
-                       else
-                            throttle -= 0.05;
-                    }
-                }
-                else{
-                    if(current_messages.local_position_ned.vz > 0 ){
-                        if(throttle > 0.9)
-                            throttle = 0.9;
-                        else
-                            throttle += 0.05;
-                    }
-                }
-                printf("local_pos: %f   initial_ps: %f,  throttle: %f \n",current_messages.local_position_ned.z, initial_position.z, throttle);
+                float dz,vz,dvz;
+                dz = initial_position.z - current_messages.local_position_ned.z;
+                if (fabs(dz) < 0.5)
+                    vz = 0.1;
+                else if (fabs(dz) < 1.5)
+                    vz = 0.3;
+                else
+                    vz = 1.0;
+
+
+                if(dz < 0)
+                    vz = -vz;
+    
+                dvz = vz - current_messages.local_position_ned.vz;
+                
+                throttle = fabs(dvz) * 0.2;
+                if (dvz < 0 )
+                    throttle = - throttle;
+                
+                throttle = balance_throttle + throttle;
+
+
+                printf("local_pos: %f   initial_ps: %f, zacc: %f ,throttle: %f \n",current_messages.local_position_ned.z, initial_position.z, current_messages.highres_imu.zacc,throttle);
 
 
 
@@ -905,7 +930,7 @@ write_thread(void)
 //---------------------------------------------------------------------------
 	
 		usleep(249900);   // Stream at 4Hz
-        */
+        
 
 
         }

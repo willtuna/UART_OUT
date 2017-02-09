@@ -821,8 +821,8 @@ write_thread(void)
 
 	// prepare an initial setpoint, just stay put
 	mavlink_set_position_target_local_ned_t sp;
-	sp.type_mask = //MAVLINK_MSG_SET_POSITION_TARGET_LOCAL_NED_VELOCITY &
-				   MAVLINK_MSG_SET_POSITION_TARGET_LOCAL_NED_YAW_RATE;
+	sp.type_mask = MAVLINK_MSG_SET_POSITION_TARGET_LOCAL_NED_VELOCITY &
+				   MAVLINK_MSG_SET_POSITION_TARGET_LOCAL_NED_POSITION;
 	
 #ifdef Vega_Body
         sp.coordinate_frame = MAV_FRAME_BODY_OFFSET_NED;
@@ -853,9 +853,9 @@ write_thread(void)
         target_attitude.thrust = throttle;
 
 
-        sp.x = current_messages.local_position_ned.x;
-        sp.y = current_messages.local_position_ned.y;
-        sp.z = current_messages.local_position_ned.z;
+        sp.x = 0;
+        sp.y = 0;
+        sp.z = -0.5;
         
         
 // set position target
@@ -875,78 +875,19 @@ write_thread(void)
                
             
             
-            //This part is for oscillation
-                /* count++;
-                if (count > 48){
-                    rem = count % 48;
-                    if (rem < 12)
-                        pitchspeed = 0;
-                    else if (rem < 24)
-                        pitchspeed = 0.5;
-                    else if (rem <36)
-                        pitchspeed =0;
-                    else 
-                        pitchspeed = -0.5;
-                }
-                else
-                    pitchspeed = current_messages.attitude.pitchspeed;
-	        */
-
                 write_setpoint();
                 
-                usleep(100);
-// This should be packed into a function to update attitude
-//  Current focus on alt-hold
-//
-                float candidate = fabs(current_messages.highres_imu.zacc - -9.8);
-                if (candidate < min){
-                    balance_throttle =  current_messages.attitude_target.thrust;
-                    min = candidate;
-                }
-
-                target_attitude.time_boot_ms =  (uint32_t)(get_time_usec()/1000);
-        
-              //  target_attitude.body_roll_rate = 0;
-                
-              //  target_attitude.body_pitch_rate = 0;
-              //  target_attitude.body_yaw_rate = 0;
-
-                float dz,vz,dvz;
-                dz = initial_position.z - current_messages.local_position_ned.z;
-                if (fabs(dz) < 0.5)
-                    vz = 0.1;
-                else if (fabs(dz) < 1.5)
-                    vz = 0.3;
-                else
-                    vz = 1.0;
-
-
-                if(dz < 0)
-                    vz = -vz;
-    
-                dvz = vz - current_messages.local_position_ned.vz;
-                
-                throttle = fabs(dvz) * 0.2;
-                if (dvz < 0 )
-                    throttle = - throttle;
-                
-                throttle = balance_throttle + throttle;
-
-
+                usleep(250000);
                 printf("local_pos: %f   initial_ps: %f, zacc: %f ,throttle: %f \n",current_messages.local_position_ned.z, initial_position.z, current_messages.highres_imu.zacc,throttle);
 
 
 
-                target_attitude.thrust = throttle;
-
-
-        
+/*        
                 mavlink_msg_set_attitude_target_encode(system_id,companion_id, &attitude_msg, &target_attitude);
                 write_message(attitude_msg);
 //---------------------------------------------------------------------------
 	
-		usleep(249900);   // Stream at 4Hz
-        
+  */      
 
 
         }

@@ -53,7 +53,7 @@
 // ------------------------------------------------------------------------------
 
 #include "autopilot_interface.h"
-#define Vega_Body
+#define Vega_Body 1
 // ----------------------------------------------------------------------------------
 //   Time
 // ------------------- ---------------------------------------------------------------
@@ -845,8 +845,8 @@ write_thread(void)
         //target_attitude.body_roll_rate =  0;
         //target_attitude.body_pitch_rate = 0;
         // target_attitude.body_yaw_rate = 0;
-        float throttle = 0.65;
-        float balance_throttle = 0.65;
+        float throttle = 0.55;
+        float balance_throttle = 0.55;
         float pitchspeed = 0.5; // does'nt matter
         int count = 0;
         int rem=0; // remainder for oscillation

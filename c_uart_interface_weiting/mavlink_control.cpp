@@ -185,9 +185,10 @@ top (int argc, char **argv)
 
 // si2_mission
 void si2_mission(float dx, float dy, float dz, float vx, float vy , float vz,mavlink_set_position_target_local_ned_t &sp){
-	mavlink_set_position_target_local_ned_t sp;
 	set_velocity(vx,vy,vz,sp);
 	set_position(dx,dy,dz,sp);
+	sp.type_mask = MAVLINK_MSG_SET_POSITION_TARGET_LOCAL_NED_VELOCITY &
+				   MAVLINK_MSG_SET_POSITION_TARGET_LOCAL_NED_POSITION;
 	return ; 
 }
 
@@ -230,7 +231,8 @@ commands(Autopilot_Interface &api,float dx,float dy,float dz, float vx, float vy
 				   ip.z + dz   , // [m]
 				   sp         );
 
-
+	sp.type_mask = MAVLINK_MSG_SET_POSITION_TARGET_LOCAL_NED_VELOCITY &
+				   MAVLINK_MSG_SET_POSITION_TARGET_LOCAL_NED_POSITION;
 	// Example 1.2 - Append Yaw Command
 	/*set_yaw( ip.yaw , // [rad]	
                 sp     );
@@ -252,7 +254,9 @@ commands(Autopilot_Interface &api,float dx,float dy,float dz, float vx, float vy
 	}
 	
 	
-	si2_mission(0 , 0 ,  0.5 , 0, 0 , 0.05, sp)
+	si2_mission(0 , 0 ,  0.5 , 0, 0 , 0.05, sp);
+	printf("si2_mission down 50cm with 5cm/sec for 10 seconds\n");
+	
 	api.update_setpoint(sp);
 	for (int i=0; i <10; i++)
 	{

@@ -246,6 +246,7 @@ commands(Autopilot_Interface &api,float dx,float dy,float dz, float vx, float vy
         // NOW pixhawk will try to move
 
 	// Wait for 8 seconds, check position
+        printf("Upward 1m with 5cm/sec for 20 sec\n");
 	for (int i=0; i <20; i++)
 	{
 		mavlink_local_position_ned_t pos = api.current_messages.local_position_ned;
@@ -254,11 +255,11 @@ commands(Autopilot_Interface &api,float dx,float dy,float dz, float vx, float vy
 	}
 	
 	
-	si2_mission(0 , 0 ,  0.5 , 0, 0 , 0.05, sp);
-	printf("si2_mission down 50cm with 5cm/sec for 10 seconds\n");
+	si2_mission(0 , 0 ,  1 , 0, 0 , 0.05, sp);
+	printf("si2_mission down 1m  with 5cm/sec for 20 seconds\n");
 	
 	api.update_setpoint(sp);
-	for (int i=0; i <10; i++)
+	for (int i=0; i <20; i++)
 	{
 		mavlink_local_position_ned_t pos = api.current_messages.local_position_ned;
 		printf("%i CURRENT POSITION XYZ = [ % .4f , % .4f , % .4f ] \n", i, pos.x, pos.y, pos.z);

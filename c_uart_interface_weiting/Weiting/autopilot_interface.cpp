@@ -839,7 +839,7 @@ write_thread(void)
         target_attitude.time_boot_ms =  (uint32_t)(get_time_usec()/1000);
         target_attitude.target_system = current_messages.sysid;
         target_attitude.target_component= current_messages.compid;
-        target_attitude.type_mask = 0b11111111;
+        target_attitude.type_mask = 0b01111111;
         float  quaternion[4] = {1.0,0,0,0};
         
         //target_attitude.body_roll_rate =  0;
@@ -931,7 +931,10 @@ write_thread(void)
                     throttle = - throttle;
                 
                 throttle = balance_throttle + throttle;
-
+                if(throttle>0.9)
+                    throttle = 0.9;
+                else if(throttle<0.1)
+                    throttle = 0.1;
 
                 printf("local_pos: %f   initial_ps: %f, zacc: %f ,throttle: %f \n",current_messages.local_position_ned.z, initial_position.z, current_messages.highres_imu.zacc,throttle);
 

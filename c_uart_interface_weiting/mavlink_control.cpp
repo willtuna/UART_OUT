@@ -54,7 +54,7 @@
 // ------------------------------------------------------------------------------
 
 #include "mavlink_control.h"
-
+void si2_mission(float dx, float dy, float dz, float vx, float vy , float vz,mavlink_set_position_target_local_ned_t &sp);
 
 // ------------------------------------------------------------------------------
 //   TOP
@@ -152,9 +152,9 @@ top (int argc, char **argv)
 
 	commands(autopilot_interface,0,0,-1,0,0,-0.05);
         
-	commands(autopilot_interface,-1,0,0,-0.05,0,0);
+	//commands(autopilot_interface,-1,0,0,-0.05,0,0);
         
-	commands(autopilot_interface,0,0,1,0,0,+0.05);
+	//commands(autopilot_interface,0,0,1,0,0,+0.05);
         
 
 	// --------------------------------------------------------------------------
@@ -181,6 +181,16 @@ top (int argc, char **argv)
 // ------------------------------------------------------------------------------
 //   COMMANDS
 // ------------------------------------------------------------------------------
+
+
+// si2_mission
+void si2_mission(float dx, float dy, float dz, float vx, float vy , float vz,mavlink_set_position_target_local_ned_t &sp){
+	mavlink_set_position_target_local_ned_t sp;
+	set_velocity(vx,vy,vz,sp);
+	set_position(dx,dy,dz,sp);
+	return ; 
+}
+
 
 void
 commands(Autopilot_Interface &api,float dx,float dy,float dz, float vx, float vy, float vz)
@@ -234,6 +244,16 @@ commands(Autopilot_Interface &api,float dx,float dy,float dz, float vx, float vy
         // NOW pixhawk will try to move
 
 	// Wait for 8 seconds, check position
+	for (int i=0; i <20; i++)
+	{
+		mavlink_local_position_ned_t pos = api.current_messages.local_position_ned;
+		printf("%i CURRENT POSITION XYZ = [ % .4f , % .4f , % .4f ] \n", i, pos.x, pos.y, pos.z);
+		sleep(1);
+	}
+	
+	
+	si2_mission(0 , 0 ,  0.5 , 0, 0 , 0.05, sp)
+	api.update_setpoint(sp);
 	for (int i=0; i <10; i++)
 	{
 		mavlink_local_position_ned_t pos = api.current_messages.local_position_ned;

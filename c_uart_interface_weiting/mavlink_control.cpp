@@ -150,7 +150,7 @@ top (int argc, char **argv)
 	 */
 
 
-	commands(autopilot_interface,0,0,-1,0,0,-0.05);
+	commands(autopilot_interface,0,0,-0.05,0,0,0);
         
 	//commands(autopilot_interface,-1,0,0,-0.05,0,0);
         
@@ -185,10 +185,10 @@ top (int argc, char **argv)
 
 // si2_mission
 void si2_mission(float dx, float dy, float dz, float vx, float vy , float vz,mavlink_set_position_target_local_ned_t &sp){
-	set_velocity(vx,vy,vz,sp);
+	//set_velocity(vx,vy,vz,sp);
 	set_position(dx,dy,dz,sp);
-	sp.type_mask = MAVLINK_MSG_SET_POSITION_TARGET_LOCAL_NED_VELOCITY &
-				   MAVLINK_MSG_SET_POSITION_TARGET_LOCAL_NED_POSITION;
+	sp.type_mask = //MAVLINK_MSG_SET_POSITION_TARGET_LOCAL_NED_VELOCITY ;
+	    	   MAVLINK_MSG_SET_POSITION_TARGET_LOCAL_NED_POSITION;
 	return ; 
 }
 
@@ -218,22 +218,26 @@ commands(Autopilot_Interface &api,float dx,float dy,float dz, float vx, float vy
 
 	// autopilot_interface.h provides some helper functions to build the command
 
-
+        for(int i ;i<10;++i){
+            printf("Waiting for %d sec\n",(10-i));
+        }
 	// Example 1 - Set Velocity
-	set_velocity( vx       , // [m/s]
+	/*set_velocity( vx       , // [m/s]
 				  vy       , // [m/s]
 				   vz       , // [m/s]
 				   sp        );
-        
+        */
 	// Example 2 - Set Position
 	 set_position(  dx , // [m]
 			 	    dy , // [m]
 				    dz   , // [m]
 				   sp         );
-
-	sp.type_mask = MAVLINK_MSG_SET_POSITION_TARGET_LOCAL_NED_VELOCITY &
-				   MAVLINK_MSG_SET_POSITION_TARGET_LOCAL_NED_POSITION;
-	// Example 1.2 - Append Yaw Command
+        
+	sp.type_mask = //MAVLINK_MSG_SET_POSITION_TARGET_LOCAL_NED_VELOCITY; 
+		   MAVLINK_MSG_SET_POSITION_TARGET_LOCAL_NED_POSITION;
+	
+                
+        // Example 1.2 - Append Yaw Command
 	/*set_yaw( ip.yaw , // [rad]	
                 sp     );
         */
@@ -253,9 +257,15 @@ commands(Autopilot_Interface &api,float dx,float dy,float dz, float vx, float vy
 		printf("%i CURRENT POSITION XYZ = [ % .4f , % .4f , % .4f ] \n", i, pos.x, pos.y, pos.z);
 		sleep(1);
 	}
-	
-	
-	si2_mission(0 , 0 ,  1 , 0, 0 , 0.05, sp);
+	printf("si2_mission hold this altitude for 10sec");
+	si2_mission(0 , 0 ,  0 , 0, 0 , 0 ,sp);
+        for(int i=0; i<10;++i){
+		mavlink_local_position_ned_t pos = api.current_messages.local_position_ned;
+		printf("%i CURRENT POSITION XYZ = [ % .4f , % .4f , % .4f ] \n", i, pos.x, pos.y, pos.z);
+		sleep(1);
+        }
+
+	si2_mission(0 , 0 ,  0.05 , 0, 0 , 0 , sp);
 	printf("si2_mission down 1m  with 5cm/sec for 20 seconds\n");
 	
 	api.update_setpoint(sp);

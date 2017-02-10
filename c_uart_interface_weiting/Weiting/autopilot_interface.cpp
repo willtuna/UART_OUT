@@ -892,9 +892,9 @@ write_thread(void)
                     pitchspeed = current_messages.attitude.pitchspeed;
 	        */
 
-                write_setpoint();
+                //write_setpoint();
                 
-                usleep(100);
+               // usleep(100);
 // This should be packed into a function to update attitude
 //  Current focus on alt-hold
 //
@@ -948,7 +948,7 @@ write_thread(void)
                 write_message(attitude_msg);
 //---------------------------------------------------------------------------
 	
-		usleep(249900);   // Stream at 4Hz
+		usleep(250000);   // Stream at 4Hz
         
 
 

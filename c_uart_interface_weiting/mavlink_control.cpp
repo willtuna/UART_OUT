@@ -54,7 +54,7 @@
 // ------------------------------------------------------------------------------
 
 #include "mavlink_control.h"
-void si2_mission(float dx, float dy, float dz, float vx, float vy , float vz,mavlink_set_position_target_local_ned_t &sp);
+
 
 // ------------------------------------------------------------------------------
 //   TOP

@@ -226,9 +226,9 @@ commands(Autopilot_Interface &api,float dx,float dy,float dz, float vx, float vy
 				   sp        );
         
 	// Example 2 - Set Position
-	 set_position( ip.x + dx , // [m]
-			 	   ip.y + dy , // [m]
-				   ip.z + dz   , // [m]
+	 set_position(  dx , // [m]
+			 	    dy , // [m]
+				    dz   , // [m]
 				   sp         );
 
 	sp.type_mask = MAVLINK_MSG_SET_POSITION_TARGET_LOCAL_NED_VELOCITY &

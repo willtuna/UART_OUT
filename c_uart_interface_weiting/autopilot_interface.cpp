@@ -829,6 +829,7 @@ write_thread(void)
 #else
         sp.coordinate_frame = MAV_FRAME_LOCAL_NED;
 #endif
+	// initialization
 	sp.vx       = 0.0;
 	sp.vy       = 0.0;
 	sp.vz       = 0.0;
@@ -852,10 +853,9 @@ write_thread(void)
         int rem=0; // remainder for oscillation
         target_attitude.thrust = throttle;
 
-
         sp.x = 0;
         sp.y = 0;
-        sp.z = -0.5;
+        sp.z = 0;
         
         
 // set position target

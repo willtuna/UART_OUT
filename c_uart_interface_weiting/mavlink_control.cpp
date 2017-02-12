@@ -150,7 +150,7 @@ top (int argc, char **argv)
 	 */
 
 
-	commands(autopilot_interface,0,0,-0.05,0,0,0);
+	commands(autopilot_interface,0,0,-0.1,0,0,0);
         
 	//commands(autopilot_interface,-1,0,0,-0.05,0,0);
         
@@ -202,8 +202,8 @@ commands(Autopilot_Interface &api,float dx,float dy,float dz, float vx, float vy
 	// --------------------------------------------------------------------------
 
 	api.enable_offboard_control();
-	usleep(100); // give some time to let it sink in
-
+	usleep(200); // give some time to let it sink in
+        // write_thread include home request so i changed to 200
 	// now the autopilot is accepting setpoint commands
 
 
@@ -218,8 +218,9 @@ commands(Autopilot_Interface &api,float dx,float dy,float dz, float vx, float vy
 
 	// autopilot_interface.h provides some helper functions to build the command
 
-        for(int i ;i<10;++i){
-            printf("Waiting for %d sec\n",(10-i));
+        for(int i=0 ;i<10;++i){
+            printf("write_thread_initialization_Waiting for %d sec\n",(10-i));
+            sleep(i);
         }
 	// Example 1 - Set Velocity
 	/*set_velocity( vx       , // [m/s]
@@ -233,10 +234,10 @@ commands(Autopilot_Interface &api,float dx,float dy,float dz, float vx, float vy
 				    dz   , // [m]
 				   sp         );
         
-	sp.type_mask = //MAVLINK_MSG_SET_POSITION_TARGET_LOCAL_NED_VELOCITY; 
-		   MAVLINK_MSG_SET_POSITION_TARGET_LOCAL_NED_POSITION;
-	
-                
+	//sp.type_mask = MAVLINK_MSG_SET_POSITION_TARGET_LOCAL_NED_VELOCITY; 
+	sp.type_mask =	  MAVLINK_MSG_SET_POSITION_TARGET_LOCAL_NED_POSITION;
+    	
+           
         // Example 1.2 - Append Yaw Command
 	/*set_yaw( ip.yaw , // [rad]	
                 sp     );
@@ -248,10 +249,10 @@ commands(Autopilot_Interface &api,float dx,float dy,float dz, float vx, float vy
 	
         
         // NOW pixhawk will try to move
-
+        
 	// Wait for 8 seconds, check position
-        printf("Upward 1m with 5cm/sec for 20 sec\n");
-	for (int i=0; i <20; i++)
+        printf("Command Upward 50cm by set_position\n");
+	for (int i=0; i <10; i++)
 	{
 		mavlink_local_position_ned_t pos = api.current_messages.local_position_ned;
 		printf("%i CURRENT POSITION XYZ = [ % .4f , % .4f , % .4f ] \n", i, pos.x, pos.y, pos.z);
@@ -259,17 +260,21 @@ commands(Autopilot_Interface &api,float dx,float dy,float dz, float vx, float vy
 	}
 	printf("si2_mission hold this altitude for 10sec");
 	si2_mission(0 , 0 ,  0 , 0, 0 , 0 ,sp);
+        api.update_setpoint(sp);
+
+
+
         for(int i=0; i<10;++i){
 		mavlink_local_position_ned_t pos = api.current_messages.local_position_ned;
 		printf("%i CURRENT POSITION XYZ = [ % .4f , % .4f , % .4f ] \n", i, pos.x, pos.y, pos.z);
 		sleep(1);
         }
 
-	si2_mission(0 , 0 ,  0.05 , 0, 0 , 0 , sp);
-	printf("si2_mission down 1m  with 5cm/sec for 20 seconds\n");
+	si2_mission(0 , 0 ,  0.1 , 0, 0 , 0 , sp);
+	printf("si2_mission keep move down 10cm for 10 seconds\n");
 	
 	api.update_setpoint(sp);
-	for (int i=0; i <20; i++)
+	for (int i=0; i <10; i++)
 	{
 		mavlink_local_position_ned_t pos = api.current_messages.local_position_ned;
 		printf("%i CURRENT POSITION XYZ = [ % .4f , % .4f , % .4f ] \n", i, pos.x, pos.y, pos.z);

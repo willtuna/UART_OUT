@@ -84,8 +84,7 @@ get_time_usec()
 void
 set_position(float x, float y, float z, mavlink_set_position_target_local_ned_t &sp)
 {
-	sp.type_mask =
-		MAVLINK_MSG_SET_POSITION_TARGET_LOCAL_NED_POSITION;
+	sp.type_mask = MAVLINK_MSG_SET_POSITION_TARGET_LOCAL_NED_POSITION;
 
 #ifdef Vega_Body
         sp.coordinate_frame = MAV_FRAME_BODY_OFFSET_NED;
@@ -370,6 +369,14 @@ read_messages()
                                         mavlink_msg_attitude_target_decode(&message, &(current_messages.attitude_target));
                                         break;
                                 
+                                }
+                                case 242://MAVLINK_MSG_ID_HOME_POSITION
+                                {
+                                 //       mavlink_home_position_t  home;
+                                 //       mavlink_msg_home_position_decode(&message, &home);
+                                        printf("Get HOME POSITION !! ----------------------\n\n");
+                                 //       printf("HOME:        X:%f\n  Y: %f\n Z:%f\n\n\n------------ ",home.x,home.y,home.z);
+                                        break;
                                 }
 
 				default:
@@ -819,9 +826,20 @@ void
 Autopilot_Interface::
 write_thread(void)
 {
+// Get Home by MAV_CMD
+        mavlink_message_t home_req_msg;
+        mavlink_command_long_t home_req;
+        home_req.command =  410; //MAV_CMD_GET_HOME_POSITION
+        home_req.target_system = system_id;
+        home_req.target_component = companion_id;
+        home_req.confirmation = 0;
+        mavlink_msg_command_long_encode(system_id,companion_id,&home_req_msg ,&home_req);
+       printf("%s Write Home_Req\n", serial_port->write_message(home_req_msg)?"Success":"Fail");
+        usleep(100);// For send request
+
 	// signal startup
 	writing_status = 2;
-
+        
 	// prepare an initial setpoint, just stay put
 	mavlink_set_position_target_local_ned_t sp;
 	sp.type_mask = MAVLINK_MSG_SET_POSITION_TARGET_LOCAL_NED_VELOCITY &
@@ -837,24 +855,6 @@ write_thread(void)
 	sp.vy       = 0.0;
 	sp.vz       = 0.0;
 	sp.yaw_rate = 0.0;
-// Created by ISDRONE
-        mavlink_message_t attitude_msg;
-        mavlink_set_attitude_target_t target_attitude;
-        target_attitude.time_boot_ms =  (uint32_t)(get_time_usec()/1000);
-        target_attitude.target_system = current_messages.sysid;
-        target_attitude.target_component= current_messages.compid;
-        target_attitude.type_mask = 0b11111111;
-        float  quaternion[4] = {1.0,0,0,0};
-        
-        //target_attitude.body_roll_rate =  0;
-        //target_attitude.body_pitch_rate = 0;
-        // target_attitude.body_yaw_rate = 0;
-        float throttle = 0.55;
-        float balance_throttle = 0.55;
-        float pitchspeed = 0.5; // does'nt matter
-        int count = 0;
-        int rem=0; // remainder for oscillation
-        target_attitude.thrust = throttle;
 
         sp.x = 0;
         sp.y = 0;
@@ -869,28 +869,16 @@ write_thread(void)
 	// write a message and signal writing
 	write_setpoint();
 	writing_status = true;
-        float min = 0.5;
 
 	// Pixhawk needs to see off-board commands at minimum 2Hz,
 	// otherwise it will go into fail safe
 	while ( !time_to_exit )
 	{
                
-            
-            
                 write_setpoint();
                 
                 usleep(250000);
-                printf("local_pos: %f   initial_ps: %f, zacc: %f ,throttle: %f \n",current_messages.local_position_ned.z, initial_position.z, current_messages.highres_imu.zacc,throttle);
-
-
-
-/*        
-                mavlink_msg_set_attitude_target_encode(system_id,companion_id, &attitude_msg, &target_attitude);
-                write_message(attitude_msg);
-//---------------------------------------------------------------------------
-	
-  */      
+                //printf("local_pos: %f   initial_ps: %f, zacc: %f ,throttle: %f \n",current_messages.local_position_ned.z, initial_position.z, current_messages.highres_imu.zacc,throttle);
 
 
         }

@@ -54,6 +54,8 @@
 
 #include "autopilot_interface.h"
 
+#define Vega_Body 1
+
 
 // ----------------------------------------------------------------------------------
 //   Time
@@ -82,10 +84,13 @@ get_time_usec()
 void
 set_position(float x, float y, float z, mavlink_set_position_target_local_ned_t &sp)
 {
-	sp.type_mask =
-		MAVLINK_MSG_SET_POSITION_TARGET_LOCAL_NED_POSITION;
+	sp.type_mask = MAVLINK_MSG_SET_POSITION_TARGET_LOCAL_NED_POSITION;
 
-	sp.coordinate_frame = MAV_FRAME_LOCAL_NED;
+#ifdef Vega_Body
+        sp.coordinate_frame = MAV_FRAME_BODY_OFFSET_NED;
+#else
+        sp.coordinate_frame = MAV_FRAME_LOCAL_NED;
+#endif
 
 	sp.x   = x;
 	sp.y   = y;
@@ -107,7 +112,11 @@ set_velocity(float vx, float vy, float vz, mavlink_set_position_target_local_ned
 	sp.type_mask =
 		MAVLINK_MSG_SET_POSITION_TARGET_LOCAL_NED_VELOCITY     ;
 
-	sp.coordinate_frame = MAV_FRAME_LOCAL_NED;
+#ifdef Vega_Body
+        sp.coordinate_frame = MAV_FRAME_BODY_OFFSET_NED;
+#else
+        sp.coordinate_frame = MAV_FRAME_LOCAL_NED;
+#endif
 
 	sp.vx  = vx;
 	sp.vy  = vy;
@@ -136,7 +145,11 @@ set_acceleration(float ax, float ay, float az, mavlink_set_position_target_local
 		MAVLINK_MSG_SET_POSITION_TARGET_LOCAL_NED_ACCELERATION &
 		MAVLINK_MSG_SET_POSITION_TARGET_LOCAL_NED_VELOCITY     ;
 
-	sp.coordinate_frame = MAV_FRAME_LOCAL_NED;
+#ifdef Vega_Body
+        sp.coordinate_frame = MAV_FRAME_BODY_OFFSET_NED;
+#else
+        sp.coordinate_frame = MAV_FRAME_LOCAL_NED;
+#endif
 
 	sp.afx  = ax;
 	sp.afy  = ay;
@@ -351,6 +364,20 @@ read_messages()
 					this_timestamps.attitude = current_messages.time_stamps.attitude;
 					break;
 				}
+                                case MAVLINK_MSG_ID_ATTITUDE_TARGET:
+                                {
+                                        mavlink_msg_attitude_target_decode(&message, &(current_messages.attitude_target));
+                                        break;
+                                
+                                }
+                                case 242://MAVLINK_MSG_ID_HOME_POSITION
+                                {
+                                        mavlink_home_position_t  home;
+                                        mavlink_msg_home_position_decode(&message, &home);
+                                        printf("Get HOME POSITION !! ----------------------\n\n");
+                                        printf("HOME:        X:%f\n  Y: %f\n Z:%f\n\n\n------------ ",home.x,home.y,home.z);
+                                        break;
+                                }
 
 				default:
 				{
@@ -793,25 +820,51 @@ read_thread()
 // ------------------------------------------------------------------------------
 //   Write Thread
 // ------------------------------------------------------------------------------
+//
+
 void
 Autopilot_Interface::
 write_thread(void)
 {
+// Get Home by MAV_CMD
+        mavlink_message_t home_req_msg;
+        mavlink_command_long_t home_req;
+        home_req.command =  410; //MAV_CMD_GET_HOME_POSITION
+        home_req.target_system = system_id;
+        home_req.target_component = companion_id;
+        home_req.confirmation = 0;
+        mavlink_msg_command_long_encode(system_id,companion_id,&home_req_msg ,&home_req);
+       printf("%s Write Home_Req\n", serial_port->write_message(home_req_msg)?"Success":"Fail");
+        usleep(100);// For send request
+
 	// signal startup
 	writing_status = 2;
-
+        
 	// prepare an initial setpoint, just stay put
 	mavlink_set_position_target_local_ned_t sp;
 	sp.type_mask = MAVLINK_MSG_SET_POSITION_TARGET_LOCAL_NED_VELOCITY &
-				   MAVLINK_MSG_SET_POSITION_TARGET_LOCAL_NED_YAW_RATE;
-	sp.coordinate_frame = MAV_FRAME_LOCAL_NED;
+				   MAVLINK_MSG_SET_POSITION_TARGET_LOCAL_NED_POSITION;
+	
+#ifdef Vega_Body
+        sp.coordinate_frame = MAV_FRAME_BODY_OFFSET_NED;
+#else
+        sp.coordinate_frame = MAV_FRAME_LOCAL_NED;
+#endif
+	// initialization
 	sp.vx       = 0.0;
 	sp.vy       = 0.0;
 	sp.vz       = 0.0;
 	sp.yaw_rate = 0.0;
 
-	// set position target
+        sp.x = 0;
+        sp.y = 0;
+        sp.z = 0;
+        
+        
+// set position target
 	current_setpoint = sp;
+
+
 
 	// write a message and signal writing
 	write_setpoint();
@@ -821,9 +874,14 @@ write_thread(void)
 	// otherwise it will go into fail safe
 	while ( !time_to_exit )
 	{
-		usleep(250000);   // Stream at 4Hz
-		write_setpoint();
-	}
+               
+                write_setpoint();
+                
+                usleep(250000);
+                //printf("local_pos: %f   initial_ps: %f, zacc: %f ,throttle: %f \n",current_messages.local_position_ned.z, initial_position.z, current_messages.highres_imu.zacc,throttle);
+
+
+        }
 
 	// signal end
 	writing_status = false;

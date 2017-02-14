@@ -203,7 +203,8 @@ struct Mavlink_Messages {
 
 	// Attitude
 	mavlink_attitude_t attitude;
-
+        // Attitude Target
+        mavlink_attitude_target_t attitude_target;
 	// System Parameters?
 
 

@@ -54,18 +54,8 @@
 // ------------------------------------------------------------------------------
 
 #include "mavlink_control.h"
-#include <cstdint>
-#ifdef __APPLE__
-	char *uart_name = (char*)"/dev/tty.usbmodem1";
-#else
-	char *uart_name = (char*)"/dev/ttyAMA0";
-#endif
-	int baudrate = 57600;
 
-        
-Serial_Port serial_port(uart_name, baudrate);
-
-
+#define _VMODE = 1;
 // ------------------------------------------------------------------------------
 //   TOP
 // ------------------------------------------------------------------------------
@@ -78,13 +68,13 @@ top (int argc, char **argv)
 	// --------------------------------------------------------------------------
 
 	// Default input arguments
-/*#ifdef __APPLE__
+#ifdef __APPLE__
 	char *uart_name = (char*)"/dev/tty.usbmodem1";
 #else
 	char *uart_name = (char*)"/dev/ttyAMA0";
 #endif
 	int baudrate = 57600;
-*/
+
 	// do the parse, will throw an int if it fails
 	parse_commandline(argc, argv, uart_name, baudrate);
 
@@ -103,7 +93,7 @@ top (int argc, char **argv)
 	 * pthread mutex lock.
 	 *
 	 */
-//	Serial_Port serial_port(uart_name, baudrate);
+	Serial_Port serial_port(uart_name, baudrate);
 
 
 	/*
@@ -143,16 +133,14 @@ top (int argc, char **argv)
 
                 
 	autopilot_interface.start();
- // This part is added by SIDRONE
-       // mavlink_message_t msg_send;
-       // printf("Sleeping Prepare to arm ");
-       // sleep(5);
-       //mavlink_msg_command_long_pack( 0 , 0, &msg_send, autopilot_interface.current_messages.sysid , autopilot_interface.current_messages.compid , MAV_CMD_DO_SET_MODE , 0 , MAV_MODE_GUIDED_ARMED	, 0 , 0, 0, 0, 0, 0);
-       //      printf("Write %d  bytes\n", serial_port.write_message(msg_send) );
-       //     printf("ARMED !!");
-
-
-
+        // This part is added by SIDRONE
+    /*    mavlink_message_t msg_send;
+        printf("Sleeping Prepare to arm ");
+        sleep(5);
+	mavlink_msg_command_long_pack( 0 , 0, &msg_send, autopilot_interface.current_messages.sysid , autopilot_interface.current_messages.compid , MAV_CMD_DO_SET_MODE , 0 , MAV_MODE_GUIDED_ARMED	, 0 , 0, 0, 0, 0, 0);
+        printf("Write %b bytes\n", serial_port.write_message(msg_send) );
+        printf("ARMED !!");
+    */
 	// --------------------------------------------------------------------------
 	//   RUN COMMANDS
 	// --------------------------------------------------------------------------
@@ -160,7 +148,15 @@ top (int argc, char **argv)
 	/*
 	 * Now we can implement the algorithm we want on top of the autopilot interface
 	 */
-	commands(autopilot_interface,0,0,-1);
+
+#ifdef _VMODE
+	commands(autopilot_interface,0,0,-0.1,0,0,0);
+#else        
+	commands(autopilot_interface,0,0,0,0,0,-0.1);
+#endif  
+	//commands(autopilot_interface,-1,0,0,-0.05,0,0);
+        
+	//commands(autopilot_interface,0,0,1,0,0,+0.05);
         
 
 	// --------------------------------------------------------------------------
@@ -188,8 +184,27 @@ top (int argc, char **argv)
 //   COMMANDS
 // ------------------------------------------------------------------------------
 
+
+// si2_mission
+void si2_mission(float dx, float dy, float dz, float vx, float vy , float vz,mavlink_set_position_target_local_ned_t &sp){
+	
+    if(vx || vy || vz){
+        set_velocity(vx,vy,vz,sp);
+	sp.type_mask = MAVLINK_MSG_SET_POSITION_TARGET_LOCAL_NED_VELOCITY ;
+    }
+    if(dx || dy || dz){
+	set_position(dx,dy,dz,sp);
+	sp.type_mask = MAVLINK_MSG_SET_POSITION_TARGET_LOCAL_NED_POSITION;
+    }
+    if((vx || vy || vz)&&(dx || dy || dz))
+	sp.type_mask = MAVLINK_MSG_SET_POSITION_TARGET_LOCAL_NED_VELOCITY &
+	    	   MAVLINK_MSG_SET_POSITION_TARGET_LOCAL_NED_POSITION;
+	return ; 
+}
+
+
 void
-commands(Autopilot_Interface &api,float dx,float dy,float dz)
+commands(Autopilot_Interface &api,float dx,float dy,float dz, float vx, float vy, float vz)
 {
 
 	// --------------------------------------------------------------------------
@@ -197,8 +212,8 @@ commands(Autopilot_Interface &api,float dx,float dy,float dz)
 	// --------------------------------------------------------------------------
 
 	api.enable_offboard_control();
-	usleep(100); // give some time to let it sink in
-
+	usleep(200); // give some time to let it sink in
+        // write_thread include home request so i changed to 200
 	// now the autopilot is accepting setpoint commands
 
 
@@ -213,55 +228,81 @@ commands(Autopilot_Interface &api,float dx,float dy,float dz)
 
 	// autopilot_interface.h provides some helper functions to build the command
 
-
+        for(int i=0 ;i<10;++i){
+            printf("write_thread_initialization_Waiting for %d sec\n",(10-i));
+            sleep(i);
+        }
+#ifdef _VMODE        
 	// Example 1 - Set Velocity
-//	set_velocity( -1.0       , // [m/s]
-//				  -1.0       , // [m/s]
-//				   0.0       , // [m/s]
-//				   sp        );
 
+        set_velocity( vx       , // [m/s]
+				  vy       , // [m/s]
+				   vz       , // [m/s]
+				   sp        );
+	sp.type_mask = MAVLINK_MSG_SET_POSITION_TARGET_LOCAL_NED_VELOCITY; 
+#else       
 	// Example 2 - Set Position
-	 set_position( ip.x + dx , // [m]
-			 	   ip.y + dy , // [m]
-				   ip.z + dz   , // [m]
-				   sp         );
-
-
-	// Example 1.2 - Append Yaw Command
-	set_yaw( ip.yaw , // [rad]	
+	 set_position(  dx , // [m]
+			 	    dy , // [m]
+				    dz   , // [m]
+				   sp );
+	sp.type_mask =	  MAVLINK_MSG_SET_POSITION_TARGET_LOCAL_NED_POSITION;
+    	
+#endif        
+    	
+           
+        // Example 1.2 - Append Yaw Command
+	/*set_yaw( ip.yaw , // [rad]	
                 sp     );
-
+        */
 	// SEND THE COMMAND
-	api.update_setpoint(sp);
 	
-       
-
-        
+        //Just let it run its write thread
+        api.update_setpoint(sp);
+	
         
         // NOW pixhawk will try to move
-        int rem=0,j=0;
+        
 	// Wait for 8 seconds, check position
-	for (int i=0; i <240; i++)
-	{       
-		rem = i%32;
-                if(rem <8)
-                    j=0;
-                else if(rem <16)
-                    j=1;
-                else if(rem <24)
-                    j=0;
-                else
-                    j=-1;
-            
-            
-                mavlink_local_position_ned_t pos = api.current_messages.local_position_ned;
-                sp.x =  0.5*j;
-                sp.z = pos.z;
-		printf("%i set_position XYZ = [ % .4f , % .4f , % .4f ] \n", i, sp.x, sp.y, sp.z);
-		api.update_setpoint(sp);
-                usleep(250000);
+#ifdef _VMODE
+        printf("Command Upward 10cm/sec by set_velocity\n");
+#else 
+        printf("Command Upward 50cm by set_position\n");
+#endif
+	for (int i=0; i <10; i++)
+	{
+		mavlink_local_position_ned_t pos = api.current_messages.local_position_ned;
+		printf("%i CURRENT POSITION XYZ = [ % .4f , % .4f , % .4f ] \n", i, pos.x, pos.y, pos.z);
+		sleep(1);
 	}
-        printf("\n");
+	printf("si2_mission hold this altitude for 10sec");
+	si2_mission(0 , 0 ,  0 , 0, 0 , 0 ,sp);
+        api.update_setpoint(sp);
+
+
+
+        for(int i=0; i<10;++i){
+		mavlink_local_position_ned_t pos = api.current_messages.local_position_ned;
+		printf("%i CURRENT POSITION XYZ = [ % .4f , % .4f , % .4f ] \n", i, pos.x, pos.y, pos.z);
+		sleep(1);
+        }
+
+#ifdef _VMODE
+	si2_mission(0 , 0 ,  0 , 0, 0 , 0.1 , sp);
+        printf("si2_mission keep move down 10cm/sec for 10 seconds\n");
+#else 
+	si2_mission(0 , 0 ,  -0.1 , 0, 0 , 0 , sp);
+	printf("si2_mission keep move down 10cm for 10 seconds\n");
+#endif
+	api.update_setpoint(sp);
+	for (int i=0; i <10; i++)
+	{
+		mavlink_local_position_ned_t pos = api.current_messages.local_position_ned;
+		printf("%i CURRENT POSITION XYZ = [ % .4f , % .4f , % .4f ] \n", i, pos.x, pos.y, pos.z);
+		sleep(1);
+	}
+
+	printf("\n");
 
 	// --------------------------------------------------------------------------
 	//   STOP OFFBOARD MODE

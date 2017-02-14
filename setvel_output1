@@ -1,0 +1,81 @@
+OPEN PORT
+Connected to /dev/ttyAMA0 with 57600 baud, 8 data bits, no parity, 1 stop bit (8N1)
+
+START READ THREAD 
+
+CHECK FOR MESSAGES
+Found
+
+GOT VEHICLE SYSTEM ID: 1
+GOT AUTOPILOT COMPONENT ID: 1
+
+INITIAL POSITION XYZ = [ 0.0000 , 0.0000 , -1.6551 ] 
+INITIAL POSITION YAW = -1.2642 
+
+START WRITE THREAD 
+Success Write Home_Req
+
+ENABLE OFFBOARD MODE
+
+SEND OFFBOARD COMMANDS
+write_thread_initialization_Waiting for 10 sec
+write_thread_initialization_Waiting for 9 sec
+write_thread_initialization_Waiting for 8 sec
+write_thread_initialization_Waiting for 7 sec
+write_thread_initialization_Waiting for 6 sec
+write_thread_initialization_Waiting for 5 sec
+write_thread_initialization_Waiting for 4 sec
+write_thread_initialization_Waiting for 3 sec
+write_thread_initialization_Waiting for 2 sec
+write_thread_initialization_Waiting for 1 sec
+Command Upward 10cm/sec by set_velocity
+0 CURRENT POSITION XYZ = [  0.0000 ,  0.0000 , -0.5312 ] 
+1 CURRENT POSITION XYZ = [  0.0000 ,  0.0000 , -0.4437 ] 
+2 CURRENT POSITION XYZ = [  0.0000 ,  0.0000 , -0.2618 ] 
+3 CURRENT POSITION XYZ = [  0.0000 ,  0.0000 , -0.2321 ] 
+4 CURRENT POSITION XYZ = [  0.0000 ,  0.0000 , -0.2942 ] 
+5 CURRENT POSITION XYZ = [  0.0000 ,  0.0000 , -0.4334 ] 
+6 CURRENT POSITION XYZ = [  0.0000 ,  0.0000 , -0.5699 ] 
+7 CURRENT POSITION XYZ = [  0.0000 ,  0.0000 , -0.7572 ] 
+8 CURRENT POSITION XYZ = [  0.0000 ,  0.0000 , -0.9847 ] 
+9 CURRENT POSITION XYZ = [  0.0000 ,  0.0000 , -1.1212 ] 
+si2_mission hold this altitude for 10sec0 CURRENT POSITION XYZ = [  0.0000 ,  0.0000 , -1.2923 ] 
+1 CURRENT POSITION XYZ = [  0.0000 ,  0.0000 , -1.3589 ] 
+2 CURRENT POSITION XYZ = [  0.0000 ,  0.0000 , -1.2959 ] 
+3 CURRENT POSITION XYZ = [  0.0000 ,  0.0000 , -1.3386 ] 
+4 CURRENT POSITION XYZ = [  0.0000 ,  0.0000 , -1.3999 ] 
+5 CURRENT POSITION XYZ = [  0.0000 ,  0.0000 , -1.4453 ] 
+6 CURRENT POSITION XYZ = [  0.0000 ,  0.0000 , -1.4488 ] 
+7 CURRENT POSITION XYZ = [  0.0000 ,  0.0000 , -1.4648 ] 
+8 CURRENT POSITION XYZ = [  0.0000 ,  0.0000 , -1.3750 ] 
+9 CURRENT POSITION XYZ = [  0.0000 ,  0.0000 , -1.2728 ] 
+si2_mission keep move down 10cm/sec for 10 seconds
+0 CURRENT POSITION XYZ = [  0.0000 ,  0.0000 , -1.1728 ] 
+1 CURRENT POSITION XYZ = [  0.0000 ,  0.0000 , -1.1316 ] 
+2 CURRENT POSITION XYZ = [  0.0000 ,  0.0000 , -1.1096 ] 
+3 CURRENT POSITION XYZ = [  0.0000 ,  0.0000 , -1.2301 ] 
+4 CURRENT POSITION XYZ = [  0.0000 ,  0.0000 , -1.2160 ] 
+5 CURRENT POSITION XYZ = [  0.0000 ,  0.0000 , -1.0739 ] 
+6 CURRENT POSITION XYZ = [  0.0000 ,  0.0000 , -0.8111 ] 
+7 CURRENT POSITION XYZ = [  0.0000 ,  0.0000 , -0.5661 ] 
+8 CURRENT POSITION XYZ = [  0.0000 ,  0.0000 , -0.3805 ] 
+9 CURRENT POSITION XYZ = [  0.0000 ,  0.0000 , -0.2341 ] 
+
+DISABLE OFFBOARD MODE
+
+READ SOME MESSAGES 
+Got message LOCAL_POSITION_NED (spec: https://pixhawk.ethz.ch/mavlink/#LOCAL_POSITION_NED)
+    pos  (NED):  0.000000 0.000000 -0.232504 (m)
+Got message HIGHRES_IMU (spec: https://pixhawk.ethz.ch/mavlink/#HIGHRES_IMU)
+    ap time:     840595352 
+    acc  (NED):  -5.365913 -2.728991 -5.109980 (m/s^2)
+    gyro (NED):  -0.210022  0.035641  0.046769 (rad/s)
+    mag  (NED):   0.260224  0.578505  1.083441 (Ga)
+    baro:        0.000000 (mBar) 
+    altitude:    -40.376942 (m) 
+    temperature: 33.989998 C 
+
+CLOSE THREADS
+
+CLOSE PORT
+

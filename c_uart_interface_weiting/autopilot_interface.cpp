@@ -851,14 +851,15 @@ write_thread(void)
         sp.coordinate_frame = MAV_FRAME_LOCAL_NED;
 #endif
 	// initialization
-	sp.vx       = 0.0;
-	sp.vy       = 0.0;
-	sp.vz       = 0.0;
-	sp.yaw_rate = 0.0;
+        
+	sp.vx       = current_messages.local_position_ned.vx;
+	sp.vy       = current_messages.local_position_ned.vy;
+	sp.vz       = current_messages.local_position_ned.vz;
+//	sp.yaw_rate = 0.0;
 
-        sp.x = 0;
-        sp.y = 0;
-        sp.z = 0;
+        sp.x = current_messages.local_position_ned.x;
+        sp.y = current_messages.local_position_ned.y;
+        sp.z = current_messages.local_position_ned.y;
         
         
 // set position target

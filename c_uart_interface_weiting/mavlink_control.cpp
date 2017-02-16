@@ -150,7 +150,7 @@ top (int argc, char **argv)
 	 */
 
 
-	commands(autopilot_interface,0,0,-0.1,0,0,0);
+	commands(autopilot_interface,0,0,-0.5,0,0,0);
         
 	//commands(autopilot_interface,-1,0,0,-0.05,0,0);
         
@@ -229,9 +229,10 @@ commands(Autopilot_Interface &api,float dx,float dy,float dz, float vx, float vy
 				   sp        );
         */
 	// Example 2 - Set Position
-	 set_position(  dx , // [m]
-			 	    dy , // [m]
-				    dz   , // [m]
+	 mavlink_local_position_ned_t current_pos = api.current_messages.local_position_ned;
+	 set_position(  dx + current_pos.x , // [m]
+		        dy + current_pos.y , // [m]
+			dz + current_pos.z   , // [m]
 				   sp         );
         
 	//sp.type_mask = MAVLINK_MSG_SET_POSITION_TARGET_LOCAL_NED_VELOCITY; 
@@ -250,16 +251,16 @@ commands(Autopilot_Interface &api,float dx,float dy,float dz, float vx, float vy
         
         // NOW pixhawk will try to move
         
-	// Wait for 8 seconds, check position
-        printf("Command Upward 50cm by set_position\n");
-	for (int i=0; i <10; i++)
-	{
+	// Wait for 10 seconds, check position
+        printf("Command Upward 10cm by set_position\n");
+	for (int i=0; i <10; i++){
 		mavlink_local_position_ned_t pos = api.current_messages.local_position_ned;
 		printf("%i CURRENT POSITION XYZ = [ % .4f , % .4f , % .4f ] \n", i, pos.x, pos.y, pos.z);
 		sleep(1);
 	}
 	printf("si2_mission hold this altitude for 10sec");
-	si2_mission(0 , 0 ,  0 , 0, 0 , 0 ,sp);
+        current_pos = api.current_messages.local_position_ned;
+	si2_mission(0+current_pos.x , 0+current_pos.y ,  0+current_pos.z , 0, 0 , 0 ,sp);
         api.update_setpoint(sp);
 
 
@@ -270,12 +271,12 @@ commands(Autopilot_Interface &api,float dx,float dy,float dz, float vx, float vy
 		sleep(1);
         }
 
-	si2_mission(0 , 0 ,  0.1 , 0, 0 , 0 , sp);
-	printf("si2_mission keep move down 10cm for 10 seconds\n");
+        current_pos = api.current_messages.local_position_ned;
+	si2_mission(current_pos.x , current_pos.y ,  0.5+current_pos.z , 0, 0 , 0 ,sp);
 	
+        printf("si2_mission keep move down 10cm for 10 seconds\n");
 	api.update_setpoint(sp);
-	for (int i=0; i <10; i++)
-	{
+	for (int i=0; i <10; i++){
 		mavlink_local_position_ned_t pos = api.current_messages.local_position_ned;
 		printf("%i CURRENT POSITION XYZ = [ % .4f , % .4f , % .4f ] \n", i, pos.x, pos.y, pos.z);
 		sleep(1);

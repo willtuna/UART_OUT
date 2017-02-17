@@ -1,3 +1,4 @@
+TEST1_POS_Z
 pos_z
 ./mavlink_control_pos_z
 OPEN PORT
@@ -124,8 +125,8 @@ Connected to /dev/ttyAMA0 with 57600 baud, 8 data bits, no parity, 1 stop bit
 
 
 
-
-   pi@raspberrypi ~/UART_OUT $ ./mavlink_control_pos_y
+TEST2 POS_Y
+pi@raspberrypi ~/UART_OUT $ ./mavlink_control_pos_y
 OPEN PORT
 Connected to /dev/ttyAMA0 with 57600 baud, 8 data bits, no parity, 1 stop bit
 (8N1)
@@ -246,48 +247,8 @@ Connected to /dev/ttyAMA0 with 57600 baud, 8 data bits, no parity, 1 stop bit
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                                                                                          pi@raspberrypi
-                                                                                          ~/UART_OUT
-                                                                                          $
-                                                                                          ./mavlink_control_pos_x
-                                                                                          OPEN
-                                                                                          PORT
-                                                                                          Connected
-                                                                                          to
-                                                                                          /dev/ttyAMA0
-                                                                                          with
-                                                                                          57600
-                                                                                          baud,
-                                                                                          8
-                                                                                          data
-                                                                                          bits,
-                                                                                          no
-                                                                                          parity,
-                                                                                          1
-                                                                                          stop
-                                                                                          bit
-                                                                                          (8N1)
+pi@raspberrypi ~/UART_OUT$./mavlink_control_pos_x
+OPENPORT Connected to /dev/ttyAMA0 with 57600 baud,8 data bits, no parity,1 stop bit(8N1)
 
     START READ THREAD 
 
@@ -393,7 +354,7 @@ Connected to /dev/ttyAMA0 with 57600 baud, 8 data bits, no parity, 1 stop bit
                                                                                          CLOSE
                                                                                          THREADS
 
-                                                                                         CLOSE
+                                                                                         CLOSE PORT
 
 
 
@@ -401,44 +362,8 @@ Connected to /dev/ttyAMA0 with 57600 baud, 8 data bits, no parity, 1 stop bit
 
 
 
-
-
-
-
-
-
-
-
-
-                                                                                         PORT
-
-
-
-
-
-
-
-                                                                                         pi@raspberrypi
-                                                                                         ~/UART_OUT
-                                                                                         $
-                                                                                         ./mavlink_control_pos_z_05
-                                                                                         OPEN
-                                                                                         PORT
-                                                                                         Connected
-                                                                                         to
-                                                                                         /dev/ttyAMA0
-                                                                                         with
-                                                                                         57600
-                                                                                         baud,
-                                                                                         8
-                                                                                         data
-                                                                                         bits,
-                                                                                         no
-                                                                                         parity,
-                                                                                         1
-                                                                                         stop
-                                                                                         bit
-                                                                                         (8N1)
+pi@raspberrypi ~/UART_OUT $ ./mavlink_control_pos_z_05
+OPEN PORT Connected to /dev/ttyAMA0 with 57600 baud, 8 data bits, no parity, 1 stop bit (8N1)
 
     START READ THREAD 
 

@@ -150,11 +150,9 @@ top (int argc, char **argv)
 	 */
 
 
-	commands(autopilot_interface,0,0,-0.5,0,0,0);
+	commands(autopilot_interface,-0.1,0,0,0,0,0);
         
-	//commands(autopilot_interface,-1,0,0,-0.05,0,0);
         
-	//commands(autopilot_interface,0,0,1,0,0,+0.05);
         
 
 	// --------------------------------------------------------------------------
@@ -252,13 +250,13 @@ commands(Autopilot_Interface &api,float dx,float dy,float dz, float vx, float vy
         // NOW pixhawk will try to move
         
 	// Wait for 10 seconds, check position
-        printf("Command Upward 10cm by set_position\n");
+        printf("\n\n\n----------------------Command Upward 10cm by set_position----------------------\n");
 	for (int i=0; i <10; i++){
 		mavlink_local_position_ned_t pos = api.current_messages.local_position_ned;
 		printf("%i CURRENT POSITION XYZ = [ % .4f , % .4f , % .4f ] \n", i, pos.x, pos.y, pos.z);
 		sleep(1);
 	}
-	printf("si2_mission hold this altitude for 10sec");
+	printf("\n\n\n----------------------si2_mission hold this altitude for 10sec------------------\n");
         current_pos = api.current_messages.local_position_ned;
 	si2_mission(0+current_pos.x , 0+current_pos.y ,  0+current_pos.z , 0, 0 , 0 ,sp);
         api.update_setpoint(sp);
@@ -272,9 +270,9 @@ commands(Autopilot_Interface &api,float dx,float dy,float dz, float vx, float vy
         }
 
         current_pos = api.current_messages.local_position_ned;
-	si2_mission(current_pos.x , current_pos.y ,  0.5+current_pos.z , 0, 0 , 0 ,sp);
+	si2_mission(0.1+current_pos.x , current_pos.y ,  current_pos.z , 0, 0 , 0 ,sp);
 	
-        printf("si2_mission keep move down 10cm for 10 seconds\n");
+        printf("\n\n\n-----si2_mission keep move down 10cm for 10 seconds------------\n");
 	api.update_setpoint(sp);
 	for (int i=0; i <10; i++){
 		mavlink_local_position_ned_t pos = api.current_messages.local_position_ned;

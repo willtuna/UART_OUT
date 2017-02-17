@@ -150,7 +150,7 @@ top (int argc, char **argv)
 	 */
 
 
-	commands(autopilot_interface,-0.1,0,0,0,0,0);
+	commands(autopilot_interface,0,0,-0.5,0,0,0);
         
         
         
@@ -233,16 +233,15 @@ commands(Autopilot_Interface &api,float dx,float dy,float dz, float vx, float vy
 			dz + current_pos.z   , // [m]
 				   sp         );
         
-	//sp.type_mask = MAVLINK_MSG_SET_POSITION_TARGET_LOCAL_NED_VELOCITY; 
-	sp.type_mask =	  MAVLINK_MSG_SET_POSITION_TARGET_LOCAL_NED_POSITION;
     	
            
-        // Example 1.2 - Append Yaw Command
-	/*set_yaw( ip.yaw , // [rad]	
+        //Example 1.2 - Append Yaw Command
+	set_yaw( api.current_messages.attitude.yaw , // [rad]	
                 sp     );
-        */
+        
 	// SEND THE COMMAND
 	
+	sp.type_mask =	  MAVLINK_MSG_SET_POSITION_TARGET_LOCAL_NED_POSITION &  MAVLINK_MSG_SET_POSITION_TARGET_LOCAL_NED_YAW_ANGLE;
         //Just let it run its write thread
         api.update_setpoint(sp);
 	
@@ -270,7 +269,7 @@ commands(Autopilot_Interface &api,float dx,float dy,float dz, float vx, float vy
         }
 
         current_pos = api.current_messages.local_position_ned;
-	si2_mission(0.1+current_pos.x , current_pos.y ,  current_pos.z , 0, 0 , 0 ,sp);
+	si2_mission(current_pos.x , current_pos.y ,0.5 + current_pos.z , 0, 0 , 0 ,sp);
 	
         printf("\n\n\n-----si2_mission keep move down 10cm for 10 seconds------------\n");
 	api.update_setpoint(sp);

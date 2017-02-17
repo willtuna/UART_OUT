@@ -91,13 +91,10 @@ set_position(float x, float y, float z, mavlink_set_position_target_local_ned_t 
 #else
         sp.coordinate_frame = MAV_FRAME_LOCAL_NED;
 #endif
-
 	sp.x   = x;
 	sp.y   = y;
 	sp.z   = z;
-
 	printf("POSITION SETPOINT XYZ = [ %.4f , %.4f , %.4f ] \n", sp.x, sp.y, sp.z);
-
 }
 
 /*
@@ -121,7 +118,6 @@ set_velocity(float vx, float vy, float vz, mavlink_set_position_target_local_ned
 	sp.vx  = vx;
 	sp.vy  = vy;
 	sp.vz  = vz;
-
 	//printf("VELOCITY SETPOINT UVW = [ %.4f , %.4f , %.4f ] \n", sp.vx, sp.vy, sp.vz);
 
 }
@@ -843,7 +839,7 @@ write_thread(void)
 	// prepare an initial setpoint, just stay put
 	mavlink_set_position_target_local_ned_t sp;
 	sp.type_mask = MAVLINK_MSG_SET_POSITION_TARGET_LOCAL_NED_VELOCITY &
-				   MAVLINK_MSG_SET_POSITION_TARGET_LOCAL_NED_POSITION;
+				   MAVLINK_MSG_SET_POSITION_TARGET_LOCAL_NED_POSITION & MAVLINK_MSG_SET_POSITION_TARGET_LOCAL_NED_YAW_ANGLE & MAVLINK_MSG_SET_POSITION_TARGET_LOCAL_NED_YAW_RATE;
 	
 #ifdef Vega_Body
         sp.coordinate_frame = MAV_FRAME_BODY_OFFSET_NED;
@@ -852,15 +848,15 @@ write_thread(void)
 #endif
 	// initialization
         mavlink_local_position_ned_t initial_pos = current_messages.local_position_ned;
-	sp.vx       = initial_pos.vx;
-	sp.vy       = initial_pos.vy;
-	sp.vz       = initial_pos.vz;
-//	sp.yaw_rate = 0.0;
+	sp.vx       = 0; //initial_pos.vx;
+	sp.vy       = 0;//initial_pos.vy;
+	sp.vz       = 0;//initial_pos.vz;
+	sp.yaw_rate = 0.0;
 
         sp.x = initial_pos.x;
         sp.y = initial_pos.y;
         sp.z = initial_pos.z;
-        
+        sp.yaw = current_messages.attitude.yaw;
         
 // set position target
 	current_setpoint = sp;

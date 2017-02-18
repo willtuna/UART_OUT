@@ -150,7 +150,7 @@ top (int argc, char **argv)
 	 */
 
 
-	commands(autopilot_interface,0,0,-0.5,0,0,0);
+	commands(autopilot_interface,1,0,0,0,0,0);
         
         
         
@@ -218,7 +218,7 @@ commands(Autopilot_Interface &api,float dx,float dy,float dz, float vx, float vy
 
         for(int i=0 ;i<10;++i){
             printf("write_thread_initialization_Waiting for %d sec\n",(10-i));
-            sleep(i);
+            sleep(1);
         }
 	// Example 1 - Set Velocity
 	/*set_velocity( vx       , // [m/s]
@@ -236,8 +236,8 @@ commands(Autopilot_Interface &api,float dx,float dy,float dz, float vx, float vy
     	
            
         //Example 1.2 - Append Yaw Command
-	set_yaw( api.current_messages.attitude.yaw , // [rad]	
-                sp     );
+	//set_yaw( api.current_messages.attitude.yaw , // [rad]	
+        //        sp     );
         
 	// SEND THE COMMAND
 	
@@ -249,29 +249,27 @@ commands(Autopilot_Interface &api,float dx,float dy,float dz, float vx, float vy
         // NOW pixhawk will try to move
         
 	// Wait for 10 seconds, check position
-        printf("\n\n\n----------------------Command Upward 10cm by set_position----------------------\n");
+        printf("\n\n\n----------------------Command Forward 1m by set_position for 10sec----------------------\n");
 	for (int i=0; i <10; i++){
 		mavlink_local_position_ned_t pos = api.current_messages.local_position_ned;
 		printf("%i CURRENT POSITION XYZ = [ % .4f , % .4f , % .4f ] \n", i, pos.x, pos.y, pos.z);
 		sleep(1);
 	}
-	printf("\n\n\n----------------------si2_mission hold this altitude for 10sec------------------\n");
+	printf("\n\n\n----------------------si2_mission hold this altitude for 5sec------------------\n");
         current_pos = api.current_messages.local_position_ned;
 	si2_mission(0+current_pos.x , 0+current_pos.y ,  0+current_pos.z , 0, 0 , 0 ,sp);
         api.update_setpoint(sp);
 
-
-
-        for(int i=0; i<10;++i){
+        for(int i=0; i<5;++i){
 		mavlink_local_position_ned_t pos = api.current_messages.local_position_ned;
 		printf("%i CURRENT POSITION XYZ = [ % .4f , % .4f , % .4f ] \n", i, pos.x, pos.y, pos.z);
 		sleep(1);
         }
 
         current_pos = api.current_messages.local_position_ned;
-	si2_mission(current_pos.x , current_pos.y ,0.5 + current_pos.z , 0, 0 , 0 ,sp);
+	si2_mission( current_pos.x ,-1+ current_pos.y , current_pos.z , 0, 0 , 0 ,sp);
 	
-        printf("\n\n\n-----si2_mission keep move down 10cm for 10 seconds------------\n");
+        printf("\n\n\n-----si2_mission keep move left 1m for 10 seconds------------\n");
 	api.update_setpoint(sp);
 	for (int i=0; i <10; i++){
 		mavlink_local_position_ned_t pos = api.current_messages.local_position_ned;
@@ -281,6 +279,74 @@ commands(Autopilot_Interface &api,float dx,float dy,float dz, float vx, float vy
 
 	printf("\n");
 
+	printf("\n\n\n----------------------si2_mission hold this altitude for 5sec------------------\n");
+        current_pos = api.current_messages.local_position_ned;
+	si2_mission(0+current_pos.x , 0+current_pos.y ,  0+current_pos.z , 0, 0 , 0 ,sp);
+        api.update_setpoint(sp);
+
+
+
+        for(int i=0; i<5;++i){
+		mavlink_local_position_ned_t pos = api.current_messages.local_position_ned;
+		printf("%i CURRENT POSITION XYZ = [ % .4f , % .4f , % .4f ] \n", i, pos.x, pos.y, pos.z);
+		sleep(1);
+        }
+
+        
+	printf("\n\n\n----------------------si2_mission move back 1m  for 10sec------------------\n");
+        current_pos = api.current_messages.local_position_ned;
+	si2_mission(-1+current_pos.x , 0+current_pos.y ,  0+current_pos.z , 0, 0 , 0 ,sp);
+        api.update_setpoint(sp);
+
+
+
+        for(int i=0; i<10;++i){
+		mavlink_local_position_ned_t pos = api.current_messages.local_position_ned;
+		printf("%i CURRENT POSITION XYZ = [ % .4f , % .4f , % .4f ] \n", i, pos.x, pos.y, pos.z);
+		sleep(1);
+        }
+	printf("\n\n\n----------------------si2_mission hold this altitude for 5sec------------------\n");
+        current_pos = api.current_messages.local_position_ned;
+	si2_mission(0+current_pos.x , 0+current_pos.y ,  0+current_pos.z , 0, 0 , 0 ,sp);
+        api.update_setpoint(sp);
+
+
+
+        for(int i=0; i<5;++i){
+		mavlink_local_position_ned_t pos = api.current_messages.local_position_ned;
+		printf("%i CURRENT POSITION XYZ = [ % .4f , % .4f , % .4f ] \n", i, pos.x, pos.y, pos.z);
+		sleep(1);
+        }
+	printf("\n\n\n----------------------si2_mission move right 1m  for 10sec------------------\n");
+        current_pos = api.current_messages.local_position_ned;
+	si2_mission(current_pos.x , 1+current_pos.y ,  current_pos.z , 0, 0 , 0 ,sp);
+        api.update_setpoint(sp);
+
+        for(int i=0; i<10;++i){
+		mavlink_local_position_ned_t pos = api.current_messages.local_position_ned;
+		printf("%i CURRENT POSITION XYZ = [ % .4f , % .4f , % .4f ] \n", i, pos.x, pos.y, pos.z);
+		sleep(1);
+        }
+	printf("\n\n\n----------------------si2_mission hold altitude for 5sec------------------\n");
+        current_pos = api.current_messages.local_position_ned;
+	si2_mission(current_pos.x , current_pos.y ,  current_pos.z , 0, 0 , 0 ,sp);
+        api.update_setpoint(sp);
+
+        for(int i=0; i<5;++i){
+		mavlink_local_position_ned_t pos = api.current_messages.local_position_ned;
+		printf("%i CURRENT POSITION XYZ = [ % .4f , % .4f , % .4f ] \n", i, pos.x, pos.y, pos.z);
+		sleep(1);
+        }
+	printf("\n\n\n----------------------si2_mission move down 2m  for 15sec------------------\n");
+        current_pos = api.current_messages.local_position_ned;
+	si2_mission(current_pos.x , current_pos.y ,  2+current_pos.z , 0, 0 , 0 ,sp);
+        api.update_setpoint(sp);
+
+        for(int i=0; i<15;++i){
+		mavlink_local_position_ned_t pos = api.current_messages.local_position_ned;
+		printf("%i CURRENT POSITION XYZ = [ % .4f , % .4f , % .4f ] \n", i, pos.x, pos.y, pos.z);
+		sleep(1);
+        }
 	// --------------------------------------------------------------------------
 	//   STOP OFFBOARD MODE
 	// --------------------------------------------------------------------------

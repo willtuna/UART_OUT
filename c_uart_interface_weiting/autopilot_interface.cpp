@@ -830,7 +830,7 @@ write_thread(void)
         home_req.target_component = companion_id;
         home_req.confirmation = 0;
         mavlink_msg_command_long_encode(system_id,companion_id,&home_req_msg ,&home_req);
-       printf("%s Write Home_Req\n", serial_port->write_message(home_req_msg)?"Success":"Fail");
+        printf("%s Write Home_Req\n", serial_port->write_message(home_req_msg)?"Success":"Fail");
         usleep(100);// For send request
 
 	// signal startup
@@ -851,12 +851,12 @@ write_thread(void)
 	sp.vx       = 0; //initial_pos.vx;
 	sp.vy       = 0;//initial_pos.vy;
 	sp.vz       = 0;//initial_pos.vz;
-	sp.yaw_rate = 0.0;
+	//sp.yaw_rate = 0.0;
 
         sp.x = initial_pos.x;
         sp.y = initial_pos.y;
         sp.z = initial_pos.z;
-        sp.yaw = current_messages.attitude.yaw;
+        //sp.yaw = current_messages.attitude.yaw;
         
 // set position target
 	current_setpoint = sp;

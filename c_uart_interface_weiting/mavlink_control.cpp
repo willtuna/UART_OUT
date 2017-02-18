@@ -150,7 +150,7 @@ top (int argc, char **argv)
 	 */
 
 
-	commands(autopilot_interface,0,0,-1,0,0,0);
+	commands(autopilot_interface,-1,0,0,0,0,0);
         
         
         
@@ -267,7 +267,7 @@ commands(Autopilot_Interface &api,float dx,float dy,float dz, float vx, float vy
         }
 
         current_pos = api.current_messages.local_position_ned;
-	si2_mission( 0 + current_pos.x ,  current_pos.y ,1+ current_pos.z, 0, 0 , 0 ,sp);
+	si2_mission( 1 + current_pos.x ,  0+current_pos.y ,0+ current_pos.z, 0, 0 , 0 ,sp);
 	
         printf("\n\n\n-----si2_mission move downward 1m for 10 seconds------------\n");
 	api.update_setpoint(sp);

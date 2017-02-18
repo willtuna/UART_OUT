@@ -150,7 +150,7 @@ top (int argc, char **argv)
 	 */
 
 
-	commands(autopilot_interface,-1,0,0,0,0,0);
+	commands(autopilot_interface,0,0,-1,0,0,0);
         
         
         
@@ -228,9 +228,9 @@ commands(Autopilot_Interface &api,float dx,float dy,float dz, float vx, float vy
         */
 	// Example 2 - Set Position
 	 mavlink_local_position_ned_t current_pos = api.current_messages.local_position_ned;
-	 set_position(  dx, 
-		        dy,
-			dz,
+	 set_position(  dx + current_pos.x, 
+		        dy + current_pos.y,
+			dz + current_pos.z,
 			sp         );
         
     	
@@ -257,7 +257,7 @@ commands(Autopilot_Interface &api,float dx,float dy,float dz, float vx, float vy
 	}
 	printf("\n\n\n----------------------si2_mission hold this altitude for 10sec------------------\n");
         current_pos = api.current_messages.local_position_ned;
-	si2_mission(0 , 0,  0, 0, 0 , 0 ,sp);
+	si2_mission(0 +current_pos.x, 0+current_pos.y,  0+current_pos.z, 0, 0 , 0 ,sp);
         api.update_setpoint(sp);
 
         for(int i=0; i<10;++i){
@@ -267,7 +267,7 @@ commands(Autopilot_Interface &api,float dx,float dy,float dz, float vx, float vy
         }
 
         current_pos = api.current_messages.local_position_ned;
-	si2_mission( -1 ,0 ,0, 0, 0 , 0 ,sp);
+	si2_mission( 0 + current_pos.x ,  current_pos.y ,1+ current_pos.z, 0, 0 , 0 ,sp);
 	
         printf("\n\n\n-----si2_mission move downward 1m for 10 seconds------------\n");
 	api.update_setpoint(sp);

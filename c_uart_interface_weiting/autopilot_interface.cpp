@@ -859,9 +859,9 @@ write_thread(void)
 	sp.vz       = 0;//initial_pos.vz;
 	//sp.yaw_rate = 0.0;
 
-        sp.x = 0;//initial_pos.x;
-        sp.y = 0;//initial_pos.y;
-        sp.z = 0;//initial_pos.z;
+        sp.x = initial_pos.x;
+        sp.y = initial_pos.y;
+        sp.z = initial_pos.z;
         //sp.yaw = current_messages.attitude.yaw;
         
 // set position target

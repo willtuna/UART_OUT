@@ -216,8 +216,8 @@ commands(Autopilot_Interface &api,float dx,float dy,float dz, float vx, float vy
 
 	// autopilot_interface.h provides some helper functions to build the command
 
-        for(int i=0 ;i<10;++i){
-            printf("write_thread_initialization_Waiting for %d sec\n",(10-i));
+        for(int i=0 ;i<15;++i){
+            printf("write_thread_initialization_Waiting for %d sec\n",(15-i));
             sleep(1);
         }
 	// Example 1 - Set Velocity
@@ -241,7 +241,7 @@ commands(Autopilot_Interface &api,float dx,float dy,float dz, float vx, float vy
         
 	// SEND THE COMMAND
 	
-	sp.type_mask =	  MAVLINK_MSG_SET_POSITION_TARGET_LOCAL_NED_POSITION &  MAVLINK_MSG_SET_POSITION_TARGET_LOCAL_NED_YAW_ANGLE;
+	sp.type_mask =	  MAVLINK_MSG_SET_POSITION_TARGET_LOCAL_NED_POSITION; //&  MAVLINK_MSG_SET_POSITION_TARGET_LOCAL_NED_YAW_ANGLE;
         //Just let it run its write thread
         api.update_setpoint(sp);
 	

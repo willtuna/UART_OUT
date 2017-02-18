@@ -54,7 +54,7 @@
 
 #include "autopilot_interface.h"
 
-#define Vega_Body 1
+//#define Vega_Body 1
 
 
 // ----------------------------------------------------------------------------------
@@ -86,15 +86,17 @@ set_position(float x, float y, float z, mavlink_set_position_target_local_ned_t 
 {
 	sp.type_mask = MAVLINK_MSG_SET_POSITION_TARGET_LOCAL_NED_POSITION;
 
-#ifdef Vega_Body
-        sp.coordinate_frame = MAV_FRAME_BODY_OFFSET_NED;
-#else
-        sp.coordinate_frame = MAV_FRAME_LOCAL_NED;
-#endif
 	sp.x   = x;
 	sp.y   = y;
 	sp.z   = z;
-	printf("POSITION SETPOINT XYZ = [ %.4f , %.4f , %.4f ] \n", sp.x, sp.y, sp.z);
+#ifdef Vega_Body
+        sp.coordinate_frame = MAV_FRAME_BODY_OFFSET_NED;
+	printf("BODY FRAME POSITION SETPOINT XYZ = [ %.4f , %.4f , %.4f ] \n", sp.x, sp.y, sp.z);
+#else
+        sp.coordinate_frame = MAV_FRAME_LOCAL_NED;
+	printf("LOCAL FRAME POSITION SETPOINT XYZ = [ %.4f , %.4f , %.4f ] \n", sp.x, sp.y, sp.z);
+#endif
+
 }
 
 /*
@@ -839,12 +841,16 @@ write_thread(void)
 	// prepare an initial setpoint, just stay put
 	mavlink_set_position_target_local_ned_t sp;
 	sp.type_mask = MAVLINK_MSG_SET_POSITION_TARGET_LOCAL_NED_VELOCITY &
-				   MAVLINK_MSG_SET_POSITION_TARGET_LOCAL_NED_POSITION & MAVLINK_MSG_SET_POSITION_TARGET_LOCAL_NED_YAW_ANGLE & MAVLINK_MSG_SET_POSITION_TARGET_LOCAL_NED_YAW_RATE;
+		       MAVLINK_MSG_SET_POSITION_TARGET_LOCAL_NED_POSITION ; 
+                      // MAVLINK_MSG_SET_POSITION_TARGET_LOCAL_NED_YAW_ANGLE & 
+                      // MAVLINK_MSG_SET_POSITION_TARGET_LOCAL_NED_YAW_RATE;
 	
 #ifdef Vega_Body
         sp.coordinate_frame = MAV_FRAME_BODY_OFFSET_NED;
+        printf("----------------------In Body Frame------------------------------\n");
 #else
         sp.coordinate_frame = MAV_FRAME_LOCAL_NED;
+        printf("----------------------In Local Frame------------------------------\n");
 #endif
 	// initialization
         mavlink_local_position_ned_t initial_pos = current_messages.local_position_ned;

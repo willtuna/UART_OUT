@@ -54,7 +54,7 @@
 
 #include "autopilot_interface.h"
 
-//#define Vega_Body 1
+#define Vega_Body 1
 
 
 // ----------------------------------------------------------------------------------

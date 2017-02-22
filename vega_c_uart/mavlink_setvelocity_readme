@@ -1,6 +1,0 @@
-
-                        x    y    z    vx  vy  vz    duration
-initial write_thread    0    0    0    0   0   0     10sec
-command                 0    0    0    0   0  -10     10sec
-si2command              0    0    0    0   0   0     10sec
-si2command              0    0    0    0   0   10     10sec

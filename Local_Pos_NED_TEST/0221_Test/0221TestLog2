@@ -1,0 +1,310 @@
+pi@raspberrypi ~/UART_OUT/c_uart_interface_weiting/0221_Test $ ./mavlink_control_BODY_INITIALOFFSET 
+OPEN PORT
+Connected to /dev/ttyAMA0 with 57600 baud, 8 data bits, no parity, 1 stop bit (8N1)
+
+START READ THREAD 
+
+CHECK FOR MESSAGES
+Found
+
+GOT VEHICLE SYSTEM ID: 1
+GOT AUTOPILOT COMPONENT ID: 1
+
+INITIAL POSITION XYZ = [ -0.8087 , 1.0832 , -0.2120 ] 
+INITIAL POSITION YAW = -3.1153 
+
+START WRITE THREAD 
+Success Write Home_Req
+----------------------In Body Frame------------------------------
+
+ENABLE OFFBOARD MODE
+
+SEND OFFBOARD COMMANDS
+write_thread_initialization_Waiting for 15 sec
+0 TARGET  POSITION XYZ = [  0.0000 ,  0.0000 ,  0.0000 ] 
+0 CURRENT POSITION XYZ = [ -0.8087 ,  1.0832 , -0.2120 ] 
+write_thread_initialization_Waiting for 14 sec
+1 TARGET  POSITION XYZ = [  0.0000 ,  0.0000 ,  0.0000 ] 
+1 CURRENT POSITION XYZ = [ -0.7887 ,  1.1527 , -0.1806 ] 
+write_thread_initialization_Waiting for 13 sec
+2 TARGET  POSITION XYZ = [  0.0000 ,  0.0000 ,  0.0000 ] 
+2 CURRENT POSITION XYZ = [ -0.7940 ,  1.3133 , -0.2852 ] 
+write_thread_initialization_Waiting for 12 sec
+3 TARGET  POSITION XYZ = [  0.0000 ,  0.0000 ,  0.0000 ] 
+3 CURRENT POSITION XYZ = [ -0.7779 ,  1.3931 , -0.4331 ] 
+write_thread_initialization_Waiting for 11 sec
+4 TARGET  POSITION XYZ = [  0.0000 ,  0.0000 ,  0.0000 ] 
+4 CURRENT POSITION XYZ = [ -0.7103 ,  1.3977 , -0.4411 ] 
+write_thread_initialization_Waiting for 10 sec
+5 TARGET  POSITION XYZ = [  0.0000 ,  0.0000 ,  0.0000 ] 
+5 CURRENT POSITION XYZ = [ -0.5970 ,  1.3472 , -0.4529 ] 
+write_thread_initialization_Waiting for 9 sec
+6 TARGET  POSITION XYZ = [  0.0000 ,  0.0000 ,  0.0000 ] 
+6 CURRENT POSITION XYZ = [ -0.5045 ,  1.2937 , -0.4211 ] 
+write_thread_initialization_Waiting for 8 sec
+7 TARGET  POSITION XYZ = [  0.0000 ,  0.0000 ,  0.0000 ] 
+7 CURRENT POSITION XYZ = [ -0.4621 ,  1.2472 , -0.3649 ] 
+write_thread_initialization_Waiting for 7 sec
+8 TARGET  POSITION XYZ = [  0.0000 ,  0.0000 ,  0.0000 ] 
+8 CURRENT POSITION XYZ = [ -0.5270 ,  1.1602 , -0.3220 ] 
+write_thread_initialization_Waiting for 6 sec
+9 TARGET  POSITION XYZ = [ -0.8087 ,  1.0832 , -0.2120 ] 
+9 CURRENT POSITION XYZ = [ -0.5868 ,  1.1833 , -0.2993 ] 
+write_thread_initialization_Waiting for 5 sec
+10 TARGET  POSITION XYZ = [ -0.8087 ,  1.0832 , -0.2120 ] 
+10 CURRENT POSITION XYZ = [ -0.4988 ,  1.1625 , -0.3103 ] 
+write_thread_initialization_Waiting for 4 sec
+11 TARGET  POSITION XYZ = [ -0.8087 ,  1.0832 , -0.2120 ] 
+11 CURRENT POSITION XYZ = [ -0.5945 ,  1.0464 , -0.2826 ] 
+write_thread_initialization_Waiting for 3 sec
+12 TARGET  POSITION XYZ = [ -0.8087 ,  1.0832 , -0.2120 ] 
+12 CURRENT POSITION XYZ = [ -0.7768 ,  0.9567 , -0.2948 ] 
+write_thread_initialization_Waiting for 2 sec
+13 TARGET  POSITION XYZ = [ -0.8087 ,  1.0832 , -0.2120 ] 
+13 CURRENT POSITION XYZ = [ -0.7467 ,  0.9949 , -0.3423 ] 
+write_thread_initialization_Waiting for 1 sec
+14 TARGET  POSITION XYZ = [ -0.8087 ,  1.0832 , -0.2120 ] 
+14 CURRENT POSITION XYZ = [ -0.6933 ,  0.9936 , -0.3204 ] 
+BODY FRAME POSITION SETPOINT XYZ = [ -0.8087 , 1.0832 , -1.2120 ] 
+
+
+
+----------------------Command Upward 1m by set_position for 10sec----------------------
+0 TARGET  POSITION XYZ = [ -0.8087 ,  1.0832 , -0.2120 ] 
+0 CURRENT POSITION XYZ = [ -0.7787 ,  1.0100 , -0.3663 ] 
+1 TARGET  POSITION XYZ = [ -0.8087 ,  1.0832 , -1.2120 ] 
+1 CURRENT POSITION XYZ = [ -0.8560 ,  0.9200 , -0.4750 ] 
+2 TARGET  POSITION XYZ = [ -0.8087 ,  1.0832 , -1.2120 ] 
+2 CURRENT POSITION XYZ = [ -1.1355 ,  0.7428 , -0.5607 ] 
+3 TARGET  POSITION XYZ = [ -0.8087 ,  1.0832 , -1.2120 ] 
+3 CURRENT POSITION XYZ = [ -1.2652 ,  0.7803 , -0.6025 ] 
+4 TARGET  POSITION XYZ = [ -0.8087 ,  1.0832 , -1.2120 ] 
+4 CURRENT POSITION XYZ = [ -1.1523 ,  0.9702 , -0.6560 ] 
+5 TARGET  POSITION XYZ = [ -0.8087 ,  1.0832 , -1.2120 ] 
+5 CURRENT POSITION XYZ = [ -0.9374 ,  1.1169 , -0.6798 ] 
+6 TARGET  POSITION XYZ = [ -0.8087 ,  1.0832 , -1.2120 ] 
+6 CURRENT POSITION XYZ = [ -0.7351 ,  1.0638 , -0.7092 ] 
+7 TARGET  POSITION XYZ = [ -0.8087 ,  1.0832 , -1.2120 ] 
+7 CURRENT POSITION XYZ = [ -0.7341 ,  1.0598 , -0.7283 ] 
+8 TARGET  POSITION XYZ = [ -0.8087 ,  1.0832 , -1.2120 ] 
+8 CURRENT POSITION XYZ = [ -0.7035 ,  1.1015 , -0.7475 ] 
+9 TARGET  POSITION XYZ = [ -0.8087 ,  1.0832 , -1.2120 ] 
+9 CURRENT POSITION XYZ = [ -0.6505 ,  1.1094 , -0.8307 ] 
+
+
+
+----------------------si2_mission hold this altitude for 10sec------------------
+BODY FRAME POSITION SETPOINT XYZ = [ -0.8087 , 1.0832 , -0.2120 ] 
+0 TARGET  POSITION XYZ = [ -0.8087 ,  1.0832 , -1.2120 ] 
+0 CURRENT POSITION XYZ = [ -0.6448 ,  1.1449 , -0.8960 ] 
+1 TARGET  POSITION XYZ = [ -0.8087 ,  1.0832 , -1.2120 ] 
+1 CURRENT POSITION XYZ = [ -0.7101 ,  1.1594 , -0.6926 ] 
+2 TARGET  POSITION XYZ = [ -0.8087 ,  1.0832 , -1.2120 ] 
+2 CURRENT POSITION XYZ = [ -0.8666 ,  1.1054 , -0.6780 ] 
+3 TARGET  POSITION XYZ = [ -0.8087 ,  1.0832 , -0.2120 ] 
+3 CURRENT POSITION XYZ = [ -0.8939 ,  1.1306 , -0.6863 ] 
+4 TARGET  POSITION XYZ = [ -0.8087 ,  1.0832 , -0.2120 ] 
+4 CURRENT POSITION XYZ = [ -0.8900 ,  1.1942 , -0.7275 ] 
+5 TARGET  POSITION XYZ = [ -0.8087 ,  1.0832 , -0.2120 ] 
+5 CURRENT POSITION XYZ = [ -0.8353 ,  1.2506 , -0.8021 ] 
+6 TARGET  POSITION XYZ = [ -0.8087 ,  1.0832 , -0.2120 ] 
+6 CURRENT POSITION XYZ = [ -0.7622 ,  1.3067 , -0.8380 ] 
+7 TARGET  POSITION XYZ = [ -0.8087 ,  1.0832 , -0.2120 ] 
+7 CURRENT POSITION XYZ = [ -0.6925 ,  1.3123 , -0.7688 ] 
+8 TARGET  POSITION XYZ = [ -0.8087 ,  1.0832 , -0.2120 ] 
+8 CURRENT POSITION XYZ = [ -0.5951 ,  1.3292 , -0.7691 ] 
+9 TARGET  POSITION XYZ = [ -0.8087 ,  1.0832 , -0.2120 ] 
+9 CURRENT POSITION XYZ = [ -0.5695 ,  1.4144 , -0.7869 ] 
+BODY FRAME POSITION SETPOINT XYZ = [ -0.8087 , 1.0832 , 0.7880 ] 
+
+
+
+-----si2_mission move downward 1m for 10 seconds------------
+0 TARGET  POSITION XYZ = [ -0.8087 ,  1.0832 , -0.2120 ] 
+0 CURRENT POSITION XYZ = [ -0.5611 ,  1.4319 , -0.8480 ] 
+1 TARGET  POSITION XYZ = [ -0.8087 ,  1.0832 , -0.2120 ] 
+1 CURRENT POSITION XYZ = [ -0.4780 ,  1.4286 , -0.8889 ] 
+2 TARGET  POSITION XYZ = [ -0.8087 ,  1.0832 , -0.2120 ] 
+2 CURRENT POSITION XYZ = [ -0.4536 ,  1.4406 , -0.9003 ] 
+^C
+TERMINATING AT USER REQUEST
+
+DISABLE OFFBOARD MODE
+
+CLOSE THREADS
+
+CLOSE PORT
+
+pi@raspberrypi ~/UART_OUT/c_uart_interface_weiting/0221_Test $ ./mavlink_control_BODY_INITIALOFFSET 
+OPEN PORT
+Connected to /dev/ttyAMA0 with 57600 baud, 8 data bits, no parity, 1 stop bit (8N1)
+
+START READ THREAD 
+
+CHECK FOR MESSAGES
+Found
+
+GOT VEHICLE SYSTEM ID: 1
+GOT AUTOPILOT COMPONENT ID: 1
+
+INITIAL POSITION XYZ = [ -10.7203 , 1.1053 , -1.0649 ] 
+INITIAL POSITION YAW = 2.8839 
+
+START WRITE THREAD 
+Success Write Home_Req
+----------------------In Body Frame------------------------------
+
+ENABLE OFFBOARD MODE
+
+SEND OFFBOARD COMMANDS
+write_thread_initialization_Waiting for 15 sec
+0 TARGET  POSITION XYZ = [  0.0000 ,  0.0000 ,  0.0000 ] 
+0 CURRENT POSITION XYZ = [ -10.7203 ,  1.1053 , -1.0649 ] 
+write_thread_initialization_Waiting for 14 sec
+1 TARGET  POSITION XYZ = [  0.0000 ,  0.0000 ,  0.0000 ] 
+1 CURRENT POSITION XYZ = [ -10.1669 ,  1.2111 , -1.1483 ] 
+write_thread_initialization_Waiting for 13 sec
+2 TARGET  POSITION XYZ = [  0.0000 ,  0.0000 ,  0.0000 ] 
+2 CURRENT POSITION XYZ = [ -10.1038 ,  1.2522 , -1.2319 ] 
+write_thread_initialization_Waiting for 12 sec
+3 TARGET  POSITION XYZ = [  0.0000 ,  0.0000 ,  0.0000 ] 
+3 CURRENT POSITION XYZ = [ -10.0553 ,  1.1374 , -1.3474 ] 
+write_thread_initialization_Waiting for 11 sec
+4 TARGET  POSITION XYZ = [  0.0000 ,  0.0000 ,  0.0000 ] 
+4 CURRENT POSITION XYZ = [ -10.0939 ,  1.1959 , -1.3437 ] 
+write_thread_initialization_Waiting for 10 sec
+5 TARGET  POSITION XYZ = [  0.0000 ,  0.0000 ,  0.0000 ] 
+5 CURRENT POSITION XYZ = [ -10.0923 ,  1.1665 , -1.3301 ] 
+write_thread_initialization_Waiting for 9 sec
+6 TARGET  POSITION XYZ = [  0.0000 ,  0.0000 ,  0.0000 ] 
+6 CURRENT POSITION XYZ = [ -10.0961 ,  1.1082 , -1.2653 ] 
+write_thread_initialization_Waiting for 8 sec
+7 TARGET  POSITION XYZ = [  0.0000 ,  0.0000 ,  0.0000 ] 
+7 CURRENT POSITION XYZ = [ -10.0018 ,  1.1056 , -1.2002 ] 
+write_thread_initialization_Waiting for 7 sec
+8 TARGET  POSITION XYZ = [  0.0000 ,  0.0000 ,  0.0000 ] 
+8 CURRENT POSITION XYZ = [ -9.9349 ,  1.1472 , -1.1447 ] 
+^C
+TERMINATING AT USER REQUEST
+
+DISABLE OFFBOARD MODE
+
+CLOSE THREADS
+
+CLOSE PORT
+
+pi@raspberrypi ~/UART_OUT/c_uart_interface_weiting/0221_Test $ ./mavlink_control_BODY_INITIALOFFSET 
+OPEN PORT
+Connected to /dev/ttyAMA0 with 57600 baud, 8 data bits, no parity, 1 stop bit (8N1)
+
+START READ THREAD 
+
+CHECK FOR MESSAGES
+Found
+
+GOT VEHICLE SYSTEM ID: 1
+GOT AUTOPILOT COMPONENT ID: 1
+
+INITIAL POSITION XYZ = [ -4.2606 , 0.6673 , -0.6449 ] 
+INITIAL POSITION YAW = 3.0059 
+
+START WRITE THREAD 
+Success Write Home_Req
+----------------------In Body Frame------------------------------
+
+ENABLE OFFBOARD MODE
+
+SEND OFFBOARD COMMANDS
+write_thread_initialization_Waiting for 15 sec
+0 TARGET  POSITION XYZ = [  0.0000 ,  0.0000 ,  0.0000 ] 
+0 CURRENT POSITION XYZ = [ -4.1959 ,  0.6362 , -0.6322 ] 
+write_thread_initialization_Waiting for 14 sec
+1 TARGET  POSITION XYZ = [  0.0000 ,  0.0000 ,  0.0000 ] 
+1 CURRENT POSITION XYZ = [ -3.9945 ,  0.6200 , -0.6464 ] 
+write_thread_initialization_Waiting for 13 sec
+2 TARGET  POSITION XYZ = [  0.0000 ,  0.0000 ,  0.0000 ] 
+2 CURRENT POSITION XYZ = [ -3.8238 ,  0.7096 , -0.7011 ] 
+write_thread_initialization_Waiting for 12 sec
+3 TARGET  POSITION XYZ = [  0.0000 ,  0.0000 ,  0.0000 ] 
+3 CURRENT POSITION XYZ = [ -3.8043 ,  0.7272 , -0.7306 ] 
+write_thread_initialization_Waiting for 11 sec
+4 TARGET  POSITION XYZ = [  0.0000 ,  0.0000 ,  0.0000 ] 
+4 CURRENT POSITION XYZ = [ -3.8701 ,  0.7469 , -0.7567 ] 
+write_thread_initialization_Waiting for 10 sec
+5 TARGET  POSITION XYZ = [  0.0000 ,  0.0000 ,  0.0000 ] 
+5 CURRENT POSITION XYZ = [ -3.9168 ,  0.6190 , -0.7908 ] 
+write_thread_initialization_Waiting for 9 sec
+6 TARGET  POSITION XYZ = [  0.0000 ,  0.0000 ,  0.0000 ] 
+6 CURRENT POSITION XYZ = [ -3.9865 ,  0.6149 , -0.7826 ] 
+write_thread_initialization_Waiting for 8 sec
+7 TARGET  POSITION XYZ = [  0.0000 ,  0.0000 ,  0.0000 ] 
+7 CURRENT POSITION XYZ = [ -4.0980 ,  0.6027 , -0.8515 ] 
+write_thread_initialization_Waiting for 7 sec
+8 TARGET  POSITION XYZ = [  0.0000 ,  0.0000 ,  0.0000 ] 
+8 CURRENT POSITION XYZ = [ -4.0871 ,  0.5648 , -0.9453 ] 
+write_thread_initialization_Waiting for 6 sec
+9 TARGET  POSITION XYZ = [  0.0000 ,  0.0000 ,  0.0000 ] 
+9 CURRENT POSITION XYZ = [ -4.0821 ,  0.4703 , -1.0004 ] 
+write_thread_initialization_Waiting for 5 sec
+10 TARGET  POSITION XYZ = [  0.0000 ,  0.0000 ,  0.0000 ] 
+10 CURRENT POSITION XYZ = [ -4.0290 ,  0.4461 , -1.0272 ] 
+write_thread_initialization_Waiting for 4 sec
+11 TARGET  POSITION XYZ = [  0.0000 ,  0.0000 ,  0.0000 ] 
+11 CURRENT POSITION XYZ = [ -4.0945 ,  0.4397 , -0.9936 ] 
+write_thread_initialization_Waiting for 3 sec
+12 TARGET  POSITION XYZ = [  0.0000 ,  0.0000 ,  0.0000 ] 
+12 CURRENT POSITION XYZ = [ -4.1490 ,  0.3508 , -0.9387 ] 
+write_thread_initialization_Waiting for 2 sec
+13 TARGET  POSITION XYZ = [  0.0000 ,  0.0000 ,  0.0000 ] 
+13 CURRENT POSITION XYZ = [ -4.1429 ,  0.4251 , -0.9629 ] 
+write_thread_initialization_Waiting for 1 sec
+14 TARGET  POSITION XYZ = [  0.0000 ,  0.0000 ,  0.0000 ] 
+14 CURRENT POSITION XYZ = [ -4.1457 ,  0.4025 , -0.9715 ] 
+BODY FRAME POSITION SETPOINT XYZ = [ -4.2606 , 0.6673 , -1.6449 ] 
+
+
+
+----------------------Command Upward 1m by set_position for 10sec----------------------
+0 TARGET  POSITION XYZ = [  0.0000 ,  0.0000 ,  0.0000 ] 
+0 CURRENT POSITION XYZ = [ -4.1011 ,  0.2994 , -1.0375 ] 
+1 TARGET  POSITION XYZ = [  0.0000 ,  0.0000 ,  0.0000 ] 
+1 CURRENT POSITION XYZ = [ -4.1194 ,  0.3146 , -1.0703 ] 
+2 TARGET  POSITION XYZ = [  0.0000 ,  0.0000 ,  0.0000 ] 
+2 CURRENT POSITION XYZ = [ -4.4022 ,  0.3566 , -1.1008 ] 
+3 TARGET  POSITION XYZ = [  0.0000 ,  0.0000 ,  0.0000 ] 
+3 CURRENT POSITION XYZ = [ -4.5778 ,  0.5587 , -1.1757 ] 
+4 TARGET  POSITION XYZ = [  0.0000 ,  0.0000 ,  0.0000 ] 
+4 CURRENT POSITION XYZ = [ -4.6173 ,  0.8339 , -1.2452 ] 
+5 TARGET  POSITION XYZ = [  0.0000 ,  0.0000 ,  0.0000 ] 
+5 CURRENT POSITION XYZ = [ -4.5395 ,  0.9568 , -1.2772 ] 
+6 TARGET  POSITION XYZ = [  0.0000 ,  0.0000 ,  0.0000 ] 
+6 CURRENT POSITION XYZ = [ -4.4729 ,  0.9856 , -1.1902 ] 
+7 TARGET  POSITION XYZ = [  0.0000 ,  0.0000 ,  0.0000 ] 
+7 CURRENT POSITION XYZ = [ -4.5616 ,  1.0308 , -1.2861 ] 
+8 TARGET  POSITION XYZ = [  0.0000 ,  0.0000 ,  0.0000 ] 
+8 CURRENT POSITION XYZ = [ -4.5722 ,  1.0200 , -1.2248 ] 
+9 TARGET  POSITION XYZ = [  0.0000 ,  0.0000 ,  0.0000 ] 
+9 CURRENT POSITION XYZ = [ -4.5499 ,  1.0859 , -1.2412 ] 
+
+
+
+----------------------si2_mission hold this altitude for 10sec------------------
+BODY FRAME POSITION SETPOINT XYZ = [ -4.2606 , 0.6673 , -0.6449 ] 
+0 TARGET  POSITION XYZ = [ -4.2606 ,  0.6673 , -1.6449 ] 
+0 CURRENT POSITION XYZ = [ -4.4520 ,  1.0765 , -1.2235 ] 
+1 TARGET  POSITION XYZ = [ -4.2606 ,  0.6673 , -1.6449 ] 
+1 CURRENT POSITION XYZ = [ -4.2989 ,  1.1853 , -1.1243 ] 
+2 TARGET  POSITION XYZ = [ -4.2606 ,  0.6673 , -1.6449 ] 
+2 CURRENT POSITION XYZ = [ -4.1775 ,  1.1987 , -1.0852 ] 
+3 TARGET  POSITION XYZ = [ -4.2606 ,  0.6673 , -1.6449 ] 
+3 CURRENT POSITION XYZ = [ -4.1912 ,  1.2667 , -1.0866 ] 
+4 TARGET  POSITION XYZ = [ -4.2606 ,  0.6673 , -1.6449 ] 
+4 CURRENT POSITION XYZ = [ -4.2503 ,  1.3086 , -1.0870 ] 
+^C
+TERMINATING AT USER REQUEST
+
+DISABLE OFFBOARD MODE
+
+CLOSE THREADS
+
+CLOSE PORT

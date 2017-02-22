@@ -1,0 +1,1571 @@
+willvegapunk@willvegapunk-Aspire-E5-572G:~$ ssh pi@192.168.43.89
+pi@192.168.43.89's password: 
+Linux raspberrypi 3.18.11-v7+ #781 SMP PREEMPT Tue Apr 21 18:07:59 BST 2015 armv7l
+
+The programs included with the Debian GNU/Linux system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
+permitted by applicable law.
+Last login: Wed Feb 22 08:58:21 2017 from willvegapunk-aspire-e5-572g.local
+pi@raspberrypi ~ $ 
+pi@raspberrypi ~ $ cd UART_OUT/
+pi@raspberrypi ~/UART_OUT $ ls
+Local_Pos_NED_TEST        c_uart_interface_set_att            local_update.sh             mavlink_hfile       setpos_01                uart_exe.cpp
+Parameter                 c_uart_interface_set_att (copy.txt  makefile                    mavlink_types.h     setpos_0215              uart_exe.out
+RPI_CONFIG_SI2            c_uart_interface_weiting            mavlink                     mmap_mechanism.cpp  setpos_0215_outside
+Stable1                   code_log                            mavlink_control_pos_square  msgid_fetching.out  share_mem_test_read.cpp
+Stable_alt_set_0217       editor_serial_port.cpp              mavlink_control_pos_x_1     serial_port.cpp     share_mem_test_read.out
+TEST                      fetch_id.txt                        mavlink_control_pos_y_1     serial_port.h       si2_uart_for_pi.c
+c_uart_interface_example  ipaddress                           mavlink_control_pos_z_1     serial_port.o       target_update.sh
+pi@raspberrypi ~/UART_OUT $ cd c_uart_interface_weiting/
+pi@raspberrypi ~/UART_OUT/c_uart_interface_weiting $ ls
+0221_Test  BODY_NED_CURRENTPOS_OFFSET  Weiting                  autopilot_interface.h  mavlink              mavlink_control.h  serial_port.h
+BODY_NED   LOCAL_NED                   autopilot_interface.cpp  makefile               mavlink_control.cpp  serial_port.cpp
+pi@raspberrypi ~/UART_OUT/c_uart_interface_weiting $ cd 0221_Test/
+pi@raspberrypi ~/UART_OUT/c_uart_interface_weiting/0221_Test $ ls
+autopilot_interface.cpp  mavlink_control.cpp  mavlink_control_BODY_INITIALOFFSET  mavlink_control_LOCAL_INITPOS  mavlink_control_x0y0zcurrent1
+pi@raspberrypi ~/UART_OUT/c_uart_interface_weiting/0221_Test $ ./mavlink_control_BODY_INITIALOFFSET 
+OPEN PORT
+Connected to /dev/ttyAMA0 with 57600 baud, 8 data bits, no parity, 1 stop bit (8N1)
+
+START READ THREAD 
+
+CHECK FOR MESSAGES
+Found
+
+GOT VEHICLE SYSTEM ID: 1
+GOT AUTOPILOT COMPONENT ID: 1
+
+INITIAL POSITION XYZ = [ -0.3642 , 0.3146 , -2.4210 ] 
+INITIAL POSITION YAW = 2.9632 
+
+START WRITE THREAD 
+Success Write Home_Req
+----------------------In Body Frame------------------------------
+
+ENABLE OFFBOARD MODE
+
+SEND OFFBOARD COMMANDS
+write_thread_initialization_Waiting for 15 sec
+0 TARGET  POSITION XYZ = [  0.0000 ,  0.0000 ,  0.0000 ] 
+0 CURRENT POSITION XYZ = [ -0.3642 ,  0.3146 , -2.4210 ] 
+write_thread_initialization_Waiting for 14 sec
+1 TARGET  POSITION XYZ = [  0.0000 ,  0.0000 ,  0.0000 ] 
+1 CURRENT POSITION XYZ = [ -0.1930 ,  0.2579 , -1.4936 ] 
+write_thread_initialization_Waiting for 13 sec
+2 TARGET  POSITION XYZ = [  0.0000 ,  0.0000 ,  0.0000 ] 
+2 CURRENT POSITION XYZ = [  0.1187 ,  0.3124 , -1.9764 ] 
+write_thread_initialization_Waiting for 12 sec
+3 TARGET  POSITION XYZ = [  0.0000 ,  0.0000 ,  0.0000 ] 
+3 CURRENT POSITION XYZ = [ -0.3367 ,  0.4234 , -2.1532 ] 
+write_thread_initialization_Waiting for 11 sec
+4 TARGET  POSITION XYZ = [  0.0000 ,  0.0000 ,  0.0000 ] 
+4 CURRENT POSITION XYZ = [ -0.6103 ,  0.4969 , -2.2270 ] 
+write_thread_initialization_Waiting for 10 sec
+5 TARGET  POSITION XYZ = [  0.0000 ,  0.0000 ,  0.0000 ] 
+5 CURRENT POSITION XYZ = [ -0.6131 ,  0.6030 , -2.2865 ] 
+write_thread_initialization_Waiting for 9 sec
+6 TARGET  POSITION XYZ = [  0.0000 ,  0.0000 ,  0.0000 ] 
+6 CURRENT POSITION XYZ = [ -0.5738 ,  0.6191 , -2.2628 ] 
+write_thread_initialization_Waiting for 8 sec
+7 TARGET  POSITION XYZ = [  0.0000 ,  0.0000 ,  0.0000 ] 
+7 CURRENT POSITION XYZ = [ -0.5096 ,  0.5073 , -2.2608 ] 
+write_thread_initialization_Waiting for 7 sec
+8 TARGET  POSITION XYZ = [ -0.3642 ,  0.3146 , -2.4210 ] 
+8 CURRENT POSITION XYZ = [ -0.4771 ,  0.4015 , -2.2818 ] 
+write_thread_initialization_Waiting for 6 sec
+9 TARGET  POSITION XYZ = [ -0.3642 ,  0.3146 , -2.4210 ] 
+9 CURRENT POSITION XYZ = [ -0.4672 ,  0.2964 , -2.3585 ] 
+write_thread_initialization_Waiting for 5 sec
+10 TARGET  POSITION XYZ = [ -0.3642 ,  0.3146 , -2.4210 ] 
+10 CURRENT POSITION XYZ = [ -0.4623 ,  0.2135 , -2.3997 ] 
+write_thread_initialization_Waiting for 4 sec
+11 TARGET  POSITION XYZ = [ -0.3642 ,  0.3146 , -2.4210 ] 
+11 CURRENT POSITION XYZ = [ -0.4448 ,  0.1721 , -2.3836 ] 
+write_thread_initialization_Waiting for 3 sec
+12 TARGET  POSITION XYZ = [ -0.3642 ,  0.3146 , -2.4210 ] 
+12 CURRENT POSITION XYZ = [ -0.4328 ,  0.2395 , -2.3401 ] 
+write_thread_initialization_Waiting for 2 sec
+13 TARGET  POSITION XYZ = [ -0.3642 ,  0.3146 , -2.4210 ] 
+13 CURRENT POSITION XYZ = [ -0.4322 ,  0.2841 , -2.3930 ] 
+write_thread_initialization_Waiting for 1 sec
+14 TARGET  POSITION XYZ = [ -0.3642 ,  0.3146 , -2.4210 ] 
+14 CURRENT POSITION XYZ = [ -0.3989 ,  0.2923 , -2.3607 ] 
+BODY FRAME POSITION SETPOINT XYZ = [ -0.3642 , 0.3146 , -3.4210 ] 
+
+
+
+----------------------Command Upward 1m by set_position for 10sec----------------------
+0 TARGET  POSITION XYZ = [ -0.3642 ,  0.3146 , -2.4210 ] 
+0 CURRENT POSITION XYZ = [ -0.3681 ,  0.3036 , -2.2861 ] 
+1 TARGET  POSITION XYZ = [ -0.3642 ,  0.3146 , -2.4210 ] 
+1 CURRENT POSITION XYZ = [ -0.3469 ,  0.2996 , -2.6223 ] 
+2 TARGET  POSITION XYZ = [ -0.3642 ,  0.3146 , -2.4210 ] 
+2 CURRENT POSITION XYZ = [ -0.3238 ,  0.2435 , -3.2189 ] 
+3 TARGET  POSITION XYZ = [ -0.3642 ,  0.3146 , -2.4210 ] 
+3 CURRENT POSITION XYZ = [ -0.2967 ,  0.2512 , -3.3816 ] 
+4 TARGET  POSITION XYZ = [ -0.3642 ,  0.3146 , -2.4210 ] 
+4 CURRENT POSITION XYZ = [ -0.2941 ,  0.3029 , -3.3880 ] 
+5 TARGET  POSITION XYZ = [ -0.3642 ,  0.3146 , -2.4210 ] 
+5 CURRENT POSITION XYZ = [ -0.3253 ,  0.3384 , -3.3580 ] 
+6 TARGET  POSITION XYZ = [ -0.3642 ,  0.3146 , -2.4210 ] 
+6 CURRENT POSITION XYZ = [ -0.3612 ,  0.3056 , -3.3915 ] 
+7 TARGET  POSITION XYZ = [ -0.3642 ,  0.3146 , -3.4210 ] 
+7 CURRENT POSITION XYZ = [ -0.3095 ,  0.2828 , -3.3705 ] 
+8 TARGET  POSITION XYZ = [ -0.3642 ,  0.3146 , -3.4210 ] 
+8 CURRENT POSITION XYZ = [ -0.2723 ,  0.2570 , -3.3900 ] 
+9 TARGET  POSITION XYZ = [ -0.3642 ,  0.3146 , -3.4210 ] 
+9 CURRENT POSITION XYZ = [ -0.2538 ,  0.2563 , -3.3452 ] 
+
+
+
+----------------------si2_mission hold this altitude for 10sec------------------
+BODY FRAME POSITION SETPOINT XYZ = [ -0.3642 , 0.3146 , -2.4210 ] 
+0 TARGET  POSITION XYZ = [ -0.3642 ,  0.3146 , -3.4210 ] 
+0 CURRENT POSITION XYZ = [ -0.2488 ,  0.2760 , -3.3613 ] 
+1 TARGET  POSITION XYZ = [ -0.3642 ,  0.3146 , -3.4210 ] 
+1 CURRENT POSITION XYZ = [ -0.2489 ,  0.2808 , -3.1010 ] 
+2 TARGET  POSITION XYZ = [ -0.3642 ,  0.3146 , -3.4210 ] 
+2 CURRENT POSITION XYZ = [ -0.3386 ,  0.3017 , -2.6145 ] 
+3 TARGET  POSITION XYZ = [ -0.3642 ,  0.3146 , -3.4210 ] 
+3 CURRENT POSITION XYZ = [ -0.3204 ,  0.3944 , -2.3814 ] 
+4 TARGET  POSITION XYZ = [ -0.3642 ,  0.3146 , -3.4210 ] 
+4 CURRENT POSITION XYZ = [ -0.2396 ,  0.4521 , -2.3775 ] 
+5 TARGET  POSITION XYZ = [ -0.3642 ,  0.3146 , -3.4210 ] 
+5 CURRENT POSITION XYZ = [ -0.2218 ,  0.4244 , -2.4184 ] 
+6 TARGET  POSITION XYZ = [ -0.3642 ,  0.3146 , -3.4210 ] 
+6 CURRENT POSITION XYZ = [ -0.2345 ,  0.4083 , -2.4248 ] 
+7 TARGET  POSITION XYZ = [ -0.3642 ,  0.3146 , -2.4210 ] 
+7 CURRENT POSITION XYZ = [ -0.2507 ,  0.3468 , -2.3986 ] 
+8 TARGET  POSITION XYZ = [ -0.3642 ,  0.3146 , -2.4210 ] 
+8 CURRENT POSITION XYZ = [ -0.3216 ,  0.2819 , -2.3912 ] 
+9 TARGET  POSITION XYZ = [ -0.3642 ,  0.3146 , -2.4210 ] 
+9 CURRENT POSITION XYZ = [ -0.3678 ,  0.2931 , -2.4277 ] 
+BODY FRAME POSITION SETPOINT XYZ = [ -0.3642 , 0.3146 , -1.4210 ] 
+
+
+
+-----si2_mission move downward 1m for 10 seconds------------
+0 TARGET  POSITION XYZ = [ -0.3642 ,  0.3146 , -2.4210 ] 
+0 CURRENT POSITION XYZ = [ -0.3497 ,  0.3282 , -2.3894 ] 
+1 TARGET  POSITION XYZ = [ -0.3642 ,  0.3146 , -2.4210 ] 
+1 CURRENT POSITION XYZ = [ -0.3185 ,  0.3428 , -1.9482 ] 
+2 TARGET  POSITION XYZ = [ -0.3642 ,  0.3146 , -2.4210 ] 
+2 CURRENT POSITION XYZ = [ -0.3005 ,  0.3788 , -1.4708 ] 
+3 TARGET  POSITION XYZ = [ -0.3642 ,  0.3146 , -2.4210 ] 
+3 CURRENT POSITION XYZ = [ -0.3579 ,  0.3605 , -1.3537 ] 
+4 TARGET  POSITION XYZ = [ -0.3642 ,  0.3146 , -2.4210 ] 
+4 CURRENT POSITION XYZ = [ -0.3703 ,  0.2716 , -1.3914 ] 
+5 TARGET  POSITION XYZ = [ -0.3642 ,  0.3146 , -2.4210 ] 
+5 CURRENT POSITION XYZ = [ -0.4052 ,  0.2671 , -1.4194 ] 
+6 TARGET  POSITION XYZ = [ -0.3642 ,  0.3146 , -2.4210 ] 
+6 CURRENT POSITION XYZ = [ -0.4297 ,  0.2803 , -1.4668 ] 
+7 TARGET  POSITION XYZ = [ -0.3642 ,  0.3146 , -2.4210 ] 
+7 CURRENT POSITION XYZ = [ -0.4052 ,  0.2834 , -1.4712 ] 
+8 TARGET  POSITION XYZ = [ -0.3642 ,  0.3146 , -2.4210 ] 
+8 CURRENT POSITION XYZ = [ -0.3820 ,  0.3112 , -1.4155 ] 
+9 TARGET  POSITION XYZ = [ -0.3642 ,  0.3146 , -1.4210 ] 
+9 CURRENT POSITION XYZ = [ -0.3382 ,  0.2758 , -1.4220 ] 
+
+DISABLE OFFBOARD MODE
+
+READ SOME MESSAGES 
+Got message LOCAL_POSITION_NED (spec: https://pixhawk.ethz.ch/mavlink/#LOCAL_POSITION_NED)
+    pos  (NED):  -0.323393 0.237083 -1.399200 (m)
+Got message HIGHRES_IMU (spec: https://pixhawk.ethz.ch/mavlink/#HIGHRES_IMU)
+    ap time:     492786141 
+    acc  (NED):  -0.181922 -0.581300 -12.516585 (m/s^2)
+    gyro (NED):  -0.484074 -0.032660  0.003662 (rad/s)
+    mag  (NED):  -0.354113 -0.031659  0.274673 (Ga)
+    baro:        0.000000 (mBar) 
+    altitude:    64.628952 (m) 
+    temperature: 34.459999 C 
+
+CLOSE THREADS
+
+CLOSE PORT
+
+pi@raspberrypi ~/UART_OUT/c_uart_interface_weiting/0221_Test $ ./mavlink_control_LOCAL_INITPOS 
+OPEN PORT
+Connected to /dev/ttyAMA0 with 57600 baud, 8 data bits, no parity, 1 stop bit (8N1)
+
+START READ THREAD 
+
+CHECK FOR MESSAGES
+Found
+
+GOT VEHICLE SYSTEM ID: 1
+GOT AUTOPILOT COMPONENT ID: 1
+
+INITIAL POSITION XYZ = [ -2.0598 , 0.2812 , -1.8259 ] 
+INITIAL POSITION YAW = -3.0794 
+
+START WRITE THREAD 
+Success Write Home_Req
+----------------------In Local Frame------------------------------
+
+ENABLE OFFBOARD MODE
+
+SEND OFFBOARD COMMANDS
+write_thread_initialization_Waiting for 15 sec
+0 TARGET  POSITION XYZ = [  0.0000 ,  0.0000 ,  0.0000 ] 
+0 CURRENT POSITION XYZ = [ -2.0598 ,  0.2812 , -1.8259 ] 
+write_thread_initialization_Waiting for 14 sec
+1 TARGET  POSITION XYZ = [  0.0000 ,  0.0000 ,  0.0000 ] 
+1 CURRENT POSITION XYZ = [ -1.8703 ,  0.3284 , -1.7511 ] 
+write_thread_initialization_Waiting for 13 sec
+2 TARGET  POSITION XYZ = [  0.0000 ,  0.0000 ,  0.0000 ] 
+2 CURRENT POSITION XYZ = [ -1.8923 ,  0.3387 , -1.6950 ] 
+write_thread_initialization_Waiting for 12 sec
+3 TARGET  POSITION XYZ = [ -2.0598 ,  0.2812 , -1.8259 ] 
+3 CURRENT POSITION XYZ = [ -1.9866 ,  0.2998 , -1.7602 ] 
+write_thread_initialization_Waiting for 11 sec
+4 TARGET  POSITION XYZ = [ -2.0598 ,  0.2812 , -1.8259 ] 
+4 CURRENT POSITION XYZ = [ -2.0539 ,  0.2841 , -1.7040 ] 
+write_thread_initialization_Waiting for 10 sec
+5 TARGET  POSITION XYZ = [ -2.0598 ,  0.2812 , -1.8259 ] 
+5 CURRENT POSITION XYZ = [ -2.1211 ,  0.3200 , -1.7074 ] 
+write_thread_initialization_Waiting for 9 sec
+6 TARGET  POSITION XYZ = [ -2.0598 ,  0.2812 , -1.8259 ] 
+6 CURRENT POSITION XYZ = [ -2.1856 ,  0.3872 , -1.6900 ] 
+write_thread_initialization_Waiting for 8 sec
+7 TARGET  POSITION XYZ = [ -2.0598 ,  0.2812 , -1.8259 ] 
+7 CURRENT POSITION XYZ = [ -2.1862 ,  0.3750 , -1.6929 ] 
+write_thread_initialization_Waiting for 7 sec
+8 TARGET  POSITION XYZ = [ -2.0598 ,  0.2812 , -1.8259 ] 
+8 CURRENT POSITION XYZ = [ -2.1255 ,  0.3599 , -1.7818 ] 
+write_thread_initialization_Waiting for 6 sec
+9 TARGET  POSITION XYZ = [ -2.0598 ,  0.2812 , -1.8259 ] 
+9 CURRENT POSITION XYZ = [ -2.0528 ,  0.3507 , -1.8345 ] 
+write_thread_initialization_Waiting for 5 sec
+10 TARGET  POSITION XYZ = [ -2.0598 ,  0.2812 , -1.8259 ] 
+10 CURRENT POSITION XYZ = [ -2.0234 ,  0.3272 , -1.8090 ] 
+write_thread_initialization_Waiting for 4 sec
+11 TARGET  POSITION XYZ = [ -2.0598 ,  0.2812 , -1.8259 ] 
+11 CURRENT POSITION XYZ = [ -2.0321 ,  0.3097 , -1.8193 ] 
+write_thread_initialization_Waiting for 3 sec
+12 TARGET  POSITION XYZ = [ -2.0598 ,  0.2812 , -1.8259 ] 
+12 CURRENT POSITION XYZ = [ -2.0010 ,  0.3279 , -1.8466 ] 
+write_thread_initialization_Waiting for 2 sec
+13 TARGET  POSITION XYZ = [ -2.0598 ,  0.2812 , -1.8259 ] 
+13 CURRENT POSITION XYZ = [ -1.9918 ,  0.3283 , -1.8579 ] 
+write_thread_initialization_Waiting for 1 sec
+14 TARGET  POSITION XYZ = [ -2.0598 ,  0.2812 , -1.8259 ] 
+14 CURRENT POSITION XYZ = [ -2.0308 ,  0.2870 , -1.8388 ] 
+LOCAL FRAME POSITION SETPOINT XYZ = [ -2.0598 , 0.2812 , -2.8259 ] 
+
+
+
+----------------------Command Upward 1m by set_position for 10sec----------------------
+0 TARGET  POSITION XYZ = [ -2.0598 ,  0.2812 , -1.8259 ] 
+0 CURRENT POSITION XYZ = [ -2.0299 ,  0.2740 , -1.8104 ] 
+1 TARGET  POSITION XYZ = [ -2.0598 ,  0.2812 , -2.8259 ] 
+1 CURRENT POSITION XYZ = [ -2.0563 ,  0.3578 , -2.1670 ] 
+2 TARGET  POSITION XYZ = [ -2.0598 ,  0.2812 , -2.8259 ] 
+2 CURRENT POSITION XYZ = [ -1.9894 ,  0.5557 , -2.6775 ] 
+3 TARGET  POSITION XYZ = [ -2.0598 ,  0.2812 , -2.8259 ] 
+3 CURRENT POSITION XYZ = [ -2.0697 ,  0.5821 , -2.7673 ] 
+4 TARGET  POSITION XYZ = [ -2.0598 ,  0.2812 , -2.8259 ] 
+4 CURRENT POSITION XYZ = [ -2.1280 ,  0.4870 , -2.7795 ] 
+5 TARGET  POSITION XYZ = [ -2.0598 ,  0.2812 , -2.8259 ] 
+5 CURRENT POSITION XYZ = [ -2.0795 ,  0.4865 , -2.7818 ] 
+6 TARGET  POSITION XYZ = [ -2.0598 ,  0.2812 , -2.8259 ] 
+6 CURRENT POSITION XYZ = [ -2.0327 ,  0.4615 , -2.7298 ] 
+7 TARGET  POSITION XYZ = [ -2.0598 ,  0.2812 , -2.8259 ] 
+7 CURRENT POSITION XYZ = [ -2.0137 ,  0.4599 , -2.7466 ] 
+8 TARGET  POSITION XYZ = [ -2.0598 ,  0.2812 , -2.8259 ] 
+8 CURRENT POSITION XYZ = [ -1.9956 ,  0.4561 , -2.7800 ] 
+9 TARGET  POSITION XYZ = [ -2.0598 ,  0.2812 , -2.8259 ] 
+9 CURRENT POSITION XYZ = [ -2.0305 ,  0.4065 , -2.7531 ] 
+
+
+
+----------------------si2_mission hold this altitude for 10sec------------------
+LOCAL FRAME POSITION SETPOINT XYZ = [ -2.0598 , 0.2812 , -1.8259 ] 
+0 TARGET  POSITION XYZ = [ -2.0598 ,  0.2812 , -2.8259 ] 
+0 CURRENT POSITION XYZ = [ -2.0092 ,  0.3029 , -2.7993 ] 
+1 TARGET  POSITION XYZ = [ -2.0598 ,  0.2812 , -2.8259 ] 
+1 CURRENT POSITION XYZ = [ -2.0120 ,  0.2510 , -2.5248 ] 
+2 TARGET  POSITION XYZ = [ -2.0598 ,  0.2812 , -2.8259 ] 
+2 CURRENT POSITION XYZ = [ -2.1445 ,  0.2130 , -1.9710 ] 
+3 TARGET  POSITION XYZ = [ -2.0598 ,  0.2812 , -1.8259 ] 
+3 CURRENT POSITION XYZ = [ -2.1325 ,  0.2459 , -1.8197 ] 
+4 TARGET  POSITION XYZ = [ -2.0598 ,  0.2812 , -1.8259 ] 
+4 CURRENT POSITION XYZ = [ -2.0638 ,  0.3109 , -1.8261 ] 
+5 TARGET  POSITION XYZ = [ -2.0598 ,  0.2812 , -1.8259 ] 
+5 CURRENT POSITION XYZ = [ -2.0381 ,  0.3734 , -1.8614 ] 
+6 TARGET  POSITION XYZ = [ -2.0598 ,  0.2812 , -1.8259 ] 
+6 CURRENT POSITION XYZ = [ -2.0447 ,  0.3451 , -1.9039 ] 
+7 TARGET  POSITION XYZ = [ -2.0598 ,  0.2812 , -1.8259 ] 
+7 CURRENT POSITION XYZ = [ -2.0703 ,  0.3011 , -1.8315 ] 
+8 TARGET  POSITION XYZ = [ -2.0598 ,  0.2812 , -1.8259 ] 
+8 CURRENT POSITION XYZ = [ -2.1088 ,  0.2600 , -1.8824 ] 
+9 TARGET  POSITION XYZ = [ -2.0598 ,  0.2812 , -1.8259 ] 
+9 CURRENT POSITION XYZ = [ -2.1300 ,  0.1993 , -1.8215 ] 
+LOCAL FRAME POSITION SETPOINT XYZ = [ -2.0598 , 0.2812 , -0.8259 ] 
+
+
+
+-----si2_mission move downward 1m for 10 seconds------------
+0 TARGET  POSITION XYZ = [ -2.0598 ,  0.2812 , -1.8259 ] 
+0 CURRENT POSITION XYZ = [ -2.1089 ,  0.1645 , -1.8132 ] 
+1 TARGET  POSITION XYZ = [ -2.0598 ,  0.2812 , -1.8259 ] 
+1 CURRENT POSITION XYZ = [ -2.1059 ,  0.1733 , -1.5874 ] 
+2 TARGET  POSITION XYZ = [ -2.0598 ,  0.2812 , -1.8259 ] 
+2 CURRENT POSITION XYZ = [ -2.1754 ,  0.2001 , -0.9748 ] 
+3 TARGET  POSITION XYZ = [ -2.0598 ,  0.2812 , -1.8259 ] 
+3 CURRENT POSITION XYZ = [ -2.0458 ,  0.3395 , -0.8430 ] 
+4 TARGET  POSITION XYZ = [ -2.0598 ,  0.2812 , -0.8259 ] 
+4 CURRENT POSITION XYZ = [ -2.0342 ,  0.3294 , -0.8468 ] 
+5 TARGET  POSITION XYZ = [ -2.0598 ,  0.2812 , -0.8259 ] 
+5 CURRENT POSITION XYZ = [ -2.0589 ,  0.2821 , -0.8669 ] 
+6 TARGET  POSITION XYZ = [ -2.0598 ,  0.2812 , -0.8259 ] 
+6 CURRENT POSITION XYZ = [ -2.0764 ,  0.2048 , -0.8833 ] 
+7 TARGET  POSITION XYZ = [ -2.0598 ,  0.2812 , -0.8259 ] 
+7 CURRENT POSITION XYZ = [ -2.0918 ,  0.1957 , -0.8670 ] 
+8 TARGET  POSITION XYZ = [ -2.0598 ,  0.2812 , -0.8259 ] 
+8 CURRENT POSITION XYZ = [ -2.1099 ,  0.2420 , -0.7968 ] 
+9 TARGET  POSITION XYZ = [ -2.0598 ,  0.2812 , -0.8259 ] 
+9 CURRENT POSITION XYZ = [ -2.1417 ,  0.2279 , -0.8124 ] 
+
+DISABLE OFFBOARD MODE
+
+READ SOME MESSAGES 
+Got message LOCAL_POSITION_NED (spec: https://pixhawk.ethz.ch/mavlink/#LOCAL_POSITION_NED)
+    pos  (NED):  -2.158731 0.198917 -0.803661 (m)
+Got message HIGHRES_IMU (spec: https://pixhawk.ethz.ch/mavlink/#HIGHRES_IMU)
+    ap time:     638007755 
+    acc  (NED):   0.584891  2.075731 -7.951590 (m/s^2)
+    gyro (NED):   0.672705  0.167027 -0.156904 (rad/s)
+    mag  (NED):  -0.323082  0.092748  0.245701 (Ga)
+    baro:        0.000000 (mBar) 
+    altitude:    63.707638 (m) 
+    temperature: 34.969997 C 
+
+CLOSE THREADS
+
+CLOSE PORT
+
+pi@raspberrypi ~/UART_OUT/c_uart_interface_weiting/0221_Test $ cd ..
+pi@raspberrypi ~/UART_OUT/c_uart_interface_weiting $ ls
+0221_Test  BODY_NED_CURRENTPOS_OFFSET  Weiting                  autopilot_interface.h  mavlink              mavlink_control.h  serial_port.h
+BODY_NED   LOCAL_NED                   autopilot_interface.cpp  makefile               mavlink_control.cpp  serial_port.cpp
+pi@raspberrypi ~/UART_OUT/c_uart_interface_weiting $ cd ..
+pi@raspberrypi ~/UART_OUT $ ls
+Local_Pos_NED_TEST        c_uart_interface_set_att            local_update.sh             mavlink_hfile       setpos_01                uart_exe.cpp
+Parameter                 c_uart_interface_set_att (copy.txt  makefile                    mavlink_types.h     setpos_0215              uart_exe.out
+RPI_CONFIG_SI2            c_uart_interface_weiting            mavlink                     mmap_mechanism.cpp  setpos_0215_outside
+Stable1                   code_log                            mavlink_control_pos_square  msgid_fetching.out  share_mem_test_read.cpp
+Stable_alt_set_0217       editor_serial_port.cpp              mavlink_control_pos_x_1     serial_port.cpp     share_mem_test_read.out
+TEST                      fetch_id.txt                        mavlink_control_pos_y_1     serial_port.h       si2_uart_for_pi.c
+c_uart_interface_example  ipaddress                           mavlink_control_pos_z_1     serial_port.o       target_update.sh
+pi@raspberrypi ~/UART_OUT $ cd Local_Pos_NED_TEST/
+pi@raspberrypi ~/UART_OUT/Local_Pos_NED_TEST $ ls
+0221_Test  BODY_NED                    LOCAL_NED  autopilot_interface.cpp  makefile  mavlink_control.cpp  serial_port.cpp
+0222Test   BODY_NED_CURRENTPOS_OFFSET  Weiting    autopilot_interface.h    mavlink   mavlink_control.h    serial_port.h
+pi@raspberrypi ~/UART_OUT/Local_Pos_NED_TEST $ cd 022
+0221_Test/ 0222Test/  
+pi@raspberrypi ~/UART_OUT/Local_Pos_NED_TEST $ cd 0222Test/
+pi@raspberrypi ~/UART_OUT/Local_Pos_NED_TEST/0222Test $ ls
+Square_Move_BODY_INIT  Square_Move_LOCAL  autopilot_interface.cpp  mavlink_control.cpp
+pi@raspberrypi ~/UART_OUT/Local_Pos_NED_TEST/0222Test $ ./Square_Move_BODY_INIT 
+OPEN PORT
+Connected to /dev/ttyAMA0 with 57600 baud, 8 data bits, no parity, 1 stop bit (8N1)
+
+START READ THREAD 
+
+CHECK FOR MESSAGES
+Found
+
+GOT VEHICLE SYSTEM ID: 1
+GOT AUTOPILOT COMPONENT ID: 1
+
+INITIAL POSITION XYZ = [ 1.0915 , 0.1854 , -2.0652 ] 
+INITIAL POSITION YAW = -3.0809 
+
+START WRITE THREAD 
+----------------------In Body Frame------------------------------
+
+ENABLE OFFBOARD MODE
+
+SEND OFFBOARD COMMANDS
+write_thread_initialization_Waiting for 15 sec
+0 TARGET  POSITION XYZ = [  0.0000 ,  0.0000 ,  0.0000 ] 
+0 CURRENT POSITION XYZ = [  1.0915 ,  0.1854 , -2.0652 ] 
+write_thread_initialization_Waiting for 14 sec
+1 TARGET  POSITION XYZ = [  0.0000 ,  0.0000 ,  0.0000 ] 
+1 CURRENT POSITION XYZ = [  0.6921 ,  0.2189 , -1.8994 ] 
+write_thread_initialization_Waiting for 13 sec
+2 TARGET  POSITION XYZ = [  0.0000 ,  0.0000 ,  0.0000 ] 
+2 CURRENT POSITION XYZ = [  0.8257 ,  0.2646 , -1.8702 ] 
+write_thread_initialization_Waiting for 12 sec
+3 TARGET  POSITION XYZ = [  1.0915 ,  0.1854 , -2.0652 ] 
+3 CURRENT POSITION XYZ = [  1.0663 ,  0.2280 , -1.8678 ] 
+write_thread_initialization_Waiting for 11 sec
+4 TARGET  POSITION XYZ = [  1.0915 ,  0.1854 , -2.0652 ] 
+4 CURRENT POSITION XYZ = [  1.1154 ,  0.1638 , -1.8422 ] 
+write_thread_initialization_Waiting for 10 sec
+5 TARGET  POSITION XYZ = [  1.0915 ,  0.1854 , -2.0652 ] 
+5 CURRENT POSITION XYZ = [  1.1296 ,  0.0999 , -1.8996 ] 
+write_thread_initialization_Waiting for 9 sec
+6 TARGET  POSITION XYZ = [  1.0915 ,  0.1854 , -2.0652 ] 
+6 CURRENT POSITION XYZ = [  1.1208 ,  0.1392 , -1.9079 ] 
+write_thread_initialization_Waiting for 8 sec
+7 TARGET  POSITION XYZ = [  1.0915 ,  0.1854 , -2.0652 ] 
+7 CURRENT POSITION XYZ = [  1.0945 ,  0.1285 , -1.9356 ] 
+write_thread_initialization_Waiting for 7 sec
+8 TARGET  POSITION XYZ = [  1.0915 ,  0.1854 , -2.0652 ] 
+8 CURRENT POSITION XYZ = [  1.1018 ,  0.0844 , -1.9411 ] 
+write_thread_initialization_Waiting for 6 sec
+9 TARGET  POSITION XYZ = [  1.0915 ,  0.1854 , -2.0652 ] 
+9 CURRENT POSITION XYZ = [  1.1076 ,  0.0833 , -1.9328 ] 
+write_thread_initialization_Waiting for 5 sec
+10 TARGET  POSITION XYZ = [  1.0915 ,  0.1854 , -2.0652 ] 
+10 CURRENT POSITION XYZ = [  1.1008 ,  0.1772 , -1.9525 ] 
+write_thread_initialization_Waiting for 4 sec
+11 TARGET  POSITION XYZ = [  1.0915 ,  0.1854 , -2.0652 ] 
+11 CURRENT POSITION XYZ = [  1.0796 ,  0.2627 , -1.9787 ] 
+write_thread_initialization_Waiting for 3 sec
+12 TARGET  POSITION XYZ = [  1.0915 ,  0.1854 , -2.0652 ] 
+12 CURRENT POSITION XYZ = [  1.0920 ,  0.2668 , -1.9829 ] 
+write_thread_initialization_Waiting for 2 sec
+13 TARGET  POSITION XYZ = [  1.0915 ,  0.1854 , -2.0652 ] 
+13 CURRENT POSITION XYZ = [  1.1201 ,  0.2679 , -1.9426 ] 
+write_thread_initialization_Waiting for 1 sec
+14 TARGET  POSITION XYZ = [  1.0915 ,  0.1854 , -2.0652 ] 
+14 CURRENT POSITION XYZ = [  1.1729 ,  0.2153 , -1.9759 ] 
+BODY FRAME POSITION SETPOINT XYZ = [ 1.0915 , 0.1854 , -3.0652 ] 
+
+
+
+----------------------Command Upward 1m by set_position for 10sec----------------------
+0 TARGET  POSITION XYZ = [  1.0915 ,  0.1854 , -2.0652 ] 
+0 CURRENT POSITION XYZ = [  1.2011 ,  0.1917 , -1.9789 ] 
+1 TARGET  POSITION XYZ = [  1.0915 ,  0.1854 , -2.0652 ] 
+1 CURRENT POSITION XYZ = [  1.1620 ,  0.1640 , -2.2167 ] 
+2 TARGET  POSITION XYZ = [  1.0915 ,  0.1854 , -2.0652 ] 
+2 CURRENT POSITION XYZ = [  1.1150 ,  0.2500 , -2.8227 ] 
+3 TARGET  POSITION XYZ = [  1.0915 ,  0.1854 , -2.0652 ] 
+3 CURRENT POSITION XYZ = [  1.0980 ,  0.2904 , -2.9188 ] 
+4 TARGET  POSITION XYZ = [  1.0915 ,  0.1854 , -2.0652 ] 
+4 CURRENT POSITION XYZ = [  1.0979 ,  0.3140 , -3.0047 ] 
+5 TARGET  POSITION XYZ = [  1.0915 ,  0.1854 , -2.0652 ] 
+5 CURRENT POSITION XYZ = [  1.0853 ,  0.3296 , -3.0262 ] 
+6 TARGET  POSITION XYZ = [  1.0915 ,  0.1854 , -2.0652 ] 
+6 CURRENT POSITION XYZ = [  1.0957 ,  0.2746 , -3.0341 ] 
+7 TARGET  POSITION XYZ = [  1.0915 ,  0.1854 , -3.0652 ] 
+7 CURRENT POSITION XYZ = [  1.0933 ,  0.2395 , -3.0289 ] 
+8 TARGET  POSITION XYZ = [  1.0915 ,  0.1854 , -3.0652 ] 
+8 CURRENT POSITION XYZ = [  1.1127 ,  0.2107 , -2.9900 ] 
+9 TARGET  POSITION XYZ = [  1.0915 ,  0.1854 , -3.0652 ] 
+9 CURRENT POSITION XYZ = [  1.1035 ,  0.2226 , -3.0337 ] 
+
+
+
+----------------------si2_mission Hold this altitude for 5sec------------------
+BODY FRAME POSITION SETPOINT XYZ = [ 1.0915 , 0.1854 , -3.0652 ] 
+0 TARGET  POSITION XYZ = [  1.0915 ,  0.1854 , -3.0652 ] 
+0 CURRENT POSITION XYZ = [  1.0714 ,  0.2272 , -3.0461 ] 
+1 TARGET  POSITION XYZ = [  1.0915 ,  0.1854 , -3.0652 ] 
+1 CURRENT POSITION XYZ = [  1.0799 ,  0.2571 , -2.9854 ] 
+2 TARGET  POSITION XYZ = [  1.0915 ,  0.1854 , -3.0652 ] 
+2 CURRENT POSITION XYZ = [  1.0826 ,  0.2673 , -3.0601 ] 
+3 TARGET  POSITION XYZ = [  1.0915 ,  0.1854 , -3.0652 ] 
+3 CURRENT POSITION XYZ = [  1.0796 ,  0.2778 , -3.0018 ] 
+4 TARGET  POSITION XYZ = [  1.0915 ,  0.1854 , -3.0652 ] 
+4 CURRENT POSITION XYZ = [  1.0704 ,  0.2730 , -3.0194 ] 
+BODY FRAME POSITION SETPOINT XYZ = [ 2.0915 , 0.1854 , -3.0652 ] 
+
+
+
+-----si2_mission move Forward 1m for 10 seconds------------
+0 TARGET  POSITION XYZ = [  1.0915 ,  0.1854 , -3.0652 ] 
+0 CURRENT POSITION XYZ = [  1.0819 ,  0.2008 , -3.0391 ] 
+1 TARGET  POSITION XYZ = [  1.0915 ,  0.1854 , -3.0652 ] 
+1 CURRENT POSITION XYZ = [  1.2667 ,  0.1140 , -3.0400 ] 
+2 TARGET  POSITION XYZ = [  1.0915 ,  0.1854 , -3.0652 ] 
+2 CURRENT POSITION XYZ = [  1.8447 ,  0.0706 , -3.0302 ] 
+3 TARGET  POSITION XYZ = [  1.0915 ,  0.1854 , -3.0652 ] 
+3 CURRENT POSITION XYZ = [  2.1037 ,  0.0702 , -3.0609 ] 
+4 TARGET  POSITION XYZ = [  1.0915 ,  0.1854 , -3.0652 ] 
+4 CURRENT POSITION XYZ = [  2.2477 ,  0.0797 , -2.9983 ] 
+5 TARGET  POSITION XYZ = [  1.0915 ,  0.1854 , -3.0652 ] 
+5 CURRENT POSITION XYZ = [  2.2248 ,  0.0477 , -3.0635 ] 
+6 TARGET  POSITION XYZ = [  2.0915 ,  0.1854 , -3.0652 ] 
+6 CURRENT POSITION XYZ = [  2.1947 ,  0.0151 , -3.0174 ] 
+7 TARGET  POSITION XYZ = [  2.0915 ,  0.1854 , -3.0652 ] 
+7 CURRENT POSITION XYZ = [  2.1443 ,  0.1025 , -2.9651 ] 
+8 TARGET  POSITION XYZ = [  2.0915 ,  0.1854 , -3.0652 ] 
+8 CURRENT POSITION XYZ = [  2.1349 ,  0.1549 , -3.0128 ] 
+9 TARGET  POSITION XYZ = [  2.0915 ,  0.1854 , -3.0652 ] 
+9 CURRENT POSITION XYZ = [  2.1509 ,  0.2258 , -2.9944 ] 
+
+
+
+----------------------si2_mission Hold this altitude for 5sec------------------
+BODY FRAME POSITION SETPOINT XYZ = [ 2.0915 , 0.1854 , -3.0652 ] 
+0 TARGET  POSITION XYZ = [  2.0915 ,  0.1854 , -3.0652 ] 
+0 CURRENT POSITION XYZ = [  2.1368 ,  0.2161 , -3.0409 ] 
+1 TARGET  POSITION XYZ = [  2.0915 ,  0.1854 , -3.0652 ] 
+1 CURRENT POSITION XYZ = [  2.1441 ,  0.1875 , -3.0417 ] 
+2 TARGET  POSITION XYZ = [  2.0915 ,  0.1854 , -3.0652 ] 
+2 CURRENT POSITION XYZ = [  2.1455 ,  0.2184 , -3.0049 ] 
+3 TARGET  POSITION XYZ = [  2.0915 ,  0.1854 , -3.0652 ] 
+3 CURRENT POSITION XYZ = [  2.1275 ,  0.2775 , -3.0281 ] 
+4 TARGET  POSITION XYZ = [  2.0915 ,  0.1854 , -3.0652 ] 
+4 CURRENT POSITION XYZ = [  2.1376 ,  0.2996 , -3.0097 ] 
+
+
+
+
+----------------------si2_mission Turn Right for 10sec------------------
+BODY FRAME POSITION SETPOINT XYZ = [ 2.0915 , 1.1854 , -3.0652 ] 
+0 TARGET  POSITION XYZ = [  2.0915 ,  0.1854 , -3.0652 ] 
+0 CURRENT POSITION XYZ = [  2.1344 ,  0.2695 , -3.0248 ] 
+1 TARGET  POSITION XYZ = [  2.0915 ,  0.1854 , -3.0652 ] 
+1 CURRENT POSITION XYZ = [  2.1266 ,  0.4536 , -3.0358 ] 
+2 TARGET  POSITION XYZ = [  2.0915 ,  0.1854 , -3.0652 ] 
+2 CURRENT POSITION XYZ = [  2.0764 ,  0.9367 , -3.0716 ] 
+3 TARGET  POSITION XYZ = [  2.0915 ,  0.1854 , -3.0652 ] 
+3 CURRENT POSITION XYZ = [  2.0188 ,  1.3964 , -3.0702 ] 
+4 TARGET  POSITION XYZ = [  2.0915 ,  0.1854 , -3.0652 ] 
+4 CURRENT POSITION XYZ = [  2.0736 ,  1.4825 , -2.9789 ] 
+5 TARGET  POSITION XYZ = [  2.0915 ,  0.1854 , -3.0652 ] 
+5 CURRENT POSITION XYZ = [  2.1222 ,  1.3901 , -3.0019 ] 
+6 TARGET  POSITION XYZ = [  2.0915 ,  0.1854 , -3.0652 ] 
+6 CURRENT POSITION XYZ = [  2.1590 ,  1.2982 , -3.0018 ] 
+7 TARGET  POSITION XYZ = [  2.0915 ,  0.1854 , -3.0652 ] 
+7 CURRENT POSITION XYZ = [  2.1552 ,  1.2522 , -2.9792 ] 
+8 TARGET  POSITION XYZ = [  2.0915 ,  0.1854 , -3.0652 ] 
+8 CURRENT POSITION XYZ = [  2.1275 ,  1.2298 , -2.9519 ] 
+9 TARGET  POSITION XYZ = [  2.0915 ,  0.1854 , -3.0652 ] 
+9 CURRENT POSITION XYZ = [  2.0939 ,  1.2046 , -3.0023 ] 
+
+
+
+
+----------------------si2_mission Hold this altitude for 5sec------------------
+BODY FRAME POSITION SETPOINT XYZ = [ 2.0915 , 1.1854 , -3.0652 ] 
+0 TARGET  POSITION XYZ = [  2.0915 ,  0.1854 , -3.0652 ] 
+0 CURRENT POSITION XYZ = [  2.0737 ,  1.2179 , -3.0193 ] 
+1 TARGET  POSITION XYZ = [  2.0915 ,  1.1854 , -3.0652 ] 
+1 CURRENT POSITION XYZ = [  2.0733 ,  1.2418 , -3.0599 ] 
+2 TARGET  POSITION XYZ = [  2.0915 ,  1.1854 , -3.0652 ] 
+2 CURRENT POSITION XYZ = [  2.0785 ,  1.2451 , -3.0759 ] 
+3 TARGET  POSITION XYZ = [  2.0915 ,  1.1854 , -3.0652 ] 
+3 CURRENT POSITION XYZ = [  2.0809 ,  1.2253 , -3.0531 ] 
+4 TARGET  POSITION XYZ = [  2.0915 ,  1.1854 , -3.0652 ] 
+4 CURRENT POSITION XYZ = [  2.0974 ,  1.2199 , -3.0583 ] 
+
+
+
+
+----------------------si2_mission Move Backward for 10sec------------------
+BODY FRAME POSITION SETPOINT XYZ = [ 1.0915 , 1.1854 , -3.0652 ] 
+0 TARGET  POSITION XYZ = [  2.0915 ,  1.1854 , -3.0652 ] 
+0 CURRENT POSITION XYZ = [  2.1291 ,  1.2709 , -3.0816 ] 
+1 TARGET  POSITION XYZ = [  2.0915 ,  1.1854 , -3.0652 ] 
+1 CURRENT POSITION XYZ = [  1.9558 ,  1.2830 , -3.0721 ] 
+2 TARGET  POSITION XYZ = [  2.0915 ,  1.1854 , -3.0652 ] 
+2 CURRENT POSITION XYZ = [  1.3207 ,  1.2439 , -3.0489 ] 
+3 TARGET  POSITION XYZ = [  2.0915 ,  1.1854 , -3.0652 ] 
+3 CURRENT POSITION XYZ = [  1.0985 ,  1.2472 , -3.0284 ] 
+4 TARGET  POSITION XYZ = [  1.0915 ,  1.1854 , -3.0652 ] 
+4 CURRENT POSITION XYZ = [  1.0234 ,  1.2420 , -2.9634 ] 
+5 TARGET  POSITION XYZ = [  1.0915 ,  1.1854 , -3.0652 ] 
+5 CURRENT POSITION XYZ = [  1.0380 ,  1.2340 , -2.9647 ] 
+6 TARGET  POSITION XYZ = [  1.0915 ,  1.1854 , -3.0652 ] 
+6 CURRENT POSITION XYZ = [  1.0646 ,  1.2155 , -3.0463 ] 
+7 TARGET  POSITION XYZ = [  1.0915 ,  1.1854 , -3.0652 ] 
+7 CURRENT POSITION XYZ = [  1.0817 ,  1.2179 , -3.0400 ] 
+8 TARGET  POSITION XYZ = [  1.0915 ,  1.1854 , -3.0652 ] 
+8 CURRENT POSITION XYZ = [  1.1117 ,  1.2535 , -3.0041 ] 
+9 TARGET  POSITION XYZ = [  1.0915 ,  1.1854 , -3.0652 ] 
+9 CURRENT POSITION XYZ = [  1.1309 ,  1.2612 , -3.0265 ] 
+
+
+
+
+----------------------si2_mission Hold this altitude for 5sec------------------
+BODY FRAME POSITION SETPOINT XYZ = [ 1.0915 , 1.1854 , -3.0652 ] 
+0 TARGET  POSITION XYZ = [  1.0915 ,  1.1854 , -3.0652 ] 
+0 CURRENT POSITION XYZ = [  1.0983 ,  1.3211 , -3.0214 ] 
+1 TARGET  POSITION XYZ = [  1.0915 ,  1.1854 , -3.0652 ] 
+1 CURRENT POSITION XYZ = [  1.0755 ,  1.3965 , -3.0365 ] 
+2 TARGET  POSITION XYZ = [  1.0915 ,  1.1854 , -3.0652 ] 
+2 CURRENT POSITION XYZ = [  1.0775 ,  1.3958 , -3.0359 ] 
+3 TARGET  POSITION XYZ = [  1.0915 ,  1.1854 , -3.0652 ] 
+3 CURRENT POSITION XYZ = [  1.0641 ,  1.3650 , -2.9896 ] 
+4 TARGET  POSITION XYZ = [  1.0915 ,  1.1854 , -3.0652 ] 
+4 CURRENT POSITION XYZ = [  1.0664 ,  1.3150 , -3.0255 ] 
+
+
+
+
+----------------------si2_mission Turn Left for 10sec------------------
+BODY FRAME POSITION SETPOINT XYZ = [ 1.0915 , 0.1854 , -3.0652 ] 
+0 TARGET  POSITION XYZ = [  1.0915 ,  1.1854 , -3.0652 ] 
+0 CURRENT POSITION XYZ = [  1.0548 ,  1.2645 , -3.0367 ] 
+1 TARGET  POSITION XYZ = [  1.0915 ,  1.1854 , -3.0652 ] 
+1 CURRENT POSITION XYZ = [  1.0530 ,  1.0349 , -3.0449 ] 
+2 TARGET  POSITION XYZ = [  1.0915 ,  0.1854 , -3.0652 ] 
+2 CURRENT POSITION XYZ = [  1.1308 ,  0.3247 , -3.0460 ] 
+3 TARGET  POSITION XYZ = [  1.0915 ,  0.1854 , -3.0652 ] 
+3 CURRENT POSITION XYZ = [  1.1391 , -0.0186 , -3.0202 ] 
+4 TARGET  POSITION XYZ = [  1.0915 ,  0.1854 , -3.0652 ] 
+4 CURRENT POSITION XYZ = [  1.0948 , -0.1076 , -3.0739 ] 
+5 TARGET  POSITION XYZ = [  1.0915 ,  0.1854 , -3.0652 ] 
+5 CURRENT POSITION XYZ = [  1.0926 , -0.0664 , -3.0785 ] 
+6 TARGET  POSITION XYZ = [  1.0915 ,  0.1854 , -3.0652 ] 
+6 CURRENT POSITION XYZ = [  1.0933 , -0.0035 , -3.0802 ] 
+7 TARGET  POSITION XYZ = [  1.0915 ,  0.1854 , -3.0652 ] 
+7 CURRENT POSITION XYZ = [  1.0938 ,  0.0290 , -3.0809 ] 
+8 TARGET  POSITION XYZ = [  1.0915 ,  0.1854 , -3.0652 ] 
+8 CURRENT POSITION XYZ = [  1.1041 ,  0.0725 , -3.0271 ] 
+9 TARGET  POSITION XYZ = [  1.0915 ,  0.1854 , -3.0652 ] 
+9 CURRENT POSITION XYZ = [  1.1253 ,  0.1203 , -3.0719 ] 
+
+
+
+
+----------------------si2_mission Move Downward for 10sec------------------
+BODY FRAME POSITION SETPOINT XYZ = [ 1.0915 , 0.1854 , -2.0652 ] 
+0 TARGET  POSITION XYZ = [  1.0915 ,  0.1854 , -3.0652 ] 
+0 CURRENT POSITION XYZ = [  1.1263 ,  0.1946 , -3.0518 ] 
+1 TARGET  POSITION XYZ = [  1.0915 ,  0.1854 , -3.0652 ] 
+1 CURRENT POSITION XYZ = [  1.0933 ,  0.2273 , -2.7610 ] 
+2 TARGET  POSITION XYZ = [  1.0915 ,  0.1854 , -3.0652 ] 
+2 CURRENT POSITION XYZ = [  0.9529 ,  0.3098 , -2.1577 ] 
+3 TARGET  POSITION XYZ = [  1.0915 ,  0.1854 , -3.0652 ] 
+3 CURRENT POSITION XYZ = [  0.9633 ,  0.3633 , -2.0798 ] 
+4 TARGET  POSITION XYZ = [  1.0915 ,  0.1854 , -3.0652 ] 
+4 CURRENT POSITION XYZ = [  1.0467 ,  0.3749 , -2.1092 ] 
+5 TARGET  POSITION XYZ = [  1.0915 ,  0.1854 , -3.0652 ] 
+5 CURRENT POSITION XYZ = [  1.1009 ,  0.3722 , -2.0892 ] 
+6 TARGET  POSITION XYZ = [  1.0915 ,  0.1854 , -3.0652 ] 
+6 CURRENT POSITION XYZ = [  1.1033 ,  0.3268 , -2.1032 ] 
+7 TARGET  POSITION XYZ = [  1.0915 ,  0.1854 , -3.0652 ] 
+7 CURRENT POSITION XYZ = [  1.0655 ,  0.2992 , -2.0712 ] 
+8 TARGET  POSITION XYZ = [  1.0915 ,  0.1854 , -3.0652 ] 
+8 CURRENT POSITION XYZ = [  1.0236 ,  0.3270 , -2.0490 ] 
+9 TARGET  POSITION XYZ = [  1.0915 ,  0.1854 , -3.0652 ] 
+9 CURRENT POSITION XYZ = [  1.0348 ,  0.2699 , -2.0111 ] 
+
+DISABLE OFFBOARD MODE
+
+READ SOME MESSAGES 
+Got message LOCAL_POSITION_NED (spec: https://pixhawk.ethz.ch/mavlink/#LOCAL_POSITION_NED)
+    pos  (NED):  1.072701 0.171056 -2.022666 (m)
+Got message HIGHRES_IMU (spec: https://pixhawk.ethz.ch/mavlink/#HIGHRES_IMU)
+    ap time:     895442141 
+    acc  (NED):   1.446398 -5.624941 -11.078116 (m/s^2)
+    gyro (NED):  -2.060898 -0.102364  0.248067 (rad/s)
+    mag  (NED):  -0.342620  0.039056  0.279502 (Ga)
+    baro:        0.000000 (mBar) 
+    altitude:    65.550354 (m) 
+    temperature: 36.070000 C 
+
+CLOSE THREADS
+
+CLOSE PORT
+
+pi@raspberrypi ~/UART_OUT/Local_Pos_NED_TEST/0222Test $ ././Square_Move_
+-bash: ././Square_Move_: No such file or directory
+pi@raspberrypi ~/UART_OUT/Local_Pos_NED_TEST/0222Test $ 
+pi@raspberrypi ~/UART_OUT/Local_Pos_NED_TEST/0222Test $ 
+pi@raspberrypi ~/UART_OUT/Local_Pos_NED_TEST/0222Test $ ./Square_Move_LOCAL 
+autopilot_interface.cpp  mavlink_control.cpp      Square_Move_BODY_INIT    Square_Move_LOCAL        
+pi@raspberrypi ~/UART_OUT/Local_Pos_NED_TEST/0222Test $ ./Square_Move_LOCAL 
+OPEN PORT
+Connected to /dev/ttyAMA0 with 57600 baud, 8 data bits, no parity, 1 stop bit (8N1)
+
+START READ THREAD 
+
+CHECK FOR MESSAGES
+Found
+
+GOT VEHICLE SYSTEM ID: 1
+GOT AUTOPILOT COMPONENT ID: 1
+
+INITIAL POSITION XYZ = [ -2.9986 , -0.8009 , -1.7423 ] 
+INITIAL POSITION YAW = -1.3182 
+
+START WRITE THREAD 
+----------------------In Local Frame------------------------------
+
+ENABLE OFFBOARD MODE
+
+SEND OFFBOARD COMMANDS
+write_thread_initialization_Waiting for 15 sec
+0 TARGET  POSITION XYZ = [  0.0000 ,  0.0000 ,  0.0000 ] 
+0 CURRENT POSITION XYZ = [ -2.9971 , -0.8220 , -1.7436 ] 
+write_thread_initialization_Waiting for 14 sec
+1 TARGET  POSITION XYZ = [  0.0000 ,  0.0000 ,  0.0000 ] 
+1 CURRENT POSITION XYZ = [ -2.6094 , -0.8146 , -1.7860 ] 
+write_thread_initialization_Waiting for 13 sec
+2 TARGET  POSITION XYZ = [ -2.9986 , -0.8009 , -1.7423 ] 
+2 CURRENT POSITION XYZ = [ -2.7348 , -0.8345 , -1.6354 ] 
+write_thread_initialization_Waiting for 12 sec
+3 TARGET  POSITION XYZ = [ -2.9986 , -0.8009 , -1.7423 ] 
+3 CURRENT POSITION XYZ = [ -2.8686 , -0.8324 , -1.5769 ] 
+write_thread_initialization_Waiting for 11 sec
+4 TARGET  POSITION XYZ = [ -2.9986 , -0.8009 , -1.7423 ] 
+4 CURRENT POSITION XYZ = [ -2.8577 , -0.8165 , -1.5632 ] 
+write_thread_initialization_Waiting for 10 sec
+5 TARGET  POSITION XYZ = [ -2.9986 , -0.8009 , -1.7423 ] 
+5 CURRENT POSITION XYZ = [ -2.8492 , -0.8128 , -1.5379 ] 
+write_thread_initialization_Waiting for 9 sec
+6 TARGET  POSITION XYZ = [ -2.9986 , -0.8009 , -1.7423 ] 
+6 CURRENT POSITION XYZ = [ -2.9004 , -0.8167 , -1.5292 ] 
+write_thread_initialization_Waiting for 8 sec
+7 TARGET  POSITION XYZ = [ -2.9986 , -0.8009 , -1.7423 ] 
+7 CURRENT POSITION XYZ = [ -2.9685 , -0.7838 , -1.5418 ] 
+write_thread_initialization_Waiting for 7 sec
+8 TARGET  POSITION XYZ = [ -2.9986 , -0.8009 , -1.7423 ] 
+8 CURRENT POSITION XYZ = [ -2.8675 , -0.7450 , -1.5365 ] 
+write_thread_initialization_Waiting for 6 sec
+9 TARGET  POSITION XYZ = [ -2.9986 , -0.8009 , -1.7423 ] 
+9 CURRENT POSITION XYZ = [ -2.7916 , -0.7231 , -1.6220 ] 
+write_thread_initialization_Waiting for 5 sec
+10 TARGET  POSITION XYZ = [ -2.9986 , -0.8009 , -1.7423 ] 
+10 CURRENT POSITION XYZ = [ -2.7519 , -0.7290 , -1.6337 ] 
+write_thread_initialization_Waiting for 4 sec
+11 TARGET  POSITION XYZ = [ -2.9986 , -0.8009 , -1.7423 ] 
+11 CURRENT POSITION XYZ = [ -2.7101 , -0.7169 , -1.5927 ] 
+write_thread_initialization_Waiting for 3 sec
+12 TARGET  POSITION XYZ = [ -2.9986 , -0.8009 , -1.7423 ] 
+12 CURRENT POSITION XYZ = [ -2.7360 , -0.7266 , -1.6286 ] 
+write_thread_initialization_Waiting for 2 sec
+13 TARGET  POSITION XYZ = [ -2.9986 , -0.8009 , -1.7423 ] 
+13 CURRENT POSITION XYZ = [ -2.7023 , -0.7145 , -1.6375 ] 
+write_thread_initialization_Waiting for 1 sec
+14 TARGET  POSITION XYZ = [ -2.9986 , -0.8009 , -1.7423 ] 
+14 CURRENT POSITION XYZ = [ -2.6723 , -0.7245 , -1.6737 ] 
+LOCAL FRAME POSITION SETPOINT XYZ = [ -2.9986 , -0.8009 , -2.7423 ] 
+
+
+
+----------------------Command Upward 1m by set_position for 10sec----------------------
+0 TARGET  POSITION XYZ = [ -2.9986 , -0.8009 , -1.7423 ] 
+0 CURRENT POSITION XYZ = [ -2.7126 , -0.7289 , -1.6380 ] 
+1 TARGET  POSITION XYZ = [ -2.9986 , -0.8009 , -1.7423 ] 
+1 CURRENT POSITION XYZ = [ -2.7407 , -0.7345 , -2.0043 ] 
+2 TARGET  POSITION XYZ = [ -2.9986 , -0.8009 , -1.7423 ] 
+2 CURRENT POSITION XYZ = [ -2.8865 , -0.7497 , -2.5034 ] 
+3 TARGET  POSITION XYZ = [ -2.9986 , -0.8009 , -1.7423 ] 
+3 CURRENT POSITION XYZ = [ -3.1691 , -0.7670 , -2.6283 ] 
+4 TARGET  POSITION XYZ = [ -2.9986 , -0.8009 , -1.7423 ] 
+4 CURRENT POSITION XYZ = [ -3.2559 , -0.7478 , -2.7081 ] 
+5 TARGET  POSITION XYZ = [ -2.9986 , -0.8009 , -1.7423 ] 
+5 CURRENT POSITION XYZ = [ -3.2698 , -0.7395 , -2.7390 ] 
+6 TARGET  POSITION XYZ = [ -2.9986 , -0.8009 , -1.7423 ] 
+6 CURRENT POSITION XYZ = [ -3.2517 , -0.7189 , -2.6728 ] 
+7 TARGET  POSITION XYZ = [ -2.9986 , -0.8009 , -1.7423 ] 
+7 CURRENT POSITION XYZ = [ -3.1903 , -0.6778 , -2.6980 ] 
+8 TARGET  POSITION XYZ = [ -2.9986 , -0.8009 , -1.7423 ] 
+8 CURRENT POSITION XYZ = [ -3.0953 , -0.6602 , -2.6464 ] 
+9 TARGET  POSITION XYZ = [ -2.9986 , -0.8009 , -2.7423 ] 
+9 CURRENT POSITION XYZ = [ -2.9951 , -0.6725 , -2.6711 ] 
+
+
+
+----------------------si2_mission Hold this altitude for 5sec------------------
+LOCAL FRAME POSITION SETPOINT XYZ = [ -2.9986 , -0.8009 , -2.7423 ] 
+0 TARGET  POSITION XYZ = [ -2.9986 , -0.8009 , -2.7423 ] 
+0 CURRENT POSITION XYZ = [ -3.0500 , -0.7569 , -2.7387 ] 
+1 TARGET  POSITION XYZ = [ -2.9986 , -0.8009 , -2.7423 ] 
+1 CURRENT POSITION XYZ = [ -3.0702 , -0.8148 , -2.7902 ] 
+2 TARGET  POSITION XYZ = [ -2.9986 , -0.8009 , -2.7423 ] 
+2 CURRENT POSITION XYZ = [ -3.0356 , -0.7966 , -2.7281 ] 
+3 TARGET  POSITION XYZ = [ -2.9986 , -0.8009 , -2.7423 ] 
+3 CURRENT POSITION XYZ = [ -3.0377 , -0.7634 , -2.7372 ] 
+4 TARGET  POSITION XYZ = [ -2.9986 , -0.8009 , -2.7423 ] 
+4 CURRENT POSITION XYZ = [ -3.0171 , -0.7041 , -2.7831 ] 
+LOCAL FRAME POSITION SETPOINT XYZ = [ -1.9986 , -0.8009 , -2.7423 ] 
+
+
+
+-----si2_mission move Forward 1m for 10 seconds------------
+0 TARGET  POSITION XYZ = [ -2.9986 , -0.8009 , -2.7423 ] 
+0 CURRENT POSITION XYZ = [ -3.0345 , -0.6493 , -2.7761 ] 
+1 TARGET  POSITION XYZ = [ -2.9986 , -0.8009 , -2.7423 ] 
+1 CURRENT POSITION XYZ = [ -2.8417 , -0.6423 , -2.8094 ] 
+2 TARGET  POSITION XYZ = [ -1.9986 , -0.8009 , -2.7423 ] 
+2 CURRENT POSITION XYZ = [ -2.2953 , -0.6596 , -2.7899 ] 
+3 TARGET  POSITION XYZ = [ -1.9986 , -0.8009 , -2.7423 ] 
+3 CURRENT POSITION XYZ = [ -2.0403 , -0.7125 , -2.7938 ] 
+4 TARGET  POSITION XYZ = [ -1.9986 , -0.8009 , -2.7423 ] 
+4 CURRENT POSITION XYZ = [ -1.9448 , -0.7854 , -2.8210 ] 
+5 TARGET  POSITION XYZ = [ -1.9986 , -0.8009 , -2.7423 ] 
+5 CURRENT POSITION XYZ = [ -1.9559 , -0.8342 , -2.7547 ] 
+6 TARGET  POSITION XYZ = [ -1.9986 , -0.8009 , -2.7423 ] 
+6 CURRENT POSITION XYZ = [ -1.9387 , -0.8575 , -2.7220 ] 
+7 TARGET  POSITION XYZ = [ -1.9986 , -0.8009 , -2.7423 ] 
+7 CURRENT POSITION XYZ = [ -1.9132 , -0.8346 , -2.7104 ] 
+8 TARGET  POSITION XYZ = [ -1.9986 , -0.8009 , -2.7423 ] 
+8 CURRENT POSITION XYZ = [ -1.9071 , -0.7792 , -2.7250 ] 
+9 TARGET  POSITION XYZ = [ -1.9986 , -0.8009 , -2.7423 ] 
+9 CURRENT POSITION XYZ = [ -1.9190 , -0.7348 , -2.7028 ] 
+
+
+
+----------------------si2_mission Hold this altitude for 5sec------------------
+LOCAL FRAME POSITION SETPOINT XYZ = [ -1.9986 , -0.8009 , -2.7423 ] 
+0 TARGET  POSITION XYZ = [ -1.9986 , -0.8009 , -2.7423 ] 
+0 CURRENT POSITION XYZ = [ -1.8746 , -0.6728 , -2.6927 ] 
+1 TARGET  POSITION XYZ = [ -1.9986 , -0.8009 , -2.7423 ] 
+1 CURRENT POSITION XYZ = [ -1.8656 , -0.6526 , -2.6636 ] 
+2 TARGET  POSITION XYZ = [ -1.9986 , -0.8009 , -2.7423 ] 
+2 CURRENT POSITION XYZ = [ -1.8332 , -0.6633 , -2.6636 ] 
+3 TARGET  POSITION XYZ = [ -1.9986 , -0.8009 , -2.7423 ] 
+3 CURRENT POSITION XYZ = [ -1.8374 , -0.6689 , -2.6551 ] 
+4 TARGET  POSITION XYZ = [ -1.9986 , -0.8009 , -2.7423 ] 
+4 CURRENT POSITION XYZ = [ -1.8679 , -0.7129 , -2.6272 ] 
+
+
+
+
+----------------------si2_mission Turn Right for 10sec------------------
+LOCAL FRAME POSITION SETPOINT XYZ = [ -1.9986 , 0.1991 , -2.7423 ] 
+0 TARGET  POSITION XYZ = [ -1.9986 , -0.8009 , -2.7423 ] 
+0 CURRENT POSITION XYZ = [ -1.9201 , -0.7269 , -2.6654 ] 
+1 TARGET  POSITION XYZ = [ -1.9986 , -0.8009 , -2.7423 ] 
+1 CURRENT POSITION XYZ = [ -2.0138 , -0.4652 , -2.7581 ] 
+2 TARGET  POSITION XYZ = [ -1.9986 , -0.8009 , -2.7423 ] 
+2 CURRENT POSITION XYZ = [ -2.2013 ,  0.0219 , -2.7454 ] 
+3 TARGET  POSITION XYZ = [ -1.9986 , -0.8009 , -2.7423 ] 
+3 CURRENT POSITION XYZ = [ -2.4681 ,  0.2704 , -2.7487 ] 
+4 TARGET  POSITION XYZ = [ -1.9986 , -0.8009 , -2.7423 ] 
+4 CURRENT POSITION XYZ = [ -2.4710 ,  0.2763 , -2.7922 ] 
+5 TARGET  POSITION XYZ = [ -1.9986 , -0.8009 , -2.7423 ] 
+5 CURRENT POSITION XYZ = [ -2.3830 ,  0.2377 , -2.8464 ] 
+6 TARGET  POSITION XYZ = [ -1.9986 , -0.8009 , -2.7423 ] 
+6 CURRENT POSITION XYZ = [ -2.2633 ,  0.2109 , -2.8386 ] 
+7 TARGET  POSITION XYZ = [ -1.9986 , -0.8009 , -2.7423 ] 
+7 CURRENT POSITION XYZ = [ -2.1221 ,  0.2112 , -2.8395 ] 
+8 TARGET  POSITION XYZ = [ -1.9986 , -0.8009 , -2.7423 ] 
+8 CURRENT POSITION XYZ = [ -2.0990 ,  0.1899 , -2.8009 ] 
+9 TARGET  POSITION XYZ = [ -1.9986 , -0.8009 , -2.7423 ] 
+9 CURRENT POSITION XYZ = [ -2.1133 ,  0.1912 , -2.7833 ] 
+
+
+
+
+----------------------si2_mission Hold this altitude for 5sec------------------
+LOCAL FRAME POSITION SETPOINT XYZ = [ -1.9986 , 0.1991 , -2.7423 ] 
+0 TARGET  POSITION XYZ = [ -1.9986 ,  0.1991 , -2.7423 ] 
+0 CURRENT POSITION XYZ = [ -2.1002 ,  0.2470 , -2.8017 ] 
+1 TARGET  POSITION XYZ = [ -1.9986 ,  0.1991 , -2.7423 ] 
+1 CURRENT POSITION XYZ = [ -2.0952 ,  0.2815 , -2.7981 ] 
+2 TARGET  POSITION XYZ = [ -1.9986 ,  0.1991 , -2.7423 ] 
+2 CURRENT POSITION XYZ = [ -2.1730 ,  0.2396 , -2.7634 ] 
+3 TARGET  POSITION XYZ = [ -1.9986 ,  0.1991 , -2.7423 ] 
+3 CURRENT POSITION XYZ = [ -2.1353 ,  0.2057 , -2.7710 ] 
+4 TARGET  POSITION XYZ = [ -1.9986 ,  0.1991 , -2.7423 ] 
+4 CURRENT POSITION XYZ = [ -2.0624 ,  0.1791 , -2.7863 ] 
+
+
+
+
+----------------------si2_mission Move Backward for 10sec------------------
+LOCAL FRAME POSITION SETPOINT XYZ = [ -2.9986 , 0.1991 , -2.7423 ] 
+0 TARGET  POSITION XYZ = [ -1.9986 ,  0.1991 , -2.7423 ] 
+0 CURRENT POSITION XYZ = [ -2.0003 ,  0.1838 , -2.7661 ] 
+1 TARGET  POSITION XYZ = [ -1.9986 ,  0.1991 , -2.7423 ] 
+1 CURRENT POSITION XYZ = [ -2.1737 ,  0.2134 , -2.7739 ] 
+2 TARGET  POSITION XYZ = [ -1.9986 ,  0.1991 , -2.7423 ] 
+2 CURRENT POSITION XYZ = [ -2.7684 ,  0.1398 , -2.8169 ] 
+3 TARGET  POSITION XYZ = [ -1.9986 ,  0.1991 , -2.7423 ] 
+3 CURRENT POSITION XYZ = [ -3.0895 ,  0.1549 , -2.7707 ] 
+4 TARGET  POSITION XYZ = [ -1.9986 ,  0.1991 , -2.7423 ] 
+4 CURRENT POSITION XYZ = [ -3.1474 ,  0.2367 , -2.7137 ] 
+5 TARGET  POSITION XYZ = [ -1.9986 ,  0.1991 , -2.7423 ] 
+5 CURRENT POSITION XYZ = [ -3.1420 ,  0.2886 , -2.7483 ] 
+6 TARGET  POSITION XYZ = [ -1.9986 ,  0.1991 , -2.7423 ] 
+6 CURRENT POSITION XYZ = [ -3.1060 ,  0.3183 , -2.8217 ] 
+7 TARGET  POSITION XYZ = [ -1.9986 ,  0.1991 , -2.7423 ] 
+7 CURRENT POSITION XYZ = [ -3.0468 ,  0.3383 , -2.8614 ] 
+8 TARGET  POSITION XYZ = [ -1.9986 ,  0.1991 , -2.7423 ] 
+8 CURRENT POSITION XYZ = [ -2.9864 ,  0.2937 , -2.8493 ] 
+9 TARGET  POSITION XYZ = [ -1.9986 ,  0.1991 , -2.7423 ] 
+9 CURRENT POSITION XYZ = [ -2.9584 ,  0.2488 , -2.7883 ] 
+
+
+
+
+----------------------si2_mission Hold this altitude for 5sec------------------
+LOCAL FRAME POSITION SETPOINT XYZ = [ -2.9986 , 0.1991 , -2.7423 ] 
+0 TARGET  POSITION XYZ = [ -1.9986 ,  0.1991 , -2.7423 ] 
+0 CURRENT POSITION XYZ = [ -2.9917 ,  0.1965 , -2.7887 ] 
+1 TARGET  POSITION XYZ = [ -2.9986 ,  0.1991 , -2.7423 ] 
+1 CURRENT POSITION XYZ = [ -2.9931 ,  0.1424 , -2.8519 ] 
+2 TARGET  POSITION XYZ = [ -2.9986 ,  0.1991 , -2.7423 ] 
+2 CURRENT POSITION XYZ = [ -2.9756 ,  0.1354 , -2.7892 ] 
+3 TARGET  POSITION XYZ = [ -2.9986 ,  0.1991 , -2.7423 ] 
+3 CURRENT POSITION XYZ = [ -2.9416 ,  0.1734 , -2.8017 ] 
+4 TARGET  POSITION XYZ = [ -2.9986 ,  0.1991 , -2.7423 ] 
+4 CURRENT POSITION XYZ = [ -2.9643 ,  0.2180 , -2.8044 ] 
+
+
+
+
+----------------------si2_mission Turn Left for 10sec------------------
+LOCAL FRAME POSITION SETPOINT XYZ = [ -2.9986 , -0.8009 , -2.7423 ] 
+0 TARGET  POSITION XYZ = [ -2.9986 ,  0.1991 , -2.7423 ] 
+0 CURRENT POSITION XYZ = [ -2.9884 ,  0.2615 , -2.7725 ] 
+1 TARGET  POSITION XYZ = [ -2.9986 ,  0.1991 , -2.7423 ] 
+1 CURRENT POSITION XYZ = [ -2.9877 ,  0.1600 , -2.7162 ] 
+2 TARGET  POSITION XYZ = [ -2.9986 , -0.8009 , -2.7423 ] 
+2 CURRENT POSITION XYZ = [ -2.9462 , -0.3595 , -2.7953 ] 
+3 TARGET  POSITION XYZ = [ -2.9986 , -0.8009 , -2.7423 ] 
+3 CURRENT POSITION XYZ = [ -2.9735 , -0.7697 , -2.7780 ] 
+4 TARGET  POSITION XYZ = [ -2.9986 , -0.8009 , -2.7423 ] 
+4 CURRENT POSITION XYZ = [ -3.0306 , -0.9025 , -2.7185 ] 
+5 TARGET  POSITION XYZ = [ -2.9986 , -0.8009 , -2.7423 ] 
+5 CURRENT POSITION XYZ = [ -3.0273 , -0.8361 , -2.7271 ] 
+6 TARGET  POSITION XYZ = [ -2.9986 , -0.8009 , -2.7423 ] 
+6 CURRENT POSITION XYZ = [ -3.0466 , -0.7446 , -2.7305 ] 
+7 TARGET  POSITION XYZ = [ -2.9986 , -0.8009 , -2.7423 ] 
+7 CURRENT POSITION XYZ = [ -3.0941 , -0.6688 , -2.7556 ] 
+8 TARGET  POSITION XYZ = [ -2.9986 , -0.8009 , -2.7423 ] 
+8 CURRENT POSITION XYZ = [ -3.0789 , -0.5821 , -2.7515 ] 
+9 TARGET  POSITION XYZ = [ -2.9986 , -0.8009 , -2.7423 ] 
+9 CURRENT POSITION XYZ = [ -3.0056 , -0.6024 , -2.7747 ] 
+
+
+
+
+----------------------si2_mission Move Downward for 10sec------------------
+LOCAL FRAME POSITION SETPOINT XYZ = [ -2.9986 , -0.8009 , -1.7423 ] 
+0 TARGET  POSITION XYZ = [ -2.9986 , -0.8009 , -2.7423 ] 
+0 CURRENT POSITION XYZ = [ -3.0110 , -0.6864 , -2.7389 ] 
+1 TARGET  POSITION XYZ = [ -2.9986 , -0.8009 , -2.7423 ] 
+1 CURRENT POSITION XYZ = [ -3.0510 , -0.7525 , -2.2629 ] 
+2 TARGET  POSITION XYZ = [ -2.9986 , -0.8009 , -2.7423 ] 
+2 CURRENT POSITION XYZ = [ -3.0937 , -0.7871 , -1.8488 ] 
+3 TARGET  POSITION XYZ = [ -2.9986 , -0.8009 , -1.7423 ] 
+3 CURRENT POSITION XYZ = [ -2.9952 , -0.7565 , -1.7876 ] 
+4 TARGET  POSITION XYZ = [ -2.9986 , -0.8009 , -1.7423 ] 
+4 CURRENT POSITION XYZ = [ -2.9725 , -0.7484 , -1.7442 ] 
+5 TARGET  POSITION XYZ = [ -2.9986 , -0.8009 , -1.7423 ] 
+5 CURRENT POSITION XYZ = [ -2.9901 , -0.7645 , -1.7183 ] 
+6 TARGET  POSITION XYZ = [ -2.9986 , -0.8009 , -1.7423 ] 
+6 CURRENT POSITION XYZ = [ -2.9880 , -0.7662 , -1.6648 ] 
+7 TARGET  POSITION XYZ = [ -2.9986 , -0.8009 , -1.7423 ] 
+7 CURRENT POSITION XYZ = [ -2.9732 , -0.7601 , -1.7376 ] 
+8 TARGET  POSITION XYZ = [ -2.9986 , -0.8009 , -1.7423 ] 
+8 CURRENT POSITION XYZ = [ -2.9608 , -0.7411 , -1.7375 ] 
+9 TARGET  POSITION XYZ = [ -2.9986 , -0.8009 , -1.7423 ] 
+9 CURRENT POSITION XYZ = [ -2.8486 , -0.6898 , -1.6922 ] 
+
+DISABLE OFFBOARD MODE
+
+READ SOME MESSAGES 
+Got message LOCAL_POSITION_NED (spec: https://pixhawk.ethz.ch/mavlink/#LOCAL_POSITION_NED)
+    pos  (NED):  -2.720936 -0.669419 -1.704601 (m)
+Got message HIGHRES_IMU (spec: https://pixhawk.ethz.ch/mavlink/#HIGHRES_IMU)
+    ap time:     1220286141 
+    acc  (NED):   0.602183 -0.586079 -11.899751 (m/s^2)
+    gyro (NED):  -1.439531 -0.045873  0.136597 (rad/s)
+    mag  (NED):   0.153867  0.380848  0.234837 (Ga)
+    baro:        0.000000 (mBar) 
+    altitude:    65.215286 (m) 
+    temperature: 36.559998 C 
+
+CLOSE THREADS
+
+CLOSE PORT
+
+pi@raspberrypi ~/UART_OUT/Local_Pos_NED_TEST/0222Test $ ls
+Square_Move_BODY_INIT  Square_Move_LOCAL  autopilot_interface.cpp  mavlink_control.cpp
+pi@raspberrypi ~/UART_OUT/Local_Pos_NED_TEST/0222Test $ ./Square_Move_BODY_INIT 
+OPEN PORT
+Connected to /dev/ttyAMA0 with 57600 baud, 8 data bits, no parity, 1 stop bit (8N1)
+
+START READ THREAD 
+
+CHECK FOR MESSAGES
+Found
+
+GOT VEHICLE SYSTEM ID: 1
+GOT AUTOPILOT COMPONENT ID: 1
+
+INITIAL POSITION XYZ = [ 2.0947 , -2.3373 , -1.0328 ] 
+INITIAL POSITION YAW = -1.3819 
+
+START WRITE THREAD 
+----------------------In Body Frame------------------------------
+
+ENABLE OFFBOARD MODE
+
+SEND OFFBOARD COMMANDS
+write_thread_initialization_Waiting for 15 sec
+0 TARGET  POSITION XYZ = [  0.0000 ,  0.0000 ,  0.0000 ] 
+0 CURRENT POSITION XYZ = [  2.0947 , -2.3373 , -1.0328 ] 
+write_thread_initialization_Waiting for 14 sec
+1 TARGET  POSITION XYZ = [  0.0000 ,  0.0000 ,  0.0000 ] 
+1 CURRENT POSITION XYZ = [  1.6184 , -2.2454 , -1.0069 ] 
+write_thread_initialization_Waiting for 13 sec
+2 TARGET  POSITION XYZ = [  2.0947 , -2.3373 , -1.0328 ] 
+2 CURRENT POSITION XYZ = [  1.7134 , -2.2869 , -0.8859 ] 
+write_thread_initialization_Waiting for 12 sec
+3 TARGET  POSITION XYZ = [  2.0947 , -2.3373 , -1.0328 ] 
+3 CURRENT POSITION XYZ = [  1.8832 , -2.4023 , -0.8323 ] 
+write_thread_initialization_Waiting for 11 sec
+4 TARGET  POSITION XYZ = [  2.0947 , -2.3373 , -1.0328 ] 
+4 CURRENT POSITION XYZ = [  2.0015 , -2.4975 , -0.8401 ] 
+write_thread_initialization_Waiting for 10 sec
+5 TARGET  POSITION XYZ = [  2.0947 , -2.3373 , -1.0328 ] 
+5 CURRENT POSITION XYZ = [  2.1069 , -2.5328 , -0.8476 ] 
+write_thread_initialization_Waiting for 9 sec
+6 TARGET  POSITION XYZ = [  2.0947 , -2.3373 , -1.0328 ] 
+6 CURRENT POSITION XYZ = [  2.1404 , -2.5143 , -0.8522 ] 
+write_thread_initialization_Waiting for 8 sec
+7 TARGET  POSITION XYZ = [  2.0947 , -2.3373 , -1.0328 ] 
+7 CURRENT POSITION XYZ = [  2.1190 , -2.5073 , -0.8597 ] 
+write_thread_initialization_Waiting for 7 sec
+8 TARGET  POSITION XYZ = [  2.0947 , -2.3373 , -1.0328 ] 
+8 CURRENT POSITION XYZ = [  2.0522 , -2.4841 , -0.8485 ] 
+write_thread_initialization_Waiting for 6 sec
+9 TARGET  POSITION XYZ = [  2.0947 , -2.3373 , -1.0328 ] 
+9 CURRENT POSITION XYZ = [  2.0066 , -2.4296 , -0.8596 ] 
+write_thread_initialization_Waiting for 5 sec
+10 TARGET  POSITION XYZ = [  2.0947 , -2.3373 , -1.0328 ] 
+10 CURRENT POSITION XYZ = [  2.0506 , -2.3458 , -0.9145 ] 
+write_thread_initialization_Waiting for 4 sec
+11 TARGET  POSITION XYZ = [  2.0947 , -2.3373 , -1.0328 ] 
+11 CURRENT POSITION XYZ = [  2.0787 , -2.3306 , -0.9514 ] 
+write_thread_initialization_Waiting for 3 sec
+12 TARGET  POSITION XYZ = [  2.0947 , -2.3373 , -1.0328 ] 
+12 CURRENT POSITION XYZ = [  2.0226 , -2.3233 , -0.9346 ] 
+write_thread_initialization_Waiting for 2 sec
+13 TARGET  POSITION XYZ = [  2.0947 , -2.3373 , -1.0328 ] 
+13 CURRENT POSITION XYZ = [  1.9977 , -2.2887 , -0.9453 ] 
+write_thread_initialization_Waiting for 1 sec
+14 TARGET  POSITION XYZ = [  2.0947 , -2.3373 , -1.0328 ] 
+14 CURRENT POSITION XYZ = [  2.0560 , -2.2913 , -0.9892 ] 
+BODY FRAME POSITION SETPOINT XYZ = [ 2.0947 , -2.3373 , -2.0328 ] 
+
+
+
+----------------------Command Upward 1m by set_position for 10sec----------------------
+0 TARGET  POSITION XYZ = [  2.0947 , -2.3373 , -1.0328 ] 
+0 CURRENT POSITION XYZ = [  2.1109 , -2.3135 , -0.9899 ] 
+1 TARGET  POSITION XYZ = [  2.0947 , -2.3373 , -1.0328 ] 
+1 CURRENT POSITION XYZ = [  2.0532 , -2.2879 , -1.4002 ] 
+2 TARGET  POSITION XYZ = [  2.0947 , -2.3373 , -2.0328 ] 
+2 CURRENT POSITION XYZ = [  2.0706 , -2.2755 , -1.8207 ] 
+3 TARGET  POSITION XYZ = [  2.0947 , -2.3373 , -2.0328 ] 
+3 CURRENT POSITION XYZ = [  2.1463 , -2.3471 , -1.9491 ] 
+4 TARGET  POSITION XYZ = [  2.0947 , -2.3373 , -2.0328 ] 
+4 CURRENT POSITION XYZ = [  2.1348 , -2.4075 , -2.0140 ] 
+5 TARGET  POSITION XYZ = [  2.0947 , -2.3373 , -2.0328 ] 
+5 CURRENT POSITION XYZ = [  2.0664 , -2.3907 , -2.0120 ] 
+6 TARGET  POSITION XYZ = [  2.0947 , -2.3373 , -2.0328 ] 
+6 CURRENT POSITION XYZ = [  2.0192 , -2.3533 , -2.0143 ] 
+7 TARGET  POSITION XYZ = [  2.0947 , -2.3373 , -2.0328 ] 
+7 CURRENT POSITION XYZ = [  2.0332 , -2.3628 , -2.0472 ] 
+8 TARGET  POSITION XYZ = [  2.0947 , -2.3373 , -2.0328 ] 
+8 CURRENT POSITION XYZ = [  2.0776 , -2.3720 , -2.0092 ] 
+9 TARGET  POSITION XYZ = [  2.0947 , -2.3373 , -2.0328 ] 
+9 CURRENT POSITION XYZ = [  2.0869 , -2.3456 , -2.0359 ] 
+
+
+
+----------------------si2_mission Hold this altitude for 5sec------------------
+BODY FRAME POSITION SETPOINT XYZ = [ 2.0947 , -2.3373 , -2.0328 ] 
+0 TARGET  POSITION XYZ = [  2.0947 , -2.3373 , -2.0328 ] 
+0 CURRENT POSITION XYZ = [  2.0504 , -2.3093 , -2.0536 ] 
+1 TARGET  POSITION XYZ = [  2.0947 , -2.3373 , -2.0328 ] 
+1 CURRENT POSITION XYZ = [  2.0358 , -2.2512 , -2.0504 ] 
+2 TARGET  POSITION XYZ = [  2.0947 , -2.3373 , -2.0328 ] 
+2 CURRENT POSITION XYZ = [  2.0932 , -2.2322 , -2.0094 ] 
+3 TARGET  POSITION XYZ = [  2.0947 , -2.3373 , -2.0328 ] 
+3 CURRENT POSITION XYZ = [  2.1970 , -2.2589 , -2.0174 ] 
+4 TARGET  POSITION XYZ = [  2.0947 , -2.3373 , -2.0328 ] 
+4 CURRENT POSITION XYZ = [  2.1808 , -2.3065 , -1.9813 ] 
+BODY FRAME POSITION SETPOINT XYZ = [ 3.0947 , -2.3373 , -2.0328 ] 
+
+
+
+-----si2_mission move Forward 1m for 10 seconds------------
+0 TARGET  POSITION XYZ = [  2.0947 , -2.3373 , -2.0328 ] 
+0 CURRENT POSITION XYZ = [  2.0638 , -2.3439 , -1.9734 ] 
+1 TARGET  POSITION XYZ = [  3.0947 , -2.3373 , -2.0328 ] 
+1 CURRENT POSITION XYZ = [  2.1251 , -2.3187 , -2.0264 ] 
+2 TARGET  POSITION XYZ = [  3.0947 , -2.3373 , -2.0328 ] 
+2 CURRENT POSITION XYZ = [  2.6715 , -2.3182 , -2.0564 ] 
+3 TARGET  POSITION XYZ = [  3.0947 , -2.3373 , -2.0328 ] 
+3 CURRENT POSITION XYZ = [  2.9447 , -2.3281 , -2.0597 ] 
+4 TARGET  POSITION XYZ = [  3.0947 , -2.3373 , -2.0328 ] 
+4 CURRENT POSITION XYZ = [  3.1139 , -2.3286 , -2.0153 ] 
+5 TARGET  POSITION XYZ = [  3.0947 , -2.3373 , -2.0328 ] 
+5 CURRENT POSITION XYZ = [  3.2142 , -2.3784 , -2.0347 ] 
+6 TARGET  POSITION XYZ = [  3.0947 , -2.3373 , -2.0328 ] 
+6 CURRENT POSITION XYZ = [  3.2330 , -2.3774 , -2.0236 ] 
+7 TARGET  POSITION XYZ = [  3.0947 , -2.3373 , -2.0328 ] 
+7 CURRENT POSITION XYZ = [  3.1926 , -2.3459 , -2.0214 ] 
+8 TARGET  POSITION XYZ = [  3.0947 , -2.3373 , -2.0328 ] 
+8 CURRENT POSITION XYZ = [  3.1325 , -2.3346 , -1.9755 ] 
+9 TARGET  POSITION XYZ = [  3.0947 , -2.3373 , -2.0328 ] 
+9 CURRENT POSITION XYZ = [  3.1189 , -2.3316 , -2.0351 ] 
+
+
+
+----------------------si2_mission Hold this altitude for 5sec------------------
+BODY FRAME POSITION SETPOINT XYZ = [ 3.0947 , -2.3373 , -2.0328 ] 
+0 TARGET  POSITION XYZ = [  3.0947 , -2.3373 , -2.0328 ] 
+0 CURRENT POSITION XYZ = [  3.0765 , -2.3489 , -1.9817 ] 
+1 TARGET  POSITION XYZ = [  3.0947 , -2.3373 , -2.0328 ] 
+1 CURRENT POSITION XYZ = [  3.0273 , -2.3654 , -2.0264 ] 
+2 TARGET  POSITION XYZ = [  3.0947 , -2.3373 , -2.0328 ] 
+2 CURRENT POSITION XYZ = [  3.0157 , -2.3399 , -2.0524 ] 
+3 TARGET  POSITION XYZ = [  3.0947 , -2.3373 , -2.0328 ] 
+3 CURRENT POSITION XYZ = [  2.9826 , -2.3413 , -2.0330 ] 
+4 TARGET  POSITION XYZ = [  3.0947 , -2.3373 , -2.0328 ] 
+4 CURRENT POSITION XYZ = [  2.9764 , -2.3260 , -2.0283 ] 
+
+
+
+
+----------------------si2_mission Turn Right for 10sec------------------
+BODY FRAME POSITION SETPOINT XYZ = [ 3.0947 , -1.3373 , -2.0328 ] 
+0 TARGET  POSITION XYZ = [  3.0947 , -2.3373 , -2.0328 ] 
+0 CURRENT POSITION XYZ = [  2.9987 , -2.3192 , -2.0363 ] 
+1 TARGET  POSITION XYZ = [  3.0947 , -2.3373 , -2.0328 ] 
+1 CURRENT POSITION XYZ = [  3.0006 , -2.1809 , -2.0388 ] 
+2 TARGET  POSITION XYZ = [  3.0947 , -2.3373 , -2.0328 ] 
+2 CURRENT POSITION XYZ = [  2.9842 , -1.5666 , -2.0429 ] 
+3 TARGET  POSITION XYZ = [  3.0947 , -2.3373 , -2.0328 ] 
+3 CURRENT POSITION XYZ = [  3.0234 , -1.2603 , -2.0768 ] 
+4 TARGET  POSITION XYZ = [  3.0947 , -2.3373 , -2.0328 ] 
+4 CURRENT POSITION XYZ = [  3.0786 , -1.2384 , -2.0713 ] 
+5 TARGET  POSITION XYZ = [  3.0947 , -1.3373 , -2.0328 ] 
+5 CURRENT POSITION XYZ = [  3.0730 , -1.3171 , -2.0367 ] 
+6 TARGET  POSITION XYZ = [  3.0947 , -1.3373 , -2.0328 ] 
+6 CURRENT POSITION XYZ = [  3.0855 , -1.3350 , -2.0448 ] 
+7 TARGET  POSITION XYZ = [  3.0947 , -1.3373 , -2.0328 ] 
+7 CURRENT POSITION XYZ = [  3.1099 , -1.3181 , -2.0698 ] 
+8 TARGET  POSITION XYZ = [  3.0947 , -1.3373 , -2.0328 ] 
+8 CURRENT POSITION XYZ = [  3.1077 , -1.2732 , -2.0847 ] 
+9 TARGET  POSITION XYZ = [  3.0947 , -1.3373 , -2.0328 ] 
+9 CURRENT POSITION XYZ = [  3.1245 , -1.2275 , -2.0693 ] 
+
+
+
+
+----------------------si2_mission Hold this altitude for 5sec------------------
+BODY FRAME POSITION SETPOINT XYZ = [ 3.0947 , -1.3373 , -2.0328 ] 
+0 TARGET  POSITION XYZ = [  3.0947 , -1.3373 , -2.0328 ] 
+0 CURRENT POSITION XYZ = [  3.1008 , -1.2417 , -2.0676 ] 
+1 TARGET  POSITION XYZ = [  3.0947 , -1.3373 , -2.0328 ] 
+1 CURRENT POSITION XYZ = [  3.1105 , -1.2846 , -2.0055 ] 
+2 TARGET  POSITION XYZ = [  3.0947 , -1.3373 , -2.0328 ] 
+2 CURRENT POSITION XYZ = [  3.1306 , -1.3310 , -2.0452 ] 
+3 TARGET  POSITION XYZ = [  3.0947 , -1.3373 , -2.0328 ] 
+3 CURRENT POSITION XYZ = [  3.1295 , -1.3513 , -2.0965 ] 
+4 TARGET  POSITION XYZ = [  3.0947 , -1.3373 , -2.0328 ] 
+4 CURRENT POSITION XYZ = [  3.1106 , -1.3203 , -2.0558 ] 
+
+
+
+
+----------------------si2_mission Move Backward for 10sec------------------
+BODY FRAME POSITION SETPOINT XYZ = [ 2.0947 , -1.3373 , -2.0328 ] 
+0 TARGET  POSITION XYZ = [  3.0947 , -1.3373 , -2.0328 ] 
+0 CURRENT POSITION XYZ = [  3.0822 , -1.2895 , -2.0622 ] 
+1 TARGET  POSITION XYZ = [  3.0947 , -1.3373 , -2.0328 ] 
+1 CURRENT POSITION XYZ = [  2.8481 , -1.2703 , -2.0784 ] 
+2 TARGET  POSITION XYZ = [  3.0947 , -1.3373 , -2.0328 ] 
+2 CURRENT POSITION XYZ = [  2.3030 , -1.3161 , -2.0410 ] 
+3 TARGET  POSITION XYZ = [  3.0947 , -1.3373 , -2.0328 ] 
+3 CURRENT POSITION XYZ = [  1.9693 , -1.3357 , -1.9989 ] 
+4 TARGET  POSITION XYZ = [  3.0947 , -1.3373 , -2.0328 ] 
+4 CURRENT POSITION XYZ = [  1.9026 , -1.2981 , -1.9905 ] 
+5 TARGET  POSITION XYZ = [  3.0947 , -1.3373 , -2.0328 ] 
+5 CURRENT POSITION XYZ = [  1.9263 , -1.2821 , -2.0291 ] 
+6 TARGET  POSITION XYZ = [  3.0947 , -1.3373 , -2.0328 ] 
+6 CURRENT POSITION XYZ = [  2.0009 , -1.3097 , -2.1029 ] 
+7 TARGET  POSITION XYZ = [  3.0947 , -1.3373 , -2.0328 ] 
+7 CURRENT POSITION XYZ = [  2.0229 , -1.3806 , -2.1112 ] 
+8 TARGET  POSITION XYZ = [  3.0947 , -1.3373 , -2.0328 ] 
+8 CURRENT POSITION XYZ = [  2.0457 , -1.3313 , -2.0757 ] 
+9 TARGET  POSITION XYZ = [  2.0947 , -1.3373 , -2.0328 ] 
+9 CURRENT POSITION XYZ = [  2.0570 , -1.2702 , -2.0690 ] 
+
+
+
+
+----------------------si2_mission Hold this altitude for 5sec------------------
+BODY FRAME POSITION SETPOINT XYZ = [ 2.0947 , -1.3373 , -2.0328 ] 
+0 TARGET  POSITION XYZ = [  2.0947 , -1.3373 , -2.0328 ] 
+0 CURRENT POSITION XYZ = [  2.0975 , -1.2537 , -2.0460 ] 
+1 TARGET  POSITION XYZ = [  2.0947 , -1.3373 , -2.0328 ] 
+1 CURRENT POSITION XYZ = [  2.0791 , -1.3133 , -2.0291 ] 
+2 TARGET  POSITION XYZ = [  2.0947 , -1.3373 , -2.0328 ] 
+2 CURRENT POSITION XYZ = [  2.0355 , -1.3664 , -2.0130 ] 
+3 TARGET  POSITION XYZ = [  2.0947 , -1.3373 , -2.0328 ] 
+3 CURRENT POSITION XYZ = [  2.0427 , -1.3738 , -2.0372 ] 
+4 TARGET  POSITION XYZ = [  2.0947 , -1.3373 , -2.0328 ] 
+4 CURRENT POSITION XYZ = [  2.0498 , -1.3870 , -2.0912 ] 
+
+
+
+
+----------------------si2_mission Turn Left for 10sec------------------
+BODY FRAME POSITION SETPOINT XYZ = [ 2.0947 , -2.3373 , -2.0328 ] 
+0 TARGET  POSITION XYZ = [  2.0947 , -1.3373 , -2.0328 ] 
+0 CURRENT POSITION XYZ = [  2.0557 , -1.3987 , -2.0785 ] 
+1 TARGET  POSITION XYZ = [  2.0947 , -2.3373 , -2.0328 ] 
+1 CURRENT POSITION XYZ = [  2.0376 , -1.6288 , -2.0216 ] 
+2 TARGET  POSITION XYZ = [  2.0947 , -2.3373 , -2.0328 ] 
+2 CURRENT POSITION XYZ = [  2.0731 , -2.0959 , -1.9886 ] 
+3 TARGET  POSITION XYZ = [  2.0947 , -2.3373 , -2.0328 ] 
+3 CURRENT POSITION XYZ = [  2.0627 , -2.3968 , -1.9956 ] 
+4 TARGET  POSITION XYZ = [  2.0947 , -2.3373 , -2.0328 ] 
+4 CURRENT POSITION XYZ = [  2.0309 , -2.4548 , -2.0361 ] 
+5 TARGET  POSITION XYZ = [  2.0947 , -2.3373 , -2.0328 ] 
+5 CURRENT POSITION XYZ = [  1.9727 , -2.4335 , -2.0439 ] 
+6 TARGET  POSITION XYZ = [  2.0947 , -2.3373 , -2.0328 ] 
+6 CURRENT POSITION XYZ = [  1.9524 , -2.3663 , -2.0337 ] 
+7 TARGET  POSITION XYZ = [  2.0947 , -2.3373 , -2.0328 ] 
+7 CURRENT POSITION XYZ = [  1.9551 , -2.3053 , -2.0773 ] 
+8 TARGET  POSITION XYZ = [  2.0947 , -2.3373 , -2.0328 ] 
+8 CURRENT POSITION XYZ = [  1.9165 , -2.3073 , -2.0502 ] 
+9 TARGET  POSITION XYZ = [  2.0947 , -2.3373 , -2.0328 ] 
+9 CURRENT POSITION XYZ = [  1.9774 , -2.2932 , -2.0138 ] 
+
+
+
+
+----------------------si2_mission Move Downward for 10sec------------------
+BODY FRAME POSITION SETPOINT XYZ = [ 2.0947 , -2.3373 , -1.0328 ] 
+0 TARGET  POSITION XYZ = [  2.0947 , -2.3373 , -2.0328 ] 
+0 CURRENT POSITION XYZ = [  2.0032 , -2.2910 , -2.0188 ] 
+1 TARGET  POSITION XYZ = [  2.0947 , -2.3373 , -2.0328 ] 
+1 CURRENT POSITION XYZ = [  2.0452 , -2.3289 , -1.6037 ] 
+2 TARGET  POSITION XYZ = [  2.0947 , -2.3373 , -2.0328 ] 
+2 CURRENT POSITION XYZ = [  2.1170 , -2.3091 , -1.1003 ] 
+3 TARGET  POSITION XYZ = [  2.0947 , -2.3373 , -2.0328 ] 
+3 CURRENT POSITION XYZ = [  2.1036 , -2.3020 , -1.0153 ] 
+4 TARGET  POSITION XYZ = [  2.0947 , -2.3373 , -2.0328 ] 
+4 CURRENT POSITION XYZ = [  2.0634 , -2.3006 , -1.0570 ] 
+5 TARGET  POSITION XYZ = [  2.0947 , -2.3373 , -2.0328 ] 
+5 CURRENT POSITION XYZ = [  2.0374 , -2.3015 , -1.0684 ] 
+6 TARGET  POSITION XYZ = [  2.0947 , -2.3373 , -2.0328 ] 
+6 CURRENT POSITION XYZ = [  1.9863 , -2.3202 , -1.0476 ] 
+7 TARGET  POSITION XYZ = [  2.0947 , -2.3373 , -2.0328 ] 
+7 CURRENT POSITION XYZ = [  1.9934 , -2.3495 , -1.0495 ] 
+8 TARGET  POSITION XYZ = [  2.0947 , -2.3373 , -1.0328 ] 
+8 CURRENT POSITION XYZ = [  1.9416 , -2.3206 , -0.9763 ] 
+9 TARGET  POSITION XYZ = [  2.0947 , -2.3373 , -1.0328 ] 
+9 CURRENT POSITION XYZ = [  1.8856 , -2.3020 , -1.0259 ] 
+
+DISABLE OFFBOARD MODE
+
+READ SOME MESSAGES 
+Got message LOCAL_POSITION_NED (spec: https://pixhawk.ethz.ch/mavlink/#LOCAL_POSITION_NED)
+    pos  (NED):  1.859239 -2.327302 -1.025914 (m)
+Got message HIGHRES_IMU (spec: https://pixhawk.ethz.ch/mavlink/#HIGHRES_IMU)
+    ap time:     1427036541 
+    acc  (NED):  -0.227802  2.258435 -9.566205 (m/s^2)
+    gyro (NED):   0.454554  0.076903  0.042428 (rad/s)
+    mag  (NED):   0.144673  0.434539  0.208279 (Ga)
+    baro:        0.000000 (mBar) 
+    altitude:    64.210167 (m) 
+    temperature: 36.750000 C 
+
+CLOSE THREADS
+
+CLOSE PORT
+
+pi@raspberrypi ~/UART_OUT/Local_Pos_NED_TEST/0222Test $ ./Square_Move_LOCAL 
+OPEN PORT
+Connected to /dev/ttyAMA0 with 57600 baud, 8 data bits, no parity, 1 stop bit (8N1)
+
+START READ THREAD 
+
+CHECK FOR MESSAGES
+Found
+
+GOT VEHICLE SYSTEM ID: 1
+GOT AUTOPILOT COMPONENT ID: 1
+
+INITIAL POSITION XYZ = [ 1.6284 , -1.3461 , -1.5066 ] 
+INITIAL POSITION YAW = 3.0627 
+
+START WRITE THREAD 
+----------------------In Local Frame------------------------------
+
+ENABLE OFFBOARD MODE
+
+SEND OFFBOARD COMMANDS
+write_thread_initialization_Waiting for 15 sec
+0 TARGET  POSITION XYZ = [  0.0000 ,  0.0000 ,  0.0000 ] 
+0 CURRENT POSITION XYZ = [  1.6123 , -1.3460 , -1.4914 ] 
+write_thread_initialization_Waiting for 14 sec
+1 TARGET  POSITION XYZ = [  0.0000 ,  0.0000 ,  0.0000 ] 
+1 CURRENT POSITION XYZ = [  1.6284 , -1.3403 , -1.2514 ] 
+write_thread_initialization_Waiting for 13 sec
+2 TARGET  POSITION XYZ = [  0.0000 ,  0.0000 ,  0.0000 ] 
+2 CURRENT POSITION XYZ = [  1.6359 , -1.1662 , -1.1678 ] 
+write_thread_initialization_Waiting for 12 sec
+3 TARGET  POSITION XYZ = [  0.0000 ,  0.0000 ,  0.0000 ] 
+3 CURRENT POSITION XYZ = [  1.6307 , -1.1750 , -1.2349 ] 
+write_thread_initialization_Waiting for 11 sec
+4 TARGET  POSITION XYZ = [  0.0000 ,  0.0000 ,  0.0000 ] 
+4 CURRENT POSITION XYZ = [  1.6671 , -1.2434 , -1.2215 ] 
+write_thread_initialization_Waiting for 10 sec
+5 TARGET  POSITION XYZ = [  0.0000 ,  0.0000 ,  0.0000 ] 
+5 CURRENT POSITION XYZ = [  1.6922 , -1.3255 , -1.2115 ] 
+write_thread_initialization_Waiting for 9 sec
+6 TARGET  POSITION XYZ = [  0.0000 ,  0.0000 ,  0.0000 ] 
+6 CURRENT POSITION XYZ = [  1.6744 , -1.2803 , -1.2485 ] 
+write_thread_initialization_Waiting for 8 sec
+7 TARGET  POSITION XYZ = [  0.0000 ,  0.0000 ,  0.0000 ] 
+7 CURRENT POSITION XYZ = [  1.6596 , -1.2538 , -1.2971 ] 
+write_thread_initialization_Waiting for 7 sec
+8 TARGET  POSITION XYZ = [  0.0000 ,  0.0000 ,  0.0000 ] 
+8 CURRENT POSITION XYZ = [  1.6755 , -1.2565 , -1.2728 ] 
+write_thread_initialization_Waiting for 6 sec
+9 TARGET  POSITION XYZ = [  0.0000 ,  0.0000 ,  0.0000 ] 
+9 CURRENT POSITION XYZ = [  1.6441 , -1.2866 , -1.2861 ] 
+write_thread_initialization_Waiting for 5 sec
+10 TARGET  POSITION XYZ = [  0.0000 ,  0.0000 ,  0.0000 ] 
+10 CURRENT POSITION XYZ = [  1.6403 , -1.3437 , -1.2958 ] 
+write_thread_initialization_Waiting for 4 sec
+11 TARGET  POSITION XYZ = [  0.0000 ,  0.0000 ,  0.0000 ] 
+11 CURRENT POSITION XYZ = [  1.6480 , -1.3740 , -1.2428 ] 
+write_thread_initialization_Waiting for 3 sec
+12 TARGET  POSITION XYZ = [  1.6284 , -1.3461 , -1.5066 ] 
+12 CURRENT POSITION XYZ = [  1.6477 , -1.3585 , -1.2676 ] 
+write_thread_initialization_Waiting for 2 sec
+13 TARGET  POSITION XYZ = [  1.6284 , -1.3461 , -1.5066 ] 
+13 CURRENT POSITION XYZ = [  1.6495 , -1.3530 , -1.3252 ] 
+write_thread_initialization_Waiting for 1 sec
+14 TARGET  POSITION XYZ = [  1.6284 , -1.3461 , -1.5066 ] 
+14 CURRENT POSITION XYZ = [  1.6679 , -1.3490 , -1.3546 ] 
+LOCAL FRAME POSITION SETPOINT XYZ = [ 1.6284 , -1.3461 , -2.5066 ] 
+
+
+
+----------------------Command Upward 1m by set_position for 10sec----------------------
+0 TARGET  POSITION XYZ = [  1.6284 , -1.3461 , -1.5066 ] 
+0 CURRENT POSITION XYZ = [  1.6614 , -1.3384 , -1.3327 ] 
+1 TARGET  POSITION XYZ = [  1.6284 , -1.3461 , -2.5066 ] 
+1 CURRENT POSITION XYZ = [  1.6867 , -1.4182 , -1.6516 ] 
+2 TARGET  POSITION XYZ = [  1.6284 , -1.3461 , -2.5066 ] 
+2 CURRENT POSITION XYZ = [  1.7125 , -1.3274 , -2.1555 ] 
+3 TARGET  POSITION XYZ = [  1.6284 , -1.3461 , -2.5066 ] 
+3 CURRENT POSITION XYZ = [  1.6339 , -1.2256 , -2.3507 ] 
+4 TARGET  POSITION XYZ = [  1.6284 , -1.3461 , -2.5066 ] 
+4 CURRENT POSITION XYZ = [  1.5604 , -1.2578 , -2.3736 ] 
+5 TARGET  POSITION XYZ = [  1.6284 , -1.3461 , -2.5066 ] 
+5 CURRENT POSITION XYZ = [  1.5734 , -1.2450 , -2.4194 ] 
+6 TARGET  POSITION XYZ = [  1.6284 , -1.3461 , -2.5066 ] 
+6 CURRENT POSITION XYZ = [  1.5978 , -1.2696 , -2.4404 ] 
+7 TARGET  POSITION XYZ = [  1.6284 , -1.3461 , -2.5066 ] 
+7 CURRENT POSITION XYZ = [  1.6138 , -1.2694 , -2.4049 ] 
+8 TARGET  POSITION XYZ = [  1.6284 , -1.3461 , -2.5066 ] 
+8 CURRENT POSITION XYZ = [  1.6571 , -1.2596 , -2.3815 ] 
+9 TARGET  POSITION XYZ = [  1.6284 , -1.3461 , -2.5066 ] 
+9 CURRENT POSITION XYZ = [  1.6930 , -1.2387 , -2.3935 ] 
+
+
+
+----------------------si2_mission Hold this altitude for 5sec------------------
+LOCAL FRAME POSITION SETPOINT XYZ = [ 1.6284 , -1.3461 , -2.5066 ] 
+0 TARGET  POSITION XYZ = [  1.6284 , -1.3461 , -2.5066 ] 
+0 CURRENT POSITION XYZ = [  1.6869 , -1.2116 , -2.4074 ] 
+1 TARGET  POSITION XYZ = [  1.6284 , -1.3461 , -2.5066 ] 
+1 CURRENT POSITION XYZ = [  1.6508 , -1.1972 , -2.4061 ] 
+2 TARGET  POSITION XYZ = [  1.6284 , -1.3461 , -2.5066 ] 
+2 CURRENT POSITION XYZ = [  1.6507 , -1.1846 , -2.3810 ] 
+3 TARGET  POSITION XYZ = [  1.6284 , -1.3461 , -2.5066 ] 
+3 CURRENT POSITION XYZ = [  1.6429 , -1.1192 , -2.3639 ] 
+4 TARGET  POSITION XYZ = [  1.6284 , -1.3461 , -2.5066 ] 
+4 CURRENT POSITION XYZ = [  1.6475 , -1.0725 , -2.3474 ] 
+LOCAL FRAME POSITION SETPOINT XYZ = [ 2.6284 , -1.3461 , -2.5066 ] 
+
+
+
+-----si2_mission move Forward 1m for 10 seconds------------
+0 TARGET  POSITION XYZ = [  1.6284 , -1.3461 , -2.5066 ] 
+0 CURRENT POSITION XYZ = [  1.6826 , -1.0013 , -2.3858 ] 
+1 TARGET  POSITION XYZ = [  1.6284 , -1.3461 , -2.5066 ] 
+1 CURRENT POSITION XYZ = [  1.9259 , -0.9833 , -2.3402 ] 
+2 TARGET  POSITION XYZ = [  2.6284 , -1.3461 , -2.5066 ] 
+2 CURRENT POSITION XYZ = [  2.4164 , -1.0431 , -2.3421 ] 
+3 TARGET  POSITION XYZ = [  2.6284 , -1.3461 , -2.5066 ] 
+3 CURRENT POSITION XYZ = [  2.7341 , -1.1549 , -2.3420 ] 
+4 TARGET  POSITION XYZ = [  2.6284 , -1.3461 , -2.5066 ] 
+4 CURRENT POSITION XYZ = [  2.7912 , -1.2391 , -2.3751 ] 
+5 TARGET  POSITION XYZ = [  2.6284 , -1.3461 , -2.5066 ] 
+5 CURRENT POSITION XYZ = [  2.7792 , -1.2651 , -2.3415 ] 
+6 TARGET  POSITION XYZ = [  2.6284 , -1.3461 , -2.5066 ] 
+6 CURRENT POSITION XYZ = [  2.7403 , -1.2657 , -2.3664 ] 
+7 TARGET  POSITION XYZ = [  2.6284 , -1.3461 , -2.5066 ] 
+7 CURRENT POSITION XYZ = [  2.7066 , -1.2428 , -2.3223 ] 
+8 TARGET  POSITION XYZ = [  2.6284 , -1.3461 , -2.5066 ] 
+8 CURRENT POSITION XYZ = [  2.7075 , -1.2251 , -2.3071 ] 
+9 TARGET  POSITION XYZ = [  2.6284 , -1.3461 , -2.5066 ] 
+9 CURRENT POSITION XYZ = [  2.6417 , -1.4312 , -2.2719 ] 
+
+
+
+----------------------si2_mission Hold this altitude for 5sec------------------
+LOCAL FRAME POSITION SETPOINT XYZ = [ 2.6284 , -1.3461 , -2.5066 ] 
+0 TARGET  POSITION XYZ = [  2.6284 , -1.3461 , -2.5066 ] 
+0 CURRENT POSITION XYZ = [  2.6300 , -1.4215 , -2.2382 ] 
+1 TARGET  POSITION XYZ = [  2.6284 , -1.3461 , -2.5066 ] 
+1 CURRENT POSITION XYZ = [  2.6017 , -1.4473 , -2.3127 ] 
+2 TARGET  POSITION XYZ = [  2.6284 , -1.3461 , -2.5066 ] 
+2 CURRENT POSITION XYZ = [  2.5446 , -1.5766 , -2.3176 ] 
+3 TARGET  POSITION XYZ = [  2.6284 , -1.3461 , -2.5066 ] 
+3 CURRENT POSITION XYZ = [  2.5442 , -1.5970 , -2.3294 ] 
+4 TARGET  POSITION XYZ = [  2.6284 , -1.3461 , -2.5066 ] 
+4 CURRENT POSITION XYZ = [  2.5449 , -1.5735 , -2.3100 ] 
+
+
+
+
+----------------------si2_mission Turn Right for 10sec------------------
+LOCAL FRAME POSITION SETPOINT XYZ = [ 2.6284 , -0.3461 , -2.5066 ] 
+0 TARGET  POSITION XYZ = [  2.6284 , -1.3461 , -2.5066 ] 
+0 CURRENT POSITION XYZ = [  2.5192 , -1.6995 , -2.3234 ] 
+1 TARGET  POSITION XYZ = [  2.6284 , -1.3461 , -2.5066 ] 
+1 CURRENT POSITION XYZ = [  2.5327 , -1.5242 , -2.3281 ] 
+2 TARGET  POSITION XYZ = [  2.6284 , -1.3461 , -2.5066 ] 
+2 CURRENT POSITION XYZ = [  2.5420 , -1.1061 , -2.3057 ] 
+3 TARGET  POSITION XYZ = [  2.6284 , -1.3461 , -2.5066 ] 
+3 CURRENT POSITION XYZ = [  2.5127 , -0.7424 , -2.3674 ] 
+4 TARGET  POSITION XYZ = [  2.6284 , -1.3461 , -2.5066 ] 
+4 CURRENT POSITION XYZ = [  2.5686 , -0.2450 , -2.4837 ] 
+5 TARGET  POSITION XYZ = [  2.6284 , -1.3461 , -2.5066 ] 
+5 CURRENT POSITION XYZ = [  2.6269 , -0.0171 , -2.4861 ] 
+6 TARGET  POSITION XYZ = [  2.6284 , -1.3461 , -2.5066 ] 
+6 CURRENT POSITION XYZ = [  2.6559 , -0.2006 , -2.4532 ] 
+7 TARGET  POSITION XYZ = [  2.6284 , -1.3461 , -2.5066 ] 
+7 CURRENT POSITION XYZ = [  2.6966 , -0.1841 , -2.4334 ] 
+8 TARGET  POSITION XYZ = [  2.6284 , -1.3461 , -2.5066 ] 
+8 CURRENT POSITION XYZ = [  2.6557 , -0.2791 , -2.3671 ] 
+9 TARGET  POSITION XYZ = [  2.6284 , -1.3461 , -2.5066 ] 
+9 CURRENT POSITION XYZ = [  2.6905 , -0.2402 , -2.2531 ] 
+
+
+
+
+----------------------si2_mission Hold this altitude for 5sec------------------
+LOCAL FRAME POSITION SETPOINT XYZ = [ 2.6284 , -0.3461 , -2.5066 ] 
+0 TARGET  POSITION XYZ = [  2.6284 , -1.3461 , -2.5066 ] 
+0 CURRENT POSITION XYZ = [  2.6693 , -0.2290 , -2.2647 ] 
+1 TARGET  POSITION XYZ = [  2.6284 , -1.3461 , -2.5066 ] 
+1 CURRENT POSITION XYZ = [  2.6603 , -0.2555 , -2.2731 ] 
+2 TARGET  POSITION XYZ = [  2.6284 , -1.3461 , -2.5066 ] 
+2 CURRENT POSITION XYZ = [  2.6529 , -0.2827 , -2.3092 ] 
+3 TARGET  POSITION XYZ = [  2.6284 , -0.3461 , -2.5066 ] 
+3 CURRENT POSITION XYZ = [  2.6050 , -0.3701 , -2.3462 ] 
+4 TARGET  POSITION XYZ = [  2.6284 , -0.3461 , -2.5066 ] 
+4 CURRENT POSITION XYZ = [  2.5668 , -0.3949 , -2.3070 ] 
+
+
+
+
+----------------------si2_mission Move Backward for 10sec------------------
+LOCAL FRAME POSITION SETPOINT XYZ = [ 1.6284 , -0.3461 , -2.5066 ] 
+0 TARGET  POSITION XYZ = [  2.6284 , -0.3461 , -2.5066 ] 
+0 CURRENT POSITION XYZ = [  2.5325 , -0.3903 , -2.3190 ] 
+1 TARGET  POSITION XYZ = [  2.6284 , -0.3461 , -2.5066 ] 
+1 CURRENT POSITION XYZ = [  2.3543 , -0.3968 , -2.3067 ] 
+2 TARGET  POSITION XYZ = [  1.6284 , -0.3461 , -2.5066 ] 
+2 CURRENT POSITION XYZ = [  1.8615 , -0.3302 , -2.3015 ] 
+3 TARGET  POSITION XYZ = [  1.6284 , -0.3461 , -2.5066 ] 
+3 CURRENT POSITION XYZ = [  1.5825 , -0.2356 , -2.3424 ] 
+4 TARGET  POSITION XYZ = [  1.6284 , -0.3461 , -2.5066 ] 
+4 CURRENT POSITION XYZ = [  1.5253 , -0.2781 , -2.3345 ] 
+5 TARGET  POSITION XYZ = [  1.6284 , -0.3461 , -2.5066 ] 
+5 CURRENT POSITION XYZ = [  1.6157 , -0.2399 , -2.3268 ] 
+6 TARGET  POSITION XYZ = [  1.6284 , -0.3461 , -2.5066 ] 
+6 CURRENT POSITION XYZ = [  1.6628 , -0.2333 , -2.3352 ] 
+7 TARGET  POSITION XYZ = [  1.6284 , -0.3461 , -2.5066 ] 
+7 CURRENT POSITION XYZ = [  1.6190 , -0.2306 , -2.3562 ] 
+8 TARGET  POSITION XYZ = [  1.6284 , -0.3461 , -2.5066 ] 
+8 CURRENT POSITION XYZ = [  1.5951 , -0.2335 , -2.3227 ] 
+9 TARGET  POSITION XYZ = [  1.6284 , -0.3461 , -2.5066 ] 
+9 CURRENT POSITION XYZ = [  1.5946 , -0.1927 , -2.2624 ] 
+
+
+
+
+----------------------si2_mission Hold this altitude for 5sec------------------
+LOCAL FRAME POSITION SETPOINT XYZ = [ 1.6284 , -0.3461 , -2.5066 ] 
+0 TARGET  POSITION XYZ = [  1.6284 , -0.3461 , -2.5066 ] 
+0 CURRENT POSITION XYZ = [  1.5660 , -0.1908 , -2.2512 ] 
+1 TARGET  POSITION XYZ = [  1.6284 , -0.3461 , -2.5066 ] 
+1 CURRENT POSITION XYZ = [  1.5858 , -0.1066 , -2.2510 ] 
+2 TARGET  POSITION XYZ = [  1.6284 , -0.3461 , -2.5066 ] 
+2 CURRENT POSITION XYZ = [  1.6212 , -0.1518 , -2.2064 ] 
+3 TARGET  POSITION XYZ = [  1.6284 , -0.3461 , -2.5066 ] 
+3 CURRENT POSITION XYZ = [  1.6031 , -0.3311 , -2.1811 ] 
+4 TARGET  POSITION XYZ = [  1.6284 , -0.3461 , -2.5066 ] 
+4 CURRENT POSITION XYZ = [  1.5780 , -0.5088 , -2.1817 ] 
+
+
+
+
+----------------------si2_mission Turn Left for 10sec------------------
+LOCAL FRAME POSITION SETPOINT XYZ = [ 1.6284 , -1.3461 , -2.5066 ] 
+0 TARGET  POSITION XYZ = [  1.6284 , -0.3461 , -2.5066 ] 
+0 CURRENT POSITION XYZ = [  1.5628 , -0.5821 , -2.2169 ] 
+1 TARGET  POSITION XYZ = [  1.6284 , -0.3461 , -2.5066 ] 
+1 CURRENT POSITION XYZ = [  1.5909 , -0.6488 , -2.2128 ] 
+2 TARGET  POSITION XYZ = [  1.6284 , -0.3461 , -2.5066 ] 
+2 CURRENT POSITION XYZ = [  1.6684 , -0.9032 , -2.1608 ] 
+3 TARGET  POSITION XYZ = [  1.6284 , -0.3461 , -2.5066 ] 
+3 CURRENT POSITION XYZ = [  1.6536 , -1.2810 , -2.0666 ] 
+4 TARGET  POSITION XYZ = [  1.6284 , -0.3461 , -2.5066 ] 
+4 CURRENT POSITION XYZ = [  1.5622 , -1.4831 , -2.0302 ] 
+5 TARGET  POSITION XYZ = [  1.6284 , -0.3461 , -2.5066 ] 
+5 CURRENT POSITION XYZ = [  1.4092 , -1.5939 , -2.0494 ] 
+6 TARGET  POSITION XYZ = [  1.6284 , -0.3461 , -2.5066 ] 
+6 CURRENT POSITION XYZ = [  1.2605 , -1.5105 , -2.0608 ] 
+7 TARGET  POSITION XYZ = [  1.6284 , -0.3461 , -2.5066 ] 
+7 CURRENT POSITION XYZ = [  1.0307 , -1.4834 , -2.0098 ] 
+8 TARGET  POSITION XYZ = [  1.6284 , -0.3461 , -2.5066 ] 
+8 CURRENT POSITION XYZ = [  0.6769 , -1.4921 , -1.9472 ] 
+9 TARGET  POSITION XYZ = [  1.6284 , -0.3461 , -2.5066 ] 
+9 CURRENT POSITION XYZ = [  0.2376 , -1.5360 , -1.8441 ] 
+
+
+
+
+----------------------si2_mission Move Downward for 10sec------------------
+LOCAL FRAME POSITION SETPOINT XYZ = [ 1.6284 , -1.3461 , -1.5066 ] 
+0 TARGET  POSITION XYZ = [  1.6284 , -0.3461 , -2.5066 ] 
+0 CURRENT POSITION XYZ = [ -0.2124 , -1.6055 , -1.5751 ] 
+1 TARGET  POSITION XYZ = [  1.6284 , -0.3461 , -2.5066 ] 
+1 CURRENT POSITION XYZ = [ -0.9394 , -1.6725 , -0.9190 ] 
+2 TARGET  POSITION XYZ = [  1.6284 , -0.3461 , -2.5066 ] 
+2 CURRENT POSITION XYZ = [ -1.2929 , -1.5645 , -0.4072 ] 
+3 TARGET  POSITION XYZ = [  1.6284 , -1.3461 , -1.5066 ] 
+3 CURRENT POSITION XYZ = [ -1.3727 , -1.3422 ,  0.0435 ] 
+4 TARGET  POSITION XYZ = [  1.6284 , -1.3461 , -1.5066 ] 
+4 CURRENT POSITION XYZ = [ -1.5239 , -1.3097 ,  0.5841 ] 
+5 TARGET  POSITION XYZ = [  1.6284 , -1.3461 , -1.5066 ] 
+5 CURRENT POSITION XYZ = [ -1.3340 , -1.3286 ,  1.2377 ] 
+6 TARGET  POSITION XYZ = [  1.6284 , -1.3461 , -1.5066 ] 
+6 CURRENT POSITION XYZ = [ -0.4677 , -1.3661 ,  1.6670 ] 
+7 TARGET  POSITION XYZ = [  1.6284 , -1.3461 , -1.5066 ] 
+7 CURRENT POSITION XYZ = [  0.6077 , -1.4517 ,  1.4496 ] 
+8 TARGET  POSITION XYZ = [  1.6284 , -1.3461 , -1.5066 ] 
+8 CURRENT POSITION XYZ = [  0.9028 , -1.3608 ,  0.7930 ] 
+9 TARGET  POSITION XYZ = [  1.6284 , -1.3461 , -1.5066 ] 
+9 CURRENT POSITION XYZ = [  0.7921 , -1.2131 , -0.1653 ] 
+
+DISABLE OFFBOARD MODE
+^C
+TERMINATING AT USER REQUEST
+
+DISABLE OFFBOARD MODE

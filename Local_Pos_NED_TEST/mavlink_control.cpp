@@ -441,7 +441,9 @@ void si2_message_broadcast(Autopilot_Interface &api){
 	    // local position in ned frame
 	    mavlink_local_position_ned_t pos = messages.local_position_ned;
 	    printf("Got message LOCAL_POSITION_NED \n");
-	    printf("    pos  (NED):  %f %f %f (m)\n", pos.x, pos.y, pos.z );
+	    printf("    pos  (NED): x: %8f  y: %8f  z: %8f (m)\n", pos.x, pos.y, pos.z );
+	    printf("    pos  (NED):vx: %8f vy: %8f vz: %8f (m)\n", pos.vx, pos.vy, pos.vz );
+
 
 	    // highres_imu
 	    mavlink_highres_imu_t imu = messages.highres_imu;
@@ -452,7 +454,7 @@ void si2_message_broadcast(Autopilot_Interface &api){
         // attribute
         mavlink_attitude_t attitude = messages.attitude;
         printf("Got message ATTITUDE #30 \n");
-        printf("In Degree:   row:  %f    pitch:  %f    yaw:  %f \n",attitude.roll, attitude.pitch, attitude.yaw);
+        printf("In Degree:   row:  %f    pitch:  %f    yaw:  %f \n",attitude.roll*180, attitude.pitch*180, attitude.yaw*180);
         // VFR_HUD
         mavlink_vfr_hud_t vfr_hud = messages.vfr_hud;
         printf("Got message VFR_HUD  #74 \n");

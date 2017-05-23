@@ -149,9 +149,11 @@ top (int argc, char **argv)
 	 * Now we can implement the algorithm we want on top of the autopilot interface
 	 */
 
-
-	commands(autopilot_interface,0,0,-1,0,0,0);
-        
+    //Comment Out this line to stop command the drone
+	//commands(autopilot_interface,0,0,-1,0,0,0);
+    
+    //Read Message Function
+      si2_message_broadcast(autopilot_interface);   
         
         
 
@@ -426,6 +428,48 @@ commands(Autopilot_Interface &api,float dx,float dy,float dz, float vx, float vy
 	return;
 
 }
+void si2_message_broadcast(Autopilot_Interface &api){
+    while(1){
+	    // --------------------------------------------------------------------------
+	    //   GET A MESSAGE
+	    // --------------------------------------------------------------------------
+	    printf("READ SOME MESSAGES \n");
+
+	    // copy current messages
+	    Mavlink_Messages messages = api.current_messages;
+
+	    // local position in ned frame
+	    mavlink_local_position_ned_t pos = messages.local_position_ned;
+	    printf("Got message LOCAL_POSITION_NED \n");
+	    printf("    pos  (NED):  %f %f %f (m)\n", pos.x, pos.y, pos.z );
+
+	    // highres_imu
+	    mavlink_highres_imu_t imu = messages.highres_imu;
+	    printf("Got message HIGHRES_IMU \n");
+	    printf("    altitude:    %f (m) \n"     , imu.pressure_alt);
+	    printf("\n");
+
+        // attribute
+        mavlink_attitude_t attitude = messages.attitude;
+        printf("Got message ATTITUDE #30 \n");
+        printf("In Degree:   row:  %f    pitch:  %f    yaw:  %f \n",attitude.row, attitude,pitch, attitude,yaw);
+        // VFR_HUD
+        mavlink_vfr_hud_t vfr_hud = messages.vfr_hud;
+        printf("Got message VFR_HUD  #74 \n");
+        printf("Headig in 360 degree(0 = North) : %d  \n", vfr_hud.heading);
+        sleep(1)
+    }
+
+}
+
+
+
+
+
+
+
+
+
 
 
 // ------------------------------------------------------------------------------

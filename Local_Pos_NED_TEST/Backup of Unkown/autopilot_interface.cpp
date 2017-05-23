@@ -362,28 +362,20 @@ read_messages()
 					this_timestamps.attitude = current_messages.time_stamps.attitude;
 					break;
 				}
-                case MAVLINK_MSG_ID_ATTITUDE_TARGET:
-                {
-                        mavlink_msg_attitude_target_decode(&message, &(current_messages.attitude_target));
-                        break;
-                
-                }
-                case 242://MAVLINK_MSG_ID_HOME_POSITION
-                {
-                //       mavlink_home_position_t  home;
-               //       mavlink_msg_home_position_decode(&message, &home);
-               //       printf("Get HOME POSITION !! ----------------------\n\n");
-               //       printf("HOME:        X:%f\n  Y: %f\n Z:%f\n\n\n------------ ",home.x,home.y,home.z);
-                      break;
-                }
-				case MAVLINK_MSG_ID_VFR_HUD:
-				{
-					mavlink_msg_vfr_hud_decode(&message, &(current_messages.vfr_hud));
-					current_messages.time_stamps.vfr_hud = get_time_usec();
-					this_timestamps.vfr_hud = current_messages.time_stamps.vfr_hud;
-					break;
-				}
-
+                                case MAVLINK_MSG_ID_ATTITUDE_TARGET:
+                                {
+                                        mavlink_msg_attitude_target_decode(&message, &(current_messages.attitude_target));
+                                        break;
+                                
+                                }
+                                case 242://MAVLINK_MSG_ID_HOME_POSITION
+                                {
+                                 //       mavlink_home_position_t  home;
+                                 //       mavlink_msg_home_position_decode(&message, &home);
+                                        printf("Get HOME POSITION !! ----------------------\n\n");
+                                 //       printf("HOME:        X:%f\n  Y: %f\n Z:%f\n\n\n------------ ",home.x,home.y,home.z);
+                                        break;
+                                }
 
 				default:
 				{
@@ -692,16 +684,15 @@ start()
 	// --------------------------------------------------------------------------
 	//   WRITE THREAD
 	// --------------------------------------------------------------------------
-/*   This part is for Reading the value only from pixhawk only no command output
 	printf("START WRITE THREAD \n");
 
-    result = pthread_create( &write_tid, NULL, &start_autopilot_interface_write_thread, this );
+	result = pthread_create( &write_tid, NULL, &start_autopilot_interface_write_thread, this );
 	if ( result ) throw result;
 
 	// wait for it to be started
 	while ( not writing_status )
 		usleep(100000); // 10Hz
-*/
+
 	// now we're streaming setpoint commands
 	printf("\n");
 

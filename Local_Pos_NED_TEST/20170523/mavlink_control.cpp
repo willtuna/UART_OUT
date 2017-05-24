@@ -443,6 +443,7 @@ void si2_message_broadcast(Autopilot_Interface &api){
 	    mavlink_local_position_ned_t pos = messages.local_position_ned;
 	    printf("Got message LOCAL_POSITION_NED \n");
 	    printf("    pos  (NED):  %f %f %f (m)\n", pos.x, pos.y, pos.z );
+        printf("velocity (NED):  %f %f %f (m/s)\n ",pos.vx, pos.vy, pos.vz);
 
 	    // highres_imu
 	    mavlink_highres_imu_t imu = messages.highres_imu;
@@ -588,7 +589,6 @@ void get_current_time(void){
     // Convert the time_t to struct tm format
     tm_ptr = gmtime(&current_time);
 
-    printf("gmtime gives:\n");
     printf("date: %04d / %02d / %02d \n", tm_ptr->tm_year+1900, tm_ptr->tm_mon+1, tm_ptr->tm_mday);
     printf("time: %02d Hr %02d Min %02d Sec \n", tm_ptr->tm_hour + GMT8, tm_ptr->tm_min , tm_ptr -> tm_sec);
 }

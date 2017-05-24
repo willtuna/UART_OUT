@@ -428,6 +428,7 @@ commands(Autopilot_Interface &api,float dx,float dy,float dz, float vx, float vy
 	return;
 
 }
+
 void si2_message_broadcast(Autopilot_Interface &api){
     while(1){
 	    // --------------------------------------------------------------------------
@@ -452,12 +453,13 @@ void si2_message_broadcast(Autopilot_Interface &api){
         // attribute
         mavlink_attitude_t attitude = messages.attitude;
         printf("Got message ATTITUDE #30 \n");
-        printf("In Degree:   row:  %f    pitch:  %f    yaw:  %f \n",attitude.row, attitude,pitch, attitude,yaw);
+        printf("In Degree:   row:  %f    pitch:  %f    yaw:  %f \n",attitude.roll, attitude.pitch, attitude.yaw);
         // VFR_HUD
         mavlink_vfr_hud_t vfr_hud = messages.vfr_hud;
         printf("Got message VFR_HUD  #74 \n");
         printf("Headig in 360 degree(0 = North) : %d  \n", vfr_hud.heading);
-        sleep(1)
+        get_current_time();
+        sleep(1);
     }
 
 }
@@ -573,3 +575,20 @@ main(int argc, char **argv)
 }
 
 
+void get_current_time(void){
+    const int GMT8 = 8;
+    // create a struct of time which contains the year date hour minute second format
+    struct tm *tm_ptr;
+
+    // time_t is for fetch the current time from GMT Jan 1 , 1970
+    time_t current_time;
+    // this function would return the time calculated from 1970
+    time(&current_time); 
+
+    // Convert the time_t to struct tm format
+    tm_ptr = gmtime(&current_time);
+
+    printf("gmtime gives:\n");
+    printf("date: %04d / %02d / %02d \n", tm_ptr->tm_year+1900, tm_ptr->tm_mon+1, tm_ptr->tm_mday);
+    printf("time: %02d Hr %02d Min %02d Sec \n", tm_ptr->tm_hour + GMT8, tm_ptr->tm_min , tm_ptr -> tm_sec);
+}

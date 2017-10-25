@@ -1,0 +1,73 @@
+1.  https://drive.google.com/open?id=0B6gNIyUIHruKWlVPZG5MMWNhakk
+
+(1)未發現閃爍的燈是不合格的。應該先了解閃爍燈的意義。
+
+(2)重量沒有平均。
+
+(3)馬達推力不均。
+
+(4)推測是 GPS 校正未完全。
+
+2.  https://drive.google.com/open?id=0B6gNIyUIHruKNGZ2anlwcFJkaXM
+
+(1)推測是槳沒有鎖緊。
+
+(2)發現原因不在 GPS 上。
+
+3.  https://drive.google.com/open?id=0B6gNIyUIHruKY0l4Q3JkNXByMXM
+
+(1)翻覆原因,推測沒有自穩功能。
+
+(2)起飛時,沒有平均。(-&gt; 買腳架)
+
+---&gt; 需要重新校正 GPS COMPASS Accelerator.
+
+---&gt; 需要買槳來測試。
+
+4.  https://drive.google.com/open?id=0By-\_EYjhE1g3czFENFlLa0dUcG8
+
+更換 新槳(9045 換成 9038) 加裝腳架。
+
+(1)馬達推力不均。
+
+(2)重心仍然不穩。
+
+--&gt; 需要借 水平儀 來校正。
+
+https://www.youtube.com/watch?v=3nEvTeB2nX4
+
+https://www.youtube.com/watch?v=O8kuBI1XJSg
+
+--&gt;需要用木頭或是支架來測試推力是否平均。
+
+5. https://drive.google.com/open?id=0By-\_EYjhE1g3dXphVm5zUXpWT0k
+
+6. https://drive.google.com/open?id=0By-\_EYjhE1g3czFENFlLa0dUcG8
+
+(1)修改 PID 後沒有感受到任何差別,推測自穩沒有再作用
+
+(2)更換新槳後,推力反而不太夠。
+
+7. https://drive.google.com/open?id=0By-\_EYjhE1g3MU4wYnk3bmp6SlU
+
+(1)原本推測離地一段距離後應該要能自我平衡,由摔機結果可以確定自穩模式沒 有作用。
+
+(2)有一顆馬達外殼脫落。
+
+8. https://drive.google.com/open?id=0By-\_EYjhE1g3ak96VWlVWnlzZ0k
+
+(1)更換韌體,使用介面從 Mission Planner 換成 QGroundControl
+
+(2)起飛時,明顯感覺有自穩調整能力。
+
+(3)因為電池沒電,所以暫停測試。
+
+9.https://drive.google.com/open?id=0B6gNIyUIHruKUWUzdlhNc2JqSms
+
+(1)確定起飛後可以穩定控制。
+
+(2)電池充電電壓需要去比較差異。
+
+(3)飛行模式未完全測試過。
+
+(4)需要換槳(換回 9045)。--&gt; 如果在有風的狀況下,是否能穩定飛行??
